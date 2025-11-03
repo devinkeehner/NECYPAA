@@ -287,26 +287,35 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
-        <section className="flex flex-col md:flex-row items-center justify-between gap-8">
+        <section className="flex flex-col md:flex-row items-center justify-between gap-8 py-8">
           <div className="md:w-1/2 flex flex-col gap-6">
             <h2 className="text-3xl md:text-5xl font-bold text-white">
-              Join Us for the <span className="text-blue-400">Cardboard Masquerade</span>
+              Join Us for <span className="text-blue-400">RAVE HALLOWEEN 2.0</span>
             </h2>
             <p className="text-lg text-gray-300">
-              We're bidding to bring NECYPAA to Connecticut! Come support our bid and enjoy a night of fun, fellowship,
-              and creativity.
+              One night of fright was never enough! Join us for an evening of dancing, games, arts and crafts, and
+              fellowship to support our NECYPAA bid.
             </p>
-            <p className="text-lg text-gray-300">
-              <span className="font-semibold">Suggested contribution:</span> $10
-            </p>
+            <div className="flex flex-col gap-2 text-gray-300">
+              <p className="text-xl font-semibold text-blue-400">November 7th, 2025</p>
+              <p>Meeting: 7:30 PM | Rave: 8:30 PM</p>
+              <p>Bristol Recovery Club</p>
+              <p>67 West St, Bristol, CT 06010</p>
+              <p className="mt-2">
+                <span className="font-semibold">Attire:</span> Costumes, PJs, or whatever!
+              </p>
+              <p>
+                <span className="font-semibold">Suggested contribution:</span> $10
+              </p>
+            </div>
           </div>
           <div className="md:w-1/2">
             <div className="relative w-full max-w-md mx-auto md:max-w-none">
               <Image
-                src="/flyer.png"
-                alt="Cardboard Masquerade Event Flyer"
+                src="/images/rave-halloween.jpeg"
+                alt="Rave Halloween 2.0 Event Flyer"
                 width={600}
-                height={800}
+                height={600}
                 className="rounded-lg shadow-lg"
                 priority
               />
@@ -334,18 +343,105 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-blue-400 mb-6">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
-              <h3 className="text-xl font-bold text-blue-400 mb-2">Cardboard Masquerade</h3>
-              <p className="text-gray-300 mb-4">Friday, May 30, 2025 at 7:30 PM</p>
-              <p className="text-gray-300 mb-4">3 Mountain Rd, Farmington, CT 06032</p>
-              <p className="text-gray-300 mb-4">Suggested contribution: $10</p>
-              <p className="text-gray-300">Join us for a night of mask-making, board games, pizza, and fellowship!</p>
+              <h3 className="text-xl font-bold text-blue-400 mb-2">RAVE HALLOWEEN 2.0</h3>
+              <p className="text-gray-300 mb-2">Thursday, November 7, 2025</p>
+              <p className="text-gray-300 mb-2">Meeting: 7:30 PM | Rave: 8:30 PM</p>
+              <p className="text-gray-300 mb-4">67 West St, Bristol, CT 06010</p>
+              <p className="text-gray-300 mb-2">
+                <span className="font-semibold">Attire:</span> Costumes, PJs, or whatever!
+              </p>
+              <p className="text-gray-300 mb-4">
+                <span className="font-semibold">Activities:</span> Dance, Games, Arts and Crafts
+              </p>
+              <p className="text-gray-300 mb-2">Pizza will be provided</p>
+              <p className="text-gray-300">
+                <span className="font-semibold">Suggested contribution:</span> $10
+              </p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
               <h3 className="text-xl font-bold text-blue-400 mb-2">The Bid Committee Meeting</h3>
-              <p className="text-gray-300 mb-4">First Sunday of the month</p>
+              <p className="text-gray-300 mb-4">Third Sunday of the month</p>
               <p className="text-gray-300 mb-4">2:00 PM - 4:00 PM</p>
-              <p className="text-gray-300 mb-4">102 Norman St, Manchester, CT 06040</p>
+              <p className="text-gray-300 mb-4">Zoom Meeting (Online Only)</p>
               <p className="text-gray-300">Help us plan and organize our bid for NECYPAA!</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Past Events Section */}
+        <section className="mt-16 py-8">
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">Past Events</h2>
+
+          {/* Cardboard Masquerade Event Card */}
+          <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 mb-6">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="w-full md:w-1/3 flex-shrink-0">
+                <div className="relative w-full max-w-xs mx-auto">
+                  <Image
+                    src="/flyer.png"
+                    alt="Cardboard Masquerade Event Flyer"
+                    width={600}
+                    height={800}
+                    className="rounded-lg shadow-lg"
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-2/3 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold text-blue-400 mb-3">Cardboard Masquerade</h3>
+                <p className="text-gray-300 mb-2">
+                  <span className="font-semibold">Date:</span> Friday, May 30, 2025 at 7:30 PM
+                </p>
+                <p className="text-gray-300 mb-2">
+                  <span className="font-semibold">Location:</span> 3 Mountain Rd, Farmington, CT 06032
+                </p>
+                <p className="text-gray-300 mb-4">
+                  <span className="font-semibold">Suggested contribution:</span> $10
+                </p>
+                <p className="text-gray-300">
+                  A night of mask-making, board games, pizza, and fellowship to support our NECYPAA bid! This event
+                  featured a masquerade ball, DIY mask-making station, board games, and plenty of pizza and snacks.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Game Night, Pajama Party & Half-Assed Rave Event Card */}
+          <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 mb-6">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="w-full md:w-1/3 flex-shrink-0">
+                <div className="relative w-full max-w-xs mx-auto">
+                  <Image
+                    src="/images/game-night.jpeg"
+                    alt="Game Night, Pajama Party & Half-Assed Rave Event Flyer"
+                    width={600}
+                    height={800}
+                    className="rounded-lg shadow-lg"
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-2/3 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold text-blue-400 mb-3">Game Night, Pajama Party & Half-Assed Rave</h3>
+                <p className="text-gray-300 mb-2">
+                  <span className="font-semibold">Date:</span> Friday, April 11, 2025
+                </p>
+                <p className="text-gray-300 mb-2">
+                  <span className="font-semibold">Location:</span> Pathfinders Club, 102 Norman St, Manchester, CT
+                </p>
+                <p className="text-gray-300 mb-2">
+                  <span className="font-semibold">Schedule:</span>
+                </p>
+                <ul className="text-gray-300 mb-2 ml-4 list-disc">
+                  <li>7:30 PM - Meeting: "Happy, Joyous, and Free" Panel</li>
+                  <li>8:30 PM - Games and Fellowship</li>
+                </ul>
+                <p className="text-gray-300 mb-4">
+                  <span className="font-semibold">Suggested donation:</span> $10
+                </p>
+                <p className="text-gray-300">
+                  A fun-filled evening featuring a panel discussion followed by games and fellowship. Attendees were
+                  encouraged to wear costumes, pajamas, or whatever they felt comfortable in!
+                </p>
+              </div>
             </div>
           </div>
         </section>
