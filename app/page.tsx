@@ -372,76 +372,78 @@ export default function Home() {
         <section className="mt-16 py-8">
           <h2 className="text-3xl font-bold text-blue-400 mb-6">Past Events</h2>
 
-          {/* Cardboard Masquerade Event Card */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 mb-6">
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="w-full md:w-1/3 flex-shrink-0">
-                <div className="relative w-full max-w-xs mx-auto">
-                  <Image
-                    src="/flyer.png"
-                    alt="Cardboard Masquerade Event Flyer"
-                    width={600}
-                    height={800}
-                    className="rounded-lg shadow-lg"
-                  />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Cardboard Masquerade Event */}
+            <div className="group relative">
+              <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">Cardboard Masquerade</h3>
+              <div className="relative overflow-hidden rounded-lg">
+                <Image
+                  src="/flyer.png"
+                  alt="Cardboard Masquerade Event Flyer"
+                  width={600}
+                  height={800}
+                  className="rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
+                />
+                {/* Hover overlay with event details */}
+                <div className="absolute inset-0 bg-gray-900 bg-opacity-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-6 overflow-y-auto">
+                  <h4 className="text-xl font-bold text-blue-400 mb-3">Cardboard Masquerade</h4>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Date:</span> Friday, May 30, 2025 at 7:30 PM
+                  </p>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Location:</span> 3 Mountain Rd, Farmington, CT 06032
+                  </p>
+                  <p className="text-gray-300 mb-4">
+                    <span className="font-semibold">Suggested contribution:</span> $10
+                  </p>
+                  <p className="text-gray-300">
+                    A night of mask-making, board games, pizza, and fellowship to support our NECYPAA bid! This event
+                    featured a masquerade ball, DIY mask-making station, board games, and plenty of pizza and snacks.
+                  </p>
                 </div>
               </div>
-              <div className="w-full md:w-2/3 flex flex-col justify-center">
-                <h3 className="text-2xl font-bold text-blue-400 mb-3">Cardboard Masquerade</h3>
-                <p className="text-gray-300 mb-2">
-                  <span className="font-semibold">Date:</span> Friday, May 30, 2025 at 7:30 PM
-                </p>
-                <p className="text-gray-300 mb-2">
-                  <span className="font-semibold">Location:</span> 3 Mountain Rd, Farmington, CT 06032
-                </p>
-                <p className="text-gray-300 mb-4">
-                  <span className="font-semibold">Suggested contribution:</span> $10
-                </p>
-                <p className="text-gray-300">
-                  A night of mask-making, board games, pizza, and fellowship to support our NECYPAA bid! This event
-                  featured a masquerade ball, DIY mask-making station, board games, and plenty of pizza and snacks.
-                </p>
-              </div>
+              <p className="text-gray-400 mt-3 text-center">May 30, 2025</p>
             </div>
-          </div>
 
-          {/* Game Night, Pajama Party & Half-Assed Rave Event Card */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 mb-6">
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="w-full md:w-1/3 flex-shrink-0">
-                <div className="relative w-full max-w-xs mx-auto">
-                  <Image
-                    src="/images/game-night.jpeg"
-                    alt="Game Night, Pajama Party & Half-Assed Rave Event Flyer"
-                    width={600}
-                    height={800}
-                    className="rounded-lg shadow-lg"
-                  />
+            {/* Game Night, Pajama Party & Half-Assed Rave Event */}
+            <div className="group relative">
+              <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">
+                Game Night, Pajama Party & Half-Assed Rave
+              </h3>
+              <div className="relative overflow-hidden rounded-lg">
+                <Image
+                  src="/images/game-night.jpeg"
+                  alt="Game Night, Pajama Party & Half-Assed Rave Event Flyer"
+                  width={600}
+                  height={800}
+                  className="rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
+                />
+                {/* Hover overlay with event details */}
+                <div className="absolute inset-0 bg-gray-900 bg-opacity-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-6 overflow-y-auto">
+                  <h4 className="text-xl font-bold text-blue-400 mb-3">Game Night, Pajama Party & Half-Assed Rave</h4>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Date:</span> Friday, April 11, 2025
+                  </p>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Location:</span> Pathfinders Club, 102 Norman St, Manchester, CT
+                  </p>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Schedule:</span>
+                  </p>
+                  <ul className="text-gray-300 mb-2 ml-4 list-disc">
+                    <li>7:30 PM - Meeting: "Happy, Joyous, and Free" Panel</li>
+                    <li>8:30 PM - Games and Fellowship</li>
+                  </ul>
+                  <p className="text-gray-300 mb-4">
+                    <span className="font-semibold">Suggested donation:</span> $10
+                  </p>
+                  <p className="text-gray-300">
+                    A fun-filled evening featuring a panel discussion followed by games and fellowship. Attendees were
+                    encouraged to wear costumes, pajamas, or whatever they felt comfortable in!
+                  </p>
                 </div>
               </div>
-              <div className="w-full md:w-2/3 flex flex-col justify-center">
-                <h3 className="text-2xl font-bold text-blue-400 mb-3">Game Night, Pajama Party & Half-Assed Rave</h3>
-                <p className="text-gray-300 mb-2">
-                  <span className="font-semibold">Date:</span> Friday, April 11, 2025
-                </p>
-                <p className="text-gray-300 mb-2">
-                  <span className="font-semibold">Location:</span> Pathfinders Club, 102 Norman St, Manchester, CT
-                </p>
-                <p className="text-gray-300 mb-2">
-                  <span className="font-semibold">Schedule:</span>
-                </p>
-                <ul className="text-gray-300 mb-2 ml-4 list-disc">
-                  <li>7:30 PM - Meeting: "Happy, Joyous, and Free" Panel</li>
-                  <li>8:30 PM - Games and Fellowship</li>
-                </ul>
-                <p className="text-gray-300 mb-4">
-                  <span className="font-semibold">Suggested donation:</span> $10
-                </p>
-                <p className="text-gray-300">
-                  A fun-filled evening featuring a panel discussion followed by games and fellowship. Attendees were
-                  encouraged to wear costumes, pajamas, or whatever they felt comfortable in!
-                </p>
-              </div>
+              <p className="text-gray-400 mt-3 text-center">April 11, 2025</p>
             </div>
           </div>
         </section>
