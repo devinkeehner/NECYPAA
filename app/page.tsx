@@ -290,32 +290,35 @@ export default function Home() {
         <section className="flex flex-col md:flex-row items-center justify-between gap-8 py-8">
           <div className="md:w-1/2 flex flex-col gap-6">
             <h2 className="text-3xl md:text-5xl font-bold text-white">
-              Join Us for <span className="text-blue-400">RAVE HALLOWEEN 2.0</span>
+              Join Us for <span className="text-blue-400">New Year's Eve 2025</span>
             </h2>
             <p className="text-lg text-gray-300">
-              One night of fright was never enough! Join us for an evening of dancing, games, arts and crafts, and
-              fellowship to support our NECYPAA bid.
+              Dance first, think later! Ring in the new year with The Happy Hour Group and CT Bid for NECYPAA with food,
+              dancing, and fellowship.
             </p>
             <div className="flex flex-col gap-2 text-gray-300">
-              <p className="text-xl font-semibold text-blue-400">November 7th, 2025</p>
-              <p>Meeting: 7:30 PM | Rave: 8:30 PM</p>
+              <p className="text-xl font-semibold text-blue-400">December 31st, 2025</p>
+              <p>Meeting: 8:30 PM | Food/Dance/Party: 9:30 PM</p>
               <p>Bristol Recovery Club</p>
-              <p>67 West St, Bristol, CT 06010</p>
+              <p>67 West Street, Bristol, CT</p>
               <p className="mt-2">
-                <span className="font-semibold">Attire:</span> Costumes, PJs, or whatever!
+                <span className="font-semibold">Entertainment:</span> Balldrop televised live
               </p>
               <p>
-                <span className="font-semibold">Suggested contribution:</span> $10
+                <span className="font-semibold">Tickets:</span> $15 advance / $20 at the door
+              </p>
+              <p className="mt-2">
+                <span className="font-semibold">Contact:</span> Eric 860-984-0737, Danielle 860-987-3956
               </p>
             </div>
           </div>
           <div className="md:w-1/2">
             <div className="relative w-full max-w-md mx-auto md:max-w-none">
               <Image
-                src="/images/rave-halloween.jpeg"
-                alt="Rave Halloween 2.0 Event Flyer"
+                src="/images/e3145702-f311-4343-8b13-ce4e55c6b2d6.jpg"
+                alt="New Year's Eve Event Flyer"
                 width={600}
-                height={600}
+                height={800}
                 className="rounded-lg shadow-lg"
                 priority
               />
@@ -343,19 +346,21 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-blue-400 mb-6">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
-              <h3 className="text-xl font-bold text-blue-400 mb-2">RAVE HALLOWEEN 2.0</h3>
-              <p className="text-gray-300 mb-2">Thursday, November 7, 2025</p>
-              <p className="text-gray-300 mb-2">Meeting: 7:30 PM | Rave: 8:30 PM</p>
-              <p className="text-gray-300 mb-4">67 West St, Bristol, CT 06010</p>
+              <h3 className="text-xl font-bold text-blue-400 mb-2">New Year's Eve 2025</h3>
+              <p className="text-gray-300 mb-2">Wednesday, December 31, 2025</p>
+              <p className="text-gray-300 mb-2">Meeting: 8:30 PM | Food/Dance/Party: 9:30 PM</p>
+              <p className="text-gray-300 mb-4">Bristol Recovery Club - 67 West Street, Bristol, CT</p>
               <p className="text-gray-300 mb-2">
-                <span className="font-semibold">Attire:</span> Costumes, PJs, or whatever!
+                <span className="font-semibold">Entertainment:</span> Balldrop televised live
               </p>
               <p className="text-gray-300 mb-4">
-                <span className="font-semibold">Activities:</span> Dance, Games, Arts and Crafts
+                <span className="font-semibold">Cohost:</span> The Happy Hour Group & CT Bid for NECYPAA
               </p>
-              <p className="text-gray-300 mb-2">Pizza will be provided</p>
+              <p className="text-gray-300 mb-2">
+                <span className="font-semibold">Tickets:</span> $15 advance / $20 at the door
+              </p>
               <p className="text-gray-300">
-                <span className="font-semibold">Suggested contribution:</span> $10
+                <span className="font-semibold">Contact:</span> Eric 860-984-0737, Danielle 860-987-3956
               </p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
@@ -373,6 +378,53 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-blue-400 mb-6">Past Events</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* RAVE HALLOWEEN 2.0 Event */}
+            <div className="group relative">
+              <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">RAVE HALLOWEEN 2.0</h3>
+              <div className="relative overflow-hidden rounded-lg">
+                <Image
+                  src="/images/rave-halloween.jpeg"
+                  alt="RAVE HALLOWEEN 2.0 Event Flyer"
+                  width={600}
+                  height={800}
+                  className="rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
+                />
+                {/* Hover overlay with event details */}
+                <div className="absolute inset-0 bg-gray-900 bg-opacity-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-6 overflow-y-auto">
+                  <h4 className="text-xl font-bold text-blue-400 mb-3">RAVE HALLOWEEN 2.0</h4>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Date:</span> Thursday, November 7, 2025
+                  </p>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Location:</span> Bristol Recovery Club, 67 West St, Bristol, CT
+                    06010
+                  </p>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Schedule:</span>
+                  </p>
+                  <ul className="text-gray-300 mb-2 ml-4 list-disc">
+                    <li>7:30 PM - Meeting</li>
+                    <li>8:30 PM - Rave</li>
+                  </ul>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Attire:</span> Costumes, PJs, or whatever!
+                  </p>
+                  <p className="text-gray-300 mb-2">
+                    <span className="font-semibold">Activities:</span> Dance, Games, Arts and Crafts
+                  </p>
+                  <p className="text-gray-300 mb-2">Pizza will be provided</p>
+                  <p className="text-gray-300 mb-4">
+                    <span className="font-semibold">Suggested contribution:</span> $10
+                  </p>
+                  <p className="text-gray-300">
+                    One night of fright was never enough! An evening of dancing, games, arts and crafts, and fellowship
+                    to support our NECYPAA bid.
+                  </p>
+                </div>
+              </div>
+              <p className="text-gray-400 mt-3 text-center">November 7, 2025</p>
+            </div>
+
             {/* Cardboard Masquerade Event */}
             <div className="group relative">
               <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">Cardboard Masquerade</h3>
@@ -438,8 +490,8 @@ export default function Home() {
                     <span className="font-semibold">Suggested donation:</span> $10
                   </p>
                   <p className="text-gray-300">
-                    A fun-filled evening featuring a panel discussion followed by games and fellowship. Attendees were
-                    encouraged to wear costumes, pajamas, or whatever they felt comfortable in!
+                    A fun night of games, fellowship, and a half-assed rave to support our NECYPAA bid! Featured a panel
+                    discussion, board games, and plenty of snacks.
                   </p>
                 </div>
               </div>
