@@ -15,17 +15,14 @@ export default function RegistrationCheckout({ onBack }: RegistrationCheckoutPro
 
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-    console.log("[v0] Initializing Stripe with key:", key ? "exists" : "missing")
     if (key) {
       setStripePromise(loadStripe(key))
     }
   }, [])
 
   const fetchClientSecret = useCallback(async () => {
-    console.log("[v0] Fetching client secret...")
     try {
       const clientSecret = await startRegistrationCheckout("necypaa-xxxvi-registration")
-      console.log("[v0] Client secret received:", clientSecret ? "exists" : "missing")
       return clientSecret
     } catch (error) {
       console.error("[v0] Error fetching client secret:", error)
