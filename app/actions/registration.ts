@@ -1,7 +1,7 @@
 "use server"
 
 import { stripe } from "@/lib/stripe"
-import { REGISTRATION_PRODUCTS } from "@/lib/registration-products"
+import { REGISTRATION_PRODUCTS, calculateProcessingFee } from "@/lib/registration-products"
 
 interface RegistrationData {
   name: string
@@ -33,6 +33,8 @@ export async function startRegistrationCheckout(
   if (!product) {
     throw new Error(`Registration product with id "${productId}" not found`)
   }
+
+  const processingFee = calculateProcessingFee(product.priceInCents)
 
   const metadata = {
     attendee_name: registrationData.name,
@@ -66,6 +68,17 @@ export async function startRegistrationCheckout(
               description: product.description,
             },
             unit_amount: product.priceInCents,
+          },
+          quantity: 1,
+        },
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: "Processing Fee",
+              description: "Credit card processing fee (2.9% + $0.30)",
+            },
+            unit_amount: processingFee,
           },
           quantity: 1,
         },
