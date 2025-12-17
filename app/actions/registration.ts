@@ -3,21 +3,60 @@
 import { stripe } from "@/lib/stripe"
 import { REGISTRATION_PRODUCTS } from "@/lib/registration-products"
 
-export async function startRegistrationCheckout(productId: string) {
-  console.log("[v0] Starting checkout for product:", productId)
+interface RegistrationData {
+  name: string
+  state: string
+  email: string
+  accommodations: string
+  interpretationNeeded: boolean
+  handicapAccessibility: boolean
+  willingToServe: boolean
+  homegroup: string
+}
 
+interface PolicyAgreements {
+  readPolicy: boolean
+  understandQuestions: boolean
+  acknowledgeBehavior: boolean
+  understandAdmission: boolean
+  understandReporting: boolean
+  understandInvestigation: boolean
+  signatureAgreement: boolean
+}
+
+export async function startRegistrationCheckout(
+  productId: string,
+  registrationData: RegistrationData,
+  policyAgreements: PolicyAgreements,
+) {
   const product = REGISTRATION_PRODUCTS.find((p) => p.id === productId)
   if (!product) {
     throw new Error(`Registration product with id "${productId}" not found`)
   }
 
-  console.log("[v0] Creating Stripe session for:", product.name, product.priceInCents)
+  const metadata = {
+    attendee_name: registrationData.name,
+    attendee_state: registrationData.state,
+    attendee_email: registrationData.email,
+    accommodations: registrationData.accommodations || "None",
+    interpretation_needed: registrationData.interpretationNeeded.toString(),
+    handicap_accessibility: registrationData.handicapAccessibility.toString(),
+    willing_to_serve: registrationData.willingToServe.toString(),
+    homegroup_committee: registrationData.homegroup,
+    policy_read_and_understood: policyAgreements.readPolicy.toString(),
+    policy_questions_understood: policyAgreements.understandQuestions.toString(),
+    policy_behavior_acknowledged: policyAgreements.acknowledgeBehavior.toString(),
+    policy_admission_understood: policyAgreements.understandAdmission.toString(),
+    policy_reporting_understood: policyAgreements.understandReporting.toString(),
+    policy_investigation_understood: policyAgreements.understandInvestigation.toString(),
+    policy_signature_agreement: policyAgreements.signatureAgreement.toString(),
+  }
 
   try {
-    // This allows Stripe to automatically show Venmo, Apple Pay, and other compatible methods
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
       redirect_on_completion: "never",
+      customer_email: registrationData.email,
       line_items: [
         {
           price_data: {
@@ -32,9 +71,11 @@ export async function startRegistrationCheckout(productId: string) {
         },
       ],
       mode: "payment",
+      metadata: metadata,
+      payment_intent_data: {
+        metadata: metadata,
+      },
     })
-
-    console.log("[v0] Stripe session created:", session.id)
 
     if (!session.client_secret) {
       throw new Error("No client secret returned from Stripe")
@@ -42,7 +83,7 @@ export async function startRegistrationCheckout(productId: string) {
 
     return session.client_secret
   } catch (error) {
-    console.error("[v0] Stripe session creation failed:", error)
+    console.error("Stripe session creation failed:", error)
     throw error
   }
 }

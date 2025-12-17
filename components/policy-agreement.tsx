@@ -6,12 +6,22 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 
 interface PolicyAgreementProps {
-  onComplete: () => void
+  onComplete: (agreements: PolicyAgreements) => void
   onBack: () => void
 }
 
+export interface PolicyAgreements {
+  readPolicy: boolean
+  understandQuestions: boolean
+  acknowledgeBehavior: boolean
+  understandAdmission: boolean
+  understandReporting: boolean
+  understandInvestigation: boolean
+  signatureAgreement: boolean
+}
+
 export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementProps) {
-  const [agreements, setAgreements] = useState({
+  const [agreements, setAgreements] = useState<PolicyAgreements>({
     readPolicy: false,
     understandQuestions: false,
     acknowledgeBehavior: false,
@@ -293,7 +303,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
           Back
         </Button>
         <Button
-          onClick={onComplete}
+          onClick={() => onComplete(agreements)}
           disabled={!allAgreed}
           className="flex-1 bg-amber-600 hover:bg-amber-700 text-white"
         >

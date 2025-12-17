@@ -6,11 +6,38 @@ import { loadStripe } from "@stripe/stripe-js"
 import { startRegistrationCheckout } from "@/app/actions/registration"
 import { Button } from "@/components/ui/button"
 
+interface RegistrationData {
+  name: string
+  state: string
+  email: string
+  accommodations: string
+  interpretationNeeded: boolean
+  handicapAccessibility: boolean
+  willingToServe: boolean
+  homegroup: string
+}
+
+interface PolicyAgreements {
+  readPolicy: boolean
+  understandQuestions: boolean
+  acknowledgeBehavior: boolean
+  understandAdmission: boolean
+  understandReporting: boolean
+  understandInvestigation: boolean
+  signatureAgreement: boolean
+}
+
 interface RegistrationCheckoutProps {
+  registrationData: RegistrationData
+  policyAgreements: PolicyAgreements
   onBack: () => void
 }
 
-export default function RegistrationCheckout({ onBack }: RegistrationCheckoutProps) {
+export default function RegistrationCheckout({
+  registrationData,
+  policyAgreements,
+  onBack,
+}: RegistrationCheckoutProps) {
   const [stripePromise, setStripePromise] = useState<ReturnType<typeof loadStripe> | null>(null)
 
   useEffect(() => {
@@ -22,13 +49,17 @@ export default function RegistrationCheckout({ onBack }: RegistrationCheckoutPro
 
   const fetchClientSecret = useCallback(async () => {
     try {
-      const clientSecret = await startRegistrationCheckout("necypaa-xxxvi-registration")
+      const clientSecret = await startRegistrationCheckout(
+        "necypaa-xxxvi-registration",
+        registrationData,
+        policyAgreements,
+      )
       return clientSecret
     } catch (error) {
-      console.error("[v0] Error fetching client secret:", error)
+      console.error("Error fetching client secret:", error)
       throw error
     }
-  }, [])
+  }, [registrationData, policyAgreements])
 
   if (!stripePromise) {
     return (

@@ -4,6 +4,7 @@ import { useState } from "react"
 import RegistrationForm from "@/components/registration-form"
 import PolicyAgreement from "@/components/policy-agreement"
 import RegistrationCheckout from "@/components/registration-checkout"
+import type { PolicyAgreements } from "@/components/policy-agreement"
 
 type Step = "info" | "policy" | "payment"
 
@@ -21,13 +22,15 @@ interface RegistrationData {
 export default function RegisterPage() {
   const [currentStep, setCurrentStep] = useState<Step>("info")
   const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null)
+  const [policyAgreements, setPolicyAgreements] = useState<PolicyAgreements | null>(null)
 
   const handleInfoComplete = (data: RegistrationData) => {
     setRegistrationData(data)
     setCurrentStep("policy")
   }
 
-  const handlePolicyComplete = () => {
+  const handlePolicyComplete = (agreements: PolicyAgreements) => {
+    setPolicyAgreements(agreements)
     setCurrentStep("payment")
   }
 
@@ -91,7 +94,13 @@ export default function RegisterPage() {
               <PolicyAgreement onComplete={handlePolicyComplete} onBack={() => setCurrentStep("info")} />
             )}
 
-            {currentStep === "payment" && <RegistrationCheckout onBack={() => setCurrentStep("policy")} />}
+            {currentStep === "payment" && registrationData && policyAgreements && (
+              <RegistrationCheckout
+                registrationData={registrationData}
+                policyAgreements={policyAgreements}
+                onBack={() => setCurrentStep("policy")}
+              />
+            )}
           </div>
         </div>
       </div>
