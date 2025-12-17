@@ -31,10 +31,34 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
     signatureAgreement: false,
   })
 
+  const checkAllAgreements = () => {
+    setAgreements({
+      readPolicy: true,
+      understandQuestions: true,
+      acknowledgeBehavior: true,
+      understandAdmission: true,
+      understandReporting: true,
+      understandInvestigation: true,
+      signatureAgreement: true,
+    })
+  }
+
   const allAgreed = Object.values(agreements).every((val) => val === true)
 
   return (
     <div className="space-y-6">
+      <div className="bg-amber-900/20 border border-amber-600 rounded-lg p-4">
+        <p className="text-amber-500 text-sm mb-2">Test Mode Helper</p>
+        <Button
+          type="button"
+          onClick={checkAllAgreements}
+          variant="outline"
+          className="w-full border-amber-600 text-amber-500 hover:bg-amber-600/20 bg-transparent"
+        >
+          Check All Agreements
+        </Button>
+      </div>
+
       <div className="bg-slate-800 p-6 rounded-lg border border-slate-700">
         <h3 className="text-xl font-bold text-white mb-4">NECYPAA Non-Discrimination and Anti-Harassment Policy</h3>
         <div className="prose prose-invert max-w-none text-gray-300 space-y-4 max-h-96 overflow-y-auto text-sm">

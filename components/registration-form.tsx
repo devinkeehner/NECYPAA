@@ -50,8 +50,33 @@ export default function RegistrationForm({ onComplete }: RegistrationFormProps) 
     )
   }
 
+  const fillTestData = () => {
+    setFormData({
+      name: "Test Attendee",
+      state: "CT",
+      email: "test@example.com",
+      accommodations: "No special accommodations needed",
+      interpretationNeeded: false,
+      handicapAccessibility: false,
+      willingToServe: true,
+      homegroup: "Test Home Group",
+    })
+  }
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="bg-amber-900/20 border border-amber-600 rounded-lg p-4">
+        <p className="text-amber-500 text-sm mb-2">Test Mode Helper</p>
+        <Button
+          type="button"
+          onClick={fillTestData}
+          variant="outline"
+          className="w-full border-amber-600 text-amber-500 hover:bg-amber-600/20 bg-transparent"
+        >
+          Fill Test Data
+        </Button>
+      </div>
+
       <div className="space-y-4">
         <div>
           <Label htmlFor="name" className="text-white">
