@@ -11,7 +11,7 @@ export const REGISTRATION_PRODUCTS: RegistrationProduct[] = [
     id: "necypaa-xxxvi-registration",
     name: "NECYPAA XXXVI Registration",
     description: "The Archway of Freedom - Full conference registration (TEST PRICE)",
-    priceInCents: 50, // $0.50 - minimum allowed by Stripe
+    priceInCents: 500, // $5.00
   },
 ]
 
