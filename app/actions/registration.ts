@@ -34,7 +34,10 @@ export async function startRegistrationCheckout(
     throw new Error(`Registration product with id "${productId}" not found`)
   }
 
+  console.log("[v0] Creating checkout for product:", product.name, "Price:", product.priceInCents)
+
   const processingFee = calculateProcessingFee(product.priceInCents)
+  console.log("[v0] Processing fee:", processingFee)
 
   const metadata = {
     attendee_name: registrationData.name,
@@ -90,13 +93,16 @@ export async function startRegistrationCheckout(
       },
     })
 
+    console.log("[v0] Stripe session created with ID:", session.id)
+    console.log("[v0] Client secret exists:", !!session.client_secret)
+
     if (!session.client_secret) {
       throw new Error("No client secret returned from Stripe")
     }
 
     return session.client_secret
   } catch (error) {
-    console.error("Stripe session creation failed:", error)
+    console.error("[v0] Stripe session creation failed:", error)
     throw error
   }
 }

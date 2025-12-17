@@ -39,27 +39,56 @@ export default function RegistrationCheckout({
   onBack,
 }: RegistrationCheckoutProps) {
   const [stripePromise, setStripePromise] = useState<ReturnType<typeof loadStripe> | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    console.log("[v0] Stripe Key exists:", !!key)
+    console.log("[v0] Stripe Key starts with:", key?.substring(0, 7))
     if (key) {
       setStripePromise(loadStripe(key))
+    } else {
+      setError("Stripe publishable key not found")
     }
   }, [])
 
   const fetchClientSecret = useCallback(async () => {
     try {
+      console.log("[v0] Fetching client secret with registration data:", registrationData)
       const clientSecret = await startRegistrationCheckout(
         "necypaa-xxxvi-registration",
         registrationData,
         policyAgreements,
       )
+      console.log("[v0] Client secret received:", clientSecret ? "Yes" : "No")
       return clientSecret
     } catch (error) {
-      console.error("Error fetching client secret:", error)
+      console.error("[v0] Error fetching client secret:", error)
+      setError(error instanceof Error ? error.message : "Failed to create checkout session")
       throw error
     }
   }, [registrationData, policyAgreements])
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <Button
+          type="button"
+          onClick={onBack}
+          variant="outline"
+          className="border-slate-700 text-white hover:bg-slate-800 bg-transparent"
+        >
+          Back
+        </Button>
+        <div className="bg-white rounded-lg p-4 min-h-[400px] flex items-center justify-center">
+          <div className="text-center space-y-2">
+            <p className="text-red-600 font-semibold">Payment Error</p>
+            <p className="text-gray-600">{error}</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   if (!stripePromise) {
     return (
