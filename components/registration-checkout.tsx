@@ -5,6 +5,7 @@ import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe
 import { loadStripe } from "@stripe/stripe-js"
 import { startRegistrationCheckout } from "@/app/actions/registration"
 import { Button } from "@/components/ui/button"
+import { REGISTRATION_PRODUCTS, calculateProcessingFee } from "@/lib/registration-products"
 
 interface RegistrationData {
   name: string
@@ -40,6 +41,11 @@ export default function RegistrationCheckout({
 }: RegistrationCheckoutProps) {
   const [stripePromise, setStripePromise] = useState<ReturnType<typeof loadStripe> | null>(null)
   const [error, setError] = useState<string | null>(null)
+
+  const product = REGISTRATION_PRODUCTS.find((p) => p.id === "necypaa-xxxvi-registration")
+  const registrationFee = product ? product.priceInCents / 100 : 0
+  const processingFee = product ? calculateProcessingFee(product.priceInCents) / 100 : 0
+  const totalAmount = registrationFee + processingFee
 
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -118,6 +124,24 @@ export default function RegistrationCheckout({
       >
         Back
       </Button>
+
+      <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+        <h3 className="text-lg font-semibold text-white mb-4">Registration Summary</h3>
+        <div className="space-y-2 text-slate-300">
+          <div className="flex justify-between">
+            <span>Registration Fee</span>
+            <span className="font-medium text-white">${registrationFee.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span>Processing Fee (2.9% + $0.30)</span>
+            <span className="font-medium text-white">${processingFee.toFixed(2)}</span>
+          </div>
+          <div className="border-t border-slate-600 pt-2 mt-2 flex justify-between text-lg font-bold">
+            <span className="text-white">Total</span>
+            <span className="text-orange-400">${totalAmount.toFixed(2)}</span>
+          </div>
+        </div>
+      </div>
 
       <div id="checkout" className="bg-white rounded-lg p-4 min-h-[400px]">
         <EmbeddedCheckoutProvider stripe={stripePromise} options={{ fetchClientSecret }}>

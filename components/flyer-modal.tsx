@@ -26,7 +26,7 @@ export default function FlyerModal({ src, alt, isOpen, onClose }: FlyerModalProp
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-8" onClick={onClose}>
       <button
         onClick={onClose}
         className="absolute top-4 right-4 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
@@ -34,13 +34,16 @@ export default function FlyerModal({ src, alt, isOpen, onClose }: FlyerModalProp
       >
         <X className="w-6 h-6 text-white" />
       </button>
-      <div className="relative max-w-4xl max-h-[90vh] w-full" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="relative w-auto max-w-[90vw] h-auto max-h-[calc(100vh-4rem)]"
+        onClick={(e) => e.stopPropagation()}
+      >
         <Image
           src={src || "/placeholder.svg"}
           alt={alt}
           width={1200}
           height={1600}
-          className="w-full h-auto object-contain rounded-lg"
+          className="w-auto h-auto max-w-full max-h-[calc(100vh-4rem)] object-contain rounded-lg"
         />
       </div>
     </div>

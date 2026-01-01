@@ -10,8 +10,8 @@ export const REGISTRATION_PRODUCTS: RegistrationProduct[] = [
   {
     id: "necypaa-xxxvi-registration",
     name: "NECYPAA XXXVI Registration",
-    description: "The Archway of Freedom - Full conference registration (TEST PRICE)",
-    priceInCents: 500, // $5.00
+    description: "The Archway of Freedom - Full conference registration",
+    priceInCents: 3500, // Updated from $5.00 to $35.00
   },
 ]
 

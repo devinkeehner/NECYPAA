@@ -274,9 +274,6 @@ export default function HomePage() {
             <Link href="#purpose" className="text-gray-300 hover:text-blue-400 font-medium uppercase">
               NECYPAA'S PURPOSE
             </Link>
-            <Link href="#events" className="text-gray-300 hover:text-blue-400 font-medium uppercase">
-              EVENTS
-            </Link>
             <Link href="#meetings" className="text-gray-300 hover:text-blue-400 font-medium uppercase">
               YP MEETINGS
             </Link>
@@ -302,43 +299,15 @@ export default function HomePage() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <section className="flex flex-col md:flex-row items-center justify-between gap-8 py-8">
-          <div className="md:w-1/2 flex flex-col gap-6">
-            <h2 className="text-3xl md:text-5xl font-bold text-white">
-              Join Us for <span className="text-blue-400">New Year's Eve 2025</span>
+        <section className="flex flex-col items-center justify-center gap-8 py-16">
+          <div className="max-w-4xl text-center flex flex-col gap-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-white">
+              Connecticut Bid for <span className="text-blue-400">NECYPAA</span>
             </h2>
-            <p className="text-lg text-gray-300">
-              Dance first, think later! Ring in the new year with The Happy Hour Group and CT Bid for NECYPAA with food,
-              dancing, and fellowship.
+            <p className="text-xl text-gray-300">
+              Join us in our bid to host the New England Conference of Young People in Alcoholics Anonymous. Together,
+              we carry the message of recovery and fellowship.
             </p>
-            <div className="flex flex-col gap-2 text-gray-300">
-              <p className="text-xl font-semibold text-blue-400">December 31st, 2025</p>
-              <p>Meeting: 8:30 PM | Food/Dance/Party: 9:30 PM</p>
-              <p>Bristol Recovery Club</p>
-              <p>67 West Street, Bristol, CT</p>
-              <p className="mt-2">
-                <span className="font-semibold">Entertainment:</span> Balldrop televised live
-              </p>
-              <p>
-                <span className="font-semibold">Tickets:</span> $15 advance / $20 at the door
-              </p>
-              <p className="mt-2">
-                <span className="font-semibold">Contact:</span> Eric 860-984-0737, Danielle 860-987-3956
-              </p>
-            </div>
-          </div>
-          <div className="md:w-1/2">
-            <div className="relative w-full max-w-md mx-auto md:max-w-none">
-              <Image
-                src="/images/e3145702-f311-4343-8b13-ce4e55c6b2d6.jpg"
-                alt="New Year's Eve Event Flyer"
-                width={600}
-                height={800}
-                className="rounded-lg shadow-lg"
-                priority
-              />
-            </div>
           </div>
         </section>
 
@@ -357,22 +326,8 @@ export default function HomePage() {
           </p>
         </section>
 
-        {/* Events Section */}
-        <section id="events" className="mt-16 py-8">
-          <h2 className="text-3xl font-bold text-blue-400 mb-6">Upcoming Events</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
-              <h3 className="text-xl font-bold text-blue-400 mb-2">The Bid Committee Meeting</h3>
-              <p className="text-gray-300 mb-4">Third Sunday of the month</p>
-              <p className="text-gray-300 mb-4">2:00 PM - 4:00 PM</p>
-              <p className="text-gray-300 mb-4">Zoom Meeting (Online Only)</p>
-              <p className="text-gray-300">Help us plan and organize our bid for NECYPAA!</p>
-            </div>
-          </div>
-        </section>
-
         {/* Past Events Section */}
-        <section className="mt-16 py-8">
+        <section id="events" className="mt-16 py-8">
           <h2 className="text-3xl font-bold text-blue-400 mb-6">Past Events</h2>
 
           <div className="space-y-6">
