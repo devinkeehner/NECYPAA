@@ -1,8 +1,13 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { MobileMenu } from "@/components/mobile-menu"
 import { MeetingCard } from "@/components/meeting-card"
 import { ExpandableMeetingRow } from "@/components/expandable-meeting-row"
+import { useState } from "react"
+import FlyerModal from "@/components/flyer-modal"
+import { ZoomIn } from "lucide-react"
 
 // Meeting data organized by day with updated information
 const meetingsByDay = {
@@ -248,9 +253,20 @@ const allMeetings = Object.entries(meetingsByDay).flatMap(([day, meetings]) =>
   meetings.map((meeting) => ({ day, ...meeting })),
 )
 
-export default function Home() {
+export default function HomePage() {
+  // State for modal
+  const [enlargedFlyer, setEnlargedFlyer] = useState<{ src: string; alt: string } | null>(null)
+
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#0f172a" }}>
+      {/* FlyerModal component */}
+      <FlyerModal
+        src={enlargedFlyer?.src || ""}
+        alt={enlargedFlyer?.alt || ""}
+        isOpen={!!enlargedFlyer}
+        onClose={() => setEnlargedFlyer(null)}
+      />
+
       <header className="container mx-auto py-4 px-4">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl md:text-3xl font-bold text-blue-400">NECYPAA CT BID</h1>
@@ -346,24 +362,6 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-blue-400 mb-6">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
-              <h3 className="text-xl font-bold text-blue-400 mb-2">New Year's Eve 2025</h3>
-              <p className="text-gray-300 mb-2">Wednesday, December 31, 2025</p>
-              <p className="text-gray-300 mb-2">Meeting: 8:30 PM | Food/Dance/Party: 9:30 PM</p>
-              <p className="text-gray-300 mb-4">Bristol Recovery Club - 67 West Street, Bristol, CT</p>
-              <p className="text-gray-300 mb-2">
-                <span className="font-semibold">Entertainment:</span> Balldrop televised live
-              </p>
-              <p className="text-gray-300 mb-4">
-                <span className="font-semibold">Cohost:</span> The Happy Hour Group & CT Bid for NECYPAA
-              </p>
-              <p className="text-gray-300 mb-2">
-                <span className="font-semibold">Tickets:</span> $15 advance / $20 at the door
-              </p>
-              <p className="text-gray-300">
-                <span className="font-semibold">Contact:</span> Eric 860-984-0737, Danielle 860-987-3956
-              </p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
               <h3 className="text-xl font-bold text-blue-400 mb-2">The Bid Committee Meeting</h3>
               <p className="text-gray-300 mb-4">Third Sunday of the month</p>
               <p className="text-gray-300 mb-4">2:00 PM - 4:00 PM</p>
@@ -377,125 +375,290 @@ export default function Home() {
         <section className="mt-16 py-8">
           <h2 className="text-3xl font-bold text-blue-400 mb-6">Past Events</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="space-y-6">
+            {/* NYE Meeting 2026 */}
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Info on the left */}
+                <div className="flex-1 space-y-3 text-gray-300">
+                  <h3 className="text-2xl font-bold text-blue-400 mb-4">NYE Meeting 2026</h3>
+                  <p>
+                    <span className="font-semibold text-blue-400">Date:</span> Wednesday, December 31, 2025
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Location:</span> Bristol Recovery Club, 67 West St,
+                    Bristol CT
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Schedule:</span>
+                  </p>
+                  <ul className="ml-6 list-disc space-y-1">
+                    <li>Meeting: 8:30 PM</li>
+                    <li>Food/Dance/Party: 9:30 PM</li>
+                  </ul>
+                  <p>
+                    <span className="font-semibold text-blue-400">Entertainment:</span> Balldrop Televised Live
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Cohost:</span> The Happy Hour Group & CT Bid for
+                    NECYPAA
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Tickets:</span> $15 in advance, $20 at the door
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">RSVP:</span> Meadow 860-707-0268, Danielle
+                    860-987-3956
+                  </p>
+                  <p className="mt-4 text-gray-400 italic">
+                    A fantastic night of recovery, fellowship, and celebration to ring in 2026!
+                  </p>
+                </div>
+
+                {/* Flyer on the right with frame */}
+                <div className="w-full md:w-72 flex-shrink-0">
+                  <div
+                    className="relative bg-gray-900 p-3 rounded-lg border-2 border-gray-700 group-hover:border-blue-400 transition-colors duration-300 cursor-pointer"
+                    onClick={() =>
+                      setEnlargedFlyer({
+                        src: "/images/50a7821a-d39f-4197-ac4e-efc919034db9.jpg",
+                        alt: "NYE Meeting 2026 Flyer",
+                      })
+                    }
+                  >
+                    <Image
+                      src="/images/50a7821a-d39f-4197-ac4e-efc919034db9.jpg"
+                      alt="NYE Meeting 2026 Flyer"
+                      width={400}
+                      height={533}
+                      className="rounded w-full h-auto object-contain"
+                    />
+                    <div className="absolute top-2 right-2 bg-blue-500 p-2 rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity">
+                      <ZoomIn className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trivia Night */}
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Info on the left */}
+                <div className="flex-1 space-y-3 text-gray-300">
+                  <h3 className="text-2xl font-bold text-blue-400 mb-4">Trivia Night</h3>
+                  <p>
+                    <span className="font-semibold text-blue-400">Date:</span> Saturday, December 13, 2025
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Time:</span> Starts at 6:30 PM
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Location:</span> Milford VFW, 422 Naugatuck Ave,
+                    Milford CT
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Theme:</span> Knowledge Wins; Sobriety Shines
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Suggested Contribution:</span> $15
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Presented by:</span> CT Bid for NECYPAA
+                  </p>
+                  <p className="mt-4 text-gray-400 italic">
+                    A fun evening of trivia, fellowship, and friendly competition to support our NECYPAA bid!
+                  </p>
+                </div>
+
+                {/* Flyer on the right with frame */}
+                <div className="w-full md:w-72 flex-shrink-0">
+                  <div
+                    className="relative bg-gray-900 p-3 rounded-lg border-2 border-gray-700 group-hover:border-blue-400 transition-colors duration-300 cursor-pointer"
+                    onClick={() =>
+                      setEnlargedFlyer({
+                        src: "/images/a073eef2-301c-4220-ab01-45ca5a3e5ee6.jpg",
+                        alt: "Trivia Night Flyer",
+                      })
+                    }
+                  >
+                    <Image
+                      src="/images/a073eef2-301c-4220-ab01-45ca5a3e5ee6.jpg"
+                      alt="Trivia Night Flyer"
+                      width={400}
+                      height={711}
+                      className="rounded w-full h-auto object-contain"
+                    />
+                    <div className="absolute top-2 right-2 bg-blue-500 p-2 rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity">
+                      <ZoomIn className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* RAVE HALLOWEEN 2.0 Event */}
-            <div className="group relative">
-              <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">RAVE HALLOWEEN 2.0</h3>
-              <div className="relative overflow-hidden rounded-lg">
-                <Image
-                  src="/images/rave-halloween.jpeg"
-                  alt="RAVE HALLOWEEN 2.0 Event Flyer"
-                  width={600}
-                  height={800}
-                  className="rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
-                />
-                {/* Hover overlay with event details */}
-                <div className="absolute inset-0 bg-gray-900 bg-opacity-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-6 overflow-y-auto">
-                  <h4 className="text-xl font-bold text-blue-400 mb-3">RAVE HALLOWEEN 2.0</h4>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Date:</span> Thursday, November 7, 2025
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Info on the left */}
+                <div className="flex-1 space-y-3 text-gray-300">
+                  <h3 className="text-2xl font-bold text-blue-400 mb-4">RAVE HALLOWEEN 2.0</h3>
+                  <p>
+                    <span className="font-semibold text-blue-400">Date:</span> Thursday, November 7, 2025
                   </p>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Location:</span> Bristol Recovery Club, 67 West St, Bristol, CT
-                    06010
+                  <p>
+                    <span className="font-semibold text-blue-400">Location:</span> Bristol Recovery Club, 67 West St,
+                    Bristol, CT 06010
                   </p>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Schedule:</span>
+                  <p>
+                    <span className="font-semibold text-blue-400">Schedule:</span>
                   </p>
-                  <ul className="text-gray-300 mb-2 ml-4 list-disc">
+                  <ul className="ml-6 list-disc space-y-1">
                     <li>7:30 PM - Meeting</li>
                     <li>8:30 PM - Rave</li>
                   </ul>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Attire:</span> Costumes, PJs, or whatever!
+                  <p>
+                    <span className="font-semibold text-blue-400">Attire:</span> Costumes, PJs, or whatever!
                   </p>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Activities:</span> Dance, Games, Arts and Crafts
+                  <p>
+                    <span className="font-semibold text-blue-400">Activities:</span> Dance, Games, Arts and Crafts
                   </p>
-                  <p className="text-gray-300 mb-2">Pizza will be provided</p>
-                  <p className="text-gray-300 mb-4">
-                    <span className="font-semibold">Suggested contribution:</span> $10
+                  <p>Pizza will be provided</p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Suggested contribution:</span> $10
                   </p>
-                  <p className="text-gray-300">
+                  <p className="mt-4 text-gray-400 italic">
                     One night of fright was never enough! An evening of dancing, games, arts and crafts, and fellowship
                     to support our NECYPAA bid.
                   </p>
                 </div>
+
+                {/* Flyer on the right with frame */}
+                <div className="w-full md:w-72 flex-shrink-0">
+                  <div
+                    className="relative bg-gray-900 p-3 rounded-lg border-2 border-gray-700 group-hover:border-blue-400 transition-colors duration-300 cursor-pointer"
+                    onClick={() =>
+                      setEnlargedFlyer({
+                        src: "/images/rave-halloween.jpeg",
+                        alt: "RAVE HALLOWEEN 2.0 Event Flyer",
+                      })
+                    }
+                  >
+                    <Image
+                      src="/images/rave-halloween.jpeg"
+                      alt="RAVE HALLOWEEN 2.0 Event Flyer"
+                      width={400}
+                      height={533}
+                      className="rounded w-full h-auto object-contain"
+                    />
+                    <div className="absolute top-2 right-2 bg-blue-500 p-2 rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity">
+                      <ZoomIn className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="text-gray-400 mt-3 text-center">November 7, 2025</p>
             </div>
 
             {/* Cardboard Masquerade Event */}
-            <div className="group relative">
-              <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">Cardboard Masquerade</h3>
-              <div className="relative overflow-hidden rounded-lg">
-                <Image
-                  src="/flyer.png"
-                  alt="Cardboard Masquerade Event Flyer"
-                  width={600}
-                  height={800}
-                  className="rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
-                />
-                {/* Hover overlay with event details */}
-                <div className="absolute inset-0 bg-gray-900 bg-opacity-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-6 overflow-y-auto">
-                  <h4 className="text-xl font-bold text-blue-400 mb-3">Cardboard Masquerade</h4>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Date:</span> Friday, May 30, 2025 at 7:30 PM
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Info on the left */}
+                <div className="flex-1 space-y-3 text-gray-300">
+                  <h3 className="text-2xl font-bold text-blue-400 mb-4">Cardboard Masquerade</h3>
+                  <p>
+                    <span className="font-semibold text-blue-400">Date:</span> Friday, May 30, 2025 at 7:30 PM
                   </p>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Location:</span> 3 Mountain Rd, Farmington, CT 06032
+                  <p>
+                    <span className="font-semibold text-blue-400">Location:</span> 3 Mountain Rd, Farmington, CT 06032
                   </p>
-                  <p className="text-gray-300 mb-4">
-                    <span className="font-semibold">Suggested contribution:</span> $10
+                  <p>
+                    <span className="font-semibold text-blue-400">Suggested contribution:</span> $10
                   </p>
-                  <p className="text-gray-300">
+                  <p className="mt-4 text-gray-400 italic">
                     A night of mask-making, board games, pizza, and fellowship to support our NECYPAA bid! This event
                     featured a masquerade ball, DIY mask-making station, board games, and plenty of pizza and snacks.
                   </p>
                 </div>
+
+                {/* Flyer on the right with frame */}
+                <div className="w-full md:w-72 flex-shrink-0">
+                  <div
+                    className="relative bg-gray-900 p-3 rounded-lg border-2 border-gray-700 group-hover:border-blue-400 transition-colors duration-300 cursor-pointer"
+                    onClick={() =>
+                      setEnlargedFlyer({
+                        src: "/flyer.png",
+                        alt: "Cardboard Masquerade Event Flyer",
+                      })
+                    }
+                  >
+                    <Image
+                      src="/flyer.png"
+                      alt="Cardboard Masquerade Event Flyer"
+                      width={400}
+                      height={533}
+                      className="rounded w-full h-auto object-contain"
+                    />
+                    <div className="absolute top-2 right-2 bg-blue-500 p-2 rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity">
+                      <ZoomIn className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="text-gray-400 mt-3 text-center">May 30, 2025</p>
             </div>
 
             {/* Game Night, Pajama Party & Half-Assed Rave Event */}
-            <div className="group relative">
-              <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">
-                Game Night, Pajama Party & Half-Assed Rave
-              </h3>
-              <div className="relative overflow-hidden rounded-lg">
-                <Image
-                  src="/images/game-night.jpeg"
-                  alt="Game Night, Pajama Party & Half-Assed Rave Event Flyer"
-                  width={600}
-                  height={800}
-                  className="rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
-                />
-                {/* Hover overlay with event details */}
-                <div className="absolute inset-0 bg-gray-900 bg-opacity-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-6 overflow-y-auto">
-                  <h4 className="text-xl font-bold text-blue-400 mb-3">Game Night, Pajama Party & Half-Assed Rave</h4>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Date:</span> Friday, April 11, 2025
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Info on the left */}
+                <div className="flex-1 space-y-3 text-gray-300">
+                  <h3 className="text-2xl font-bold text-blue-400 mb-4">Game Night, Pajama Party & Half-Assed Rave</h3>
+                  <p>
+                    <span className="font-semibold text-blue-400">Date:</span> Friday, April 11, 2025
                   </p>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Location:</span> Pathfinders Club, 102 Norman St, Manchester, CT
+                  <p>
+                    <span className="font-semibold text-blue-400">Location:</span> Pathfinders Club, 102 Norman St,
+                    Manchester, CT
                   </p>
-                  <p className="text-gray-300 mb-2">
-                    <span className="font-semibold">Schedule:</span>
+                  <p>
+                    <span className="font-semibold text-blue-400">Schedule:</span>
                   </p>
-                  <ul className="text-gray-300 mb-2 ml-4 list-disc">
+                  <ul className="ml-6 list-disc space-y-1">
                     <li>7:30 PM - Meeting: "Happy, Joyous, and Free" Panel</li>
                     <li>8:30 PM - Games and Fellowship</li>
                   </ul>
-                  <p className="text-gray-300 mb-4">
-                    <span className="font-semibold">Suggested donation:</span> $10
+                  <p>
+                    <span className="font-semibold text-blue-400">Suggested donation:</span> $10
                   </p>
-                  <p className="text-gray-300">
+                  <p className="mt-4 text-gray-400 italic">
                     A fun night of games, fellowship, and a half-assed rave to support our NECYPAA bid! Featured a panel
                     discussion, board games, and plenty of snacks.
                   </p>
                 </div>
+
+                {/* Flyer on the right with frame */}
+                <div className="w-full md:w-72 flex-shrink-0">
+                  <div
+                    className="relative bg-gray-900 p-3 rounded-lg border-2 border-gray-700 group-hover:border-blue-400 transition-colors duration-300 cursor-pointer"
+                    onClick={() =>
+                      setEnlargedFlyer({
+                        src: "/images/game-night.jpeg",
+                        alt: "Game Night, Pajama Party & Half-Assed Rave Event Flyer",
+                      })
+                    }
+                  >
+                    <Image
+                      src="/images/game-night.jpeg"
+                      alt="Game Night, Pajama Party & Half-Assed Rave Event Flyer"
+                      width={400}
+                      height={533}
+                      className="rounded w-full h-auto object-contain"
+                    />
+                    <div className="absolute top-2 right-2 bg-blue-500 p-2 rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity">
+                      <ZoomIn className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="text-gray-400 mt-3 text-center">April 11, 2025</p>
             </div>
           </div>
         </section>
