@@ -4,8 +4,6 @@ import { stripe } from "@/lib/stripe"
 import { REGISTRATION_PRODUCTS, calculateProcessingFee } from "@/lib/registration-products"
 
 interface RegistrationData {
-  registrationType: "attendee" | "scholarship"
-  scholarshipQuantity?: number
   name: string
   state: string
   email: string
@@ -29,48 +27,34 @@ interface PolicyAgreements {
 export async function startRegistrationCheckout(
   productId: string,
   registrationData: RegistrationData,
-  policyAgreements: PolicyAgreements | null,
+  policyAgreements: PolicyAgreements,
 ) {
   const product = REGISTRATION_PRODUCTS.find((p) => p.id === productId)
   if (!product) {
     throw new Error(`Registration product with id "${productId}" not found`)
   }
 
-  const quantity = registrationData.registrationType === "scholarship" ? registrationData.scholarshipQuantity || 1 : 1
-  const totalPrice = product.priceInCents * quantity
+  console.log("[v0] Creating checkout for product:", product.name, "Price:", product.priceInCents)
 
-  console.log("[v0] Creating checkout for product:", product.name, "Quantity:", quantity, "Total Price:", totalPrice)
-
-  const processingFee = calculateProcessingFee(totalPrice)
+  const processingFee = calculateProcessingFee(product.priceInCents)
   console.log("[v0] Processing fee:", processingFee)
 
-  const metadata: Record<string, string> = {
-    registration_type: registrationData.registrationType,
-    donor_email: registrationData.email,
-  }
-
-  if (registrationData.registrationType === "scholarship") {
-    metadata.scholarship_quantity = quantity.toString()
-    metadata.scholarship_total = `$${(totalPrice / 100).toFixed(2)}`
-  } else {
-    metadata.attendee_name = registrationData.name
-    metadata.attendee_state = registrationData.state
-    metadata.attendee_email = registrationData.email
-    metadata.accommodations = registrationData.accommodations || "None"
-    metadata.interpretation_needed = registrationData.interpretationNeeded.toString()
-    metadata.handicap_accessibility = registrationData.handicapAccessibility.toString()
-    metadata.willing_to_serve = registrationData.willingToServe.toString()
-    metadata.homegroup_committee = registrationData.homegroup
-
-    if (policyAgreements) {
-      metadata.policy_read_and_understood = policyAgreements.readPolicy.toString()
-      metadata.policy_questions_understood = policyAgreements.understandQuestions.toString()
-      metadata.policy_behavior_acknowledged = policyAgreements.acknowledgeBehavior.toString()
-      metadata.policy_admission_understood = policyAgreements.understandAdmission.toString()
-      metadata.policy_reporting_understood = policyAgreements.understandReporting.toString()
-      metadata.policy_investigation_understood = policyAgreements.understandInvestigation.toString()
-      metadata.policy_signature_agreement = policyAgreements.signatureAgreement.toString()
-    }
+  const metadata = {
+    attendee_name: registrationData.name,
+    attendee_state: registrationData.state,
+    attendee_email: registrationData.email,
+    accommodations: registrationData.accommodations || "None",
+    interpretation_needed: registrationData.interpretationNeeded.toString(),
+    handicap_accessibility: registrationData.handicapAccessibility.toString(),
+    willing_to_serve: registrationData.willingToServe.toString(),
+    homegroup_committee: registrationData.homegroup,
+    policy_read_and_understood: policyAgreements.readPolicy.toString(),
+    policy_questions_understood: policyAgreements.understandQuestions.toString(),
+    policy_behavior_acknowledged: policyAgreements.acknowledgeBehavior.toString(),
+    policy_admission_understood: policyAgreements.understandAdmission.toString(),
+    policy_reporting_understood: policyAgreements.understandReporting.toString(),
+    policy_investigation_understood: policyAgreements.understandInvestigation.toString(),
+    policy_signature_agreement: policyAgreements.signatureAgreement.toString(),
   }
 
   try {
@@ -83,15 +67,12 @@ export async function startRegistrationCheckout(
           price_data: {
             currency: "usd",
             product_data: {
-              name: registrationData.registrationType === "scholarship" ? "NECYPAA XXXVI Scholarship" : product.name,
-              description:
-                registrationData.registrationType === "scholarship"
-                  ? `Scholarship donation to help ${quantity} ${quantity === 1 ? "person" : "people"} attend NECYPAA XXXVI`
-                  : product.description,
+              name: product.name,
+              description: product.description,
             },
             unit_amount: product.priceInCents,
           },
-          quantity: quantity,
+          quantity: 1,
         },
         {
           price_data: {

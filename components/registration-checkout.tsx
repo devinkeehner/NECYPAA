@@ -8,8 +8,6 @@ import { Button } from "@/components/ui/button"
 import { REGISTRATION_PRODUCTS, calculateProcessingFee } from "@/lib/registration-products"
 
 interface RegistrationData {
-  registrationType: "attendee" | "scholarship"
-  scholarshipQuantity?: number
   name: string
   state: string
   email: string
@@ -45,9 +43,8 @@ export default function RegistrationCheckout({
   const [error, setError] = useState<string | null>(null)
 
   const product = REGISTRATION_PRODUCTS.find((p) => p.id === "necypaa-xxxvi-registration")
-  const quantity = registrationData.registrationType === "scholarship" ? registrationData.scholarshipQuantity || 1 : 1
-  const registrationFee = product ? (product.priceInCents / 100) * quantity : 0
-  const processingFee = product ? calculateProcessingFee(product.priceInCents * quantity) / 100 : 0
+  const registrationFee = product ? product.priceInCents / 100 : 0
+  const processingFee = product ? calculateProcessingFee(product.priceInCents) / 100 : 0
   const totalAmount = registrationFee + processingFee
 
   useEffect(() => {
@@ -129,18 +126,10 @@ export default function RegistrationCheckout({
       </Button>
 
       <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-        <h3 className="text-lg font-semibold text-white mb-4">
-          {registrationData.registrationType === "scholarship"
-            ? "Scholarship Donation Summary"
-            : "Registration Summary"}
-        </h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Registration Summary</h3>
         <div className="space-y-2 text-slate-300">
           <div className="flex justify-between">
-            <span>
-              {registrationData.registrationType === "scholarship"
-                ? `Scholarship${quantity > 1 ? "s" : ""} (×${quantity})`
-                : "Registration Fee"}
-            </span>
+            <span>Registration Fee</span>
             <span className="font-medium text-white">${registrationFee.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-sm">
@@ -149,15 +138,9 @@ export default function RegistrationCheckout({
           </div>
           <div className="border-t border-slate-600 pt-2 mt-2 flex justify-between text-lg font-bold">
             <span className="text-white">Total</span>
-            <span className="text-amber-500">${totalAmount.toFixed(2)}</span>
+            <span className="text-orange-400">${totalAmount.toFixed(2)}</span>
           </div>
         </div>
-        {registrationData.registrationType === "scholarship" && (
-          <p className="text-sm text-slate-400 mt-4">
-            Thank you for helping others attend NECYPAA XXXVI! Your donation will cover {quantity} full registration
-            {quantity > 1 ? "s" : ""}.
-          </p>
-        )}
       </div>
 
       <div id="checkout" className="bg-white rounded-lg p-4 min-h-[400px]">

@@ -9,8 +9,6 @@ import type { PolicyAgreements } from "@/components/policy-agreement"
 type Step = "info" | "policy" | "payment"
 
 interface RegistrationData {
-  registrationType: "attendee" | "scholarship"
-  scholarshipQuantity?: number
   name: string
   state: string
   email: string
@@ -28,11 +26,7 @@ export default function RegisterPage() {
 
   const handleInfoComplete = (data: RegistrationData) => {
     setRegistrationData(data)
-    if (data.registrationType === "scholarship") {
-      setCurrentStep("payment")
-    } else {
-      setCurrentStep("policy")
-    }
+    setCurrentStep("policy")
   }
 
   const handlePolicyComplete = (agreements: PolicyAgreements) => {
@@ -100,7 +94,7 @@ export default function RegisterPage() {
               <PolicyAgreement onComplete={handlePolicyComplete} onBack={() => setCurrentStep("info")} />
             )}
 
-            {currentStep === "payment" && registrationData && (
+            {currentStep === "payment" && registrationData && policyAgreements && (
               <RegistrationCheckout
                 registrationData={registrationData}
                 policyAgreements={policyAgreements}
