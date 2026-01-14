@@ -6,8 +6,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "NECYPAA CT BID",
-  description: "New England Conference of Young People in AA - Connecticut Bid Committee",
+  title: "NECYPAA CT HOST",
+  description: "North East Convention of Young People in AA - Connecticut Host Committee",
     generator: 'v0.app'
 }
 

@@ -269,7 +269,7 @@ export default function HomePage() {
 
       <header className="container mx-auto py-4 px-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl md:text-3xl font-bold text-blue-400">NECYPAA CT BID</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-blue-400">NECYPAA CT HOST</h1>
           <nav className="hidden md:flex space-x-6">
             <Link href="#purpose" className="text-gray-300 hover:text-blue-400 font-medium uppercase">
               NECYPAA'S PURPOSE
@@ -286,14 +286,6 @@ export default function HomePage() {
               ADVISORY
             </Link>
             <Link
-              href="https://www.necypaa35.org/"
-              className="text-gray-300 hover:text-blue-400 font-medium uppercase"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              NECYPAA XXXV HOST
-            </Link>
-            <Link
               href="/register"
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-medium uppercase transition-colors"
             >
@@ -305,15 +297,75 @@ export default function HomePage() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <section className="flex flex-col items-center justify-center gap-8 py-16">
-          <div className="max-w-4xl text-center flex flex-col gap-6">
-            <h2 className="text-4xl md:text-6xl font-bold text-white">
-              Connecticut Bid for <span className="text-blue-400">NECYPAA</span>
-            </h2>
-            <p className="text-xl text-gray-300">
-              Join us in our bid to host the New England Conference of Young People in Alcoholics Anonymous. Together,
-              we carry the message of recovery and fellowship.
-            </p>
+        <section className="mb-16">
+          <div className="relative bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 p-8 md:p-12 rounded-2xl shadow-2xl border border-blue-500/30 overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+                  backgroundSize: "40px 40px",
+                }}
+              ></div>
+            </div>
+
+            <div className="relative z-10 text-center space-y-8">
+              {/* Main announcement */}
+              <div className="space-y-4">
+                <h2 className="text-5xl md:text-7xl font-bold text-white leading-tight">NECYPAA 36</h2>
+                <p className="text-3xl md:text-4xl font-semibold text-blue-400">is Coming to Connecticut</p>
+              </div>
+
+              {/* Divider */}
+              <div className="w-32 h-1 bg-blue-500 mx-auto"></div>
+
+              {/* Election info card */}
+              <div className="max-w-2xl mx-auto bg-slate-800/50 backdrop-blur-sm p-6 md:p-8 rounded-xl border border-blue-500/40 shadow-lg">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Host Committee Elections</h3>
+
+                <div className="space-y-6 text-gray-200">
+                  <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-lg md:text-xl">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <span className="font-semibold">Sunday, February 1st</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span className="font-semibold">2:00 PM</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <a
+                      href="https://us06web.zoom.us/j/5692382899?omn=86491828124"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+                    >
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.5 10.5l-4-2.5v5l4-2.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8z" />
+                      </svg>
+                      Join Zoom Meeting
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -321,9 +373,9 @@ export default function HomePage() {
         <section id="purpose" className="mt-16 py-8">
           <h2 className="text-3xl font-bold text-blue-400 mb-6">NECYPAA'S PURPOSE</h2>
           <p className="text-lg text-gray-300 mb-4">
-            The New England Conference of Young People in Alcoholics Anonymous (NECYPAA) was established in 1989 by an
+            The North East Convention of Young People in Alcoholics Anonymous (NECYPAA) was established in 1989 by an
             Advisory Council to organize an annual conference for young people in recovery within Alcoholics Anonymous
-            (AA). NECYPAA plays a crucial role in spreading AA's message throughout New England, providing a platform
+            (AA). NECYPAA plays a crucial role in spreading AA's message throughout the North East, providing a platform
             for young AA members to come together, share their experiences, and support each other.
           </p>
           <p className="text-lg text-gray-300">
@@ -694,7 +746,7 @@ export default function HomePage() {
       <footer className="bg-gray-800 text-white py-8 mt-16 border-t border-gray-700">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center justify-center text-center">
-            <h2 className="text-2xl font-bold text-blue-400 mb-4">NECYPAA CT BID</h2>
+            <h2 className="text-2xl font-bold text-blue-400 mb-4">NECYPAA CT HOST</h2>
             <p className="text-gray-300 mb-4">New England Conference of Young People in AA</p>
             <div className="flex items-center justify-center">
               <svg
