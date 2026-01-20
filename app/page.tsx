@@ -8,6 +8,7 @@ import { ExpandableMeetingRow } from "@/components/expandable-meeting-row"
 import { useState } from "react"
 import FlyerModal from "@/components/flyer-modal"
 import { ZoomIn } from "lucide-react"
+import FlyerWithModal from "@/components/flyer-with-modal" // Declare the variable before using it
 
 // Meeting data organized by day with updated information
 const meetingsByDay = {
@@ -298,70 +299,93 @@ export default function HomePage() {
 
       <main className="container mx-auto px-4 py-8">
         <section className="mb-16">
-          <div className="relative bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 p-8 md:p-12 rounded-2xl shadow-2xl border border-blue-500/30 overflow-hidden">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-                  backgroundSize: "40px 40px",
-                }}
-              ></div>
+          <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-slate-900 p-8 md:p-16 rounded-3xl shadow-2xl overflow-hidden">
+            {/* Animated background elements */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-400 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-10 right-10 w-40 h-40 bg-blue-400 rounded-full blur-3xl animate-pulse delay-150"></div>
+              <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full blur-2xl animate-pulse delay-300"></div>
             </div>
 
-            <div className="relative z-10 text-center space-y-8">
-              {/* Main announcement */}
-              <div className="space-y-4">
-                <h2 className="text-5xl md:text-7xl font-bold text-white leading-tight">NECYPAA 36</h2>
-                <p className="text-3xl md:text-4xl font-semibold text-blue-400">is Coming to Connecticut</p>
+            {/* Confetti-like decorative elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute top-20 left-[10%] w-3 h-3 bg-yellow-400 rotate-45 opacity-60"></div>
+              <div className="absolute top-40 right-[15%] w-2 h-2 bg-blue-300 rounded-full opacity-70"></div>
+              <div className="absolute bottom-32 left-[20%] w-4 h-4 bg-white rotate-12 opacity-50"></div>
+              <div className="absolute top-[30%] right-[25%] w-3 h-3 bg-yellow-300 opacity-60"></div>
+              <div className="absolute bottom-20 right-[35%] w-2 h-2 bg-blue-400 rounded-full opacity-70"></div>
+              <div className="absolute top-[60%] left-[15%] w-3 h-3 bg-white rotate-45 opacity-50"></div>
+            </div>
+
+            <div className="relative z-10 text-center space-y-6">
+              {/* Victory badge */}
+              <div className="inline-block">
+                <div className="bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-sm md:text-base uppercase tracking-wider shadow-lg transform -rotate-2">
+                  🎉 Connecticut Wins the Bid! 🎉
+                </div>
               </div>
 
-              {/* Divider */}
-              <div className="w-32 h-1 bg-blue-500 mx-auto"></div>
+              {/* Main announcement with bold typography */}
+              <div className="space-y-4">
+                <h2 className="text-6xl md:text-8xl font-black text-white leading-none tracking-tight drop-shadow-2xl">
+                  NECYPAA
+                  <span className="block text-yellow-400 mt-2">36</span>
+                </h2>
+                <p className="text-3xl md:text-5xl font-bold text-white">IS COMING TO</p>
+                <p className="text-4xl md:text-6xl font-black text-blue-200 uppercase tracking-wide">Connecticut</p>
+              </div>
 
-              {/* Election info card */}
-              <div className="max-w-2xl mx-auto bg-slate-800/50 backdrop-blur-sm p-6 md:p-8 rounded-xl border border-blue-500/40 shadow-lg">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Host Committee Elections</h3>
-
-                <div className="space-y-6 text-gray-200">
-                  <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-lg md:text-xl">
-                    <div className="flex items-center gap-2">
-                      <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                      <span className="font-semibold">Sunday, February 1st</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      <span className="font-semibold">2:00 PM</span>
-                    </div>
+              {/* Election info with bold design */}
+              <div className="max-w-3xl mx-auto mt-12">
+                <div className="bg-white text-slate-900 p-8 md:p-10 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                  <div className="bg-blue-600 text-white py-3 px-6 rounded-lg mb-6 inline-block">
+                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-wide">Host Committee Elections</h3>
                   </div>
 
-                  <div className="pt-4">
-                    <a
-                      href="https://us06web.zoom.us/j/5692382899?omn=86491828124"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
-                    >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M15.5 10.5l-4-2.5v5l4-2.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8z" />
-                      </svg>
-                      Join Zoom Meeting
-                    </a>
+                  <div className="space-y-4">
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-2xl md:text-3xl font-bold">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-blue-100 p-3 rounded-full">
+                          <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2.5}
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                        </div>
+                        <span>Sunday, Feb 1st</span>
+                      </div>
+                      <div className="hidden md:block text-blue-300">|</div>
+                      <div className="flex items-center gap-3">
+                        <div className="bg-blue-100 p-3 rounded-full">
+                          <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2.5}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </div>
+                        <span>2:00 PM</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-6">
+                      <a
+                        href="https://us06web.zoom.us/j/5692382899?omn=86491828124"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-black text-xl py-5 px-10 rounded-xl transition-all duration-200 transform hover:scale-110 shadow-2xl uppercase tracking-wide"
+                      >
+                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M15.5 10.5l-4-2.5v5l4-2.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8z" />
+                        </svg>
+                        Join the Meeting
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -369,9 +393,82 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Upcoming Event - Zombie Prom */}
+        <section className="mt-16 py-8">
+          <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent">
+            Upcoming Event
+          </h2>
+          
+          <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 hover:border-purple-500/50 transition-all duration-300">
+            <div className="flex flex-col lg:flex-row gap-8 items-center">
+              {/* Event Info */}
+              <div className="flex-1 space-y-6">
+                <div>
+                  <span className="inline-block bg-purple-600 text-white text-sm font-bold px-4 py-1 rounded-full mb-4">SAVE THE DATE</span>
+                  <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-500 mb-2">
+                    Zombie Prom
+                  </h3>
+                  <p className="text-gray-400 text-lg">Hosted by NECYPAA 36 and The Bay State Bid for NECYPAA</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-purple-600/20 p-2 rounded-lg">
+                        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-sm">Date</p>
+                        <p className="text-white font-bold">Friday, February 13th</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-purple-600/20 p-2 rounded-lg">
+                        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-sm">Location</p>
+                        <p className="text-white font-bold">Enfield, CT</p>
+                        <p className="text-gray-500 text-xs">Address TBD</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <p className="text-gray-300 text-lg">
+                  Join us for a spooky night of dancing, fellowship, and fun! Dress in your best zombie prom attire and celebrate recovery with friends from across the North East.
+                </p>
+                
+                <p className="text-purple-400 font-semibold">
+                  More details coming soon at NECYPAACT.COM
+                </p>
+              </div>
+              
+              {/* Flyer */}
+              <div className="lg:w-80 flex-shrink-0">
+                <FlyerWithModal
+                  src="/images/untitled-20design-20-288-29.jpeg"
+                  alt="Zombie Prom - Friday February 13th"
+                  title="Zombie Prom"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Purpose Section */}
         <section id="purpose" className="mt-16 py-8">
-          <h2 className="text-3xl font-bold text-blue-400 mb-6">NECYPAA'S PURPOSE</h2>
+          <h2 className="text-4xl font-black mb-6 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent">
+            NECYPAA'S PURPOSE
+          </h2>
           <p className="text-lg text-gray-300 mb-4">
             The North East Convention of Young People in Alcoholics Anonymous (NECYPAA) was established in 1989 by an
             Advisory Council to organize an annual conference for young people in recovery within Alcoholics Anonymous
@@ -386,11 +483,13 @@ export default function HomePage() {
 
         {/* Past Events Section */}
         <section id="events" className="mt-16 py-8">
-          <h2 className="text-3xl font-bold text-blue-400 mb-6">Past Events</h2>
+          <h2 className="text-4xl font-black mb-6 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent">
+            Past Events
+          </h2>
 
           <div className="space-y-6">
             {/* NYE Meeting 2026 */}
-            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-blue-500/20 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Info on the left */}
                 <div className="flex-1 space-y-3 text-gray-300">
@@ -455,7 +554,7 @@ export default function HomePage() {
             </div>
 
             {/* Trivia Night */}
-            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-blue-500/20 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Info on the left */}
                 <div className="flex-1 space-y-3 text-gray-300">
@@ -511,7 +610,7 @@ export default function HomePage() {
             </div>
 
             {/* RAVE HALLOWEEN 2.0 Event */}
-            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-blue-500/20 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Info on the left */}
                 <div className="flex-1 space-y-3 text-gray-300">
@@ -573,7 +672,7 @@ export default function HomePage() {
             </div>
 
             {/* Cardboard Masquerade Event */}
-            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-blue-500/20 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Info on the left */}
                 <div className="flex-1 space-y-3 text-gray-300">
@@ -620,7 +719,7 @@ export default function HomePage() {
             </div>
 
             {/* Game Night, Pajama Party & Half-Assed Rave Event */}
-            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-2xl hover:border-blue-400 transition-all duration-300">
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-blue-500/20 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Info on the left */}
                 <div className="flex-1 space-y-3 text-gray-300">
@@ -678,7 +777,9 @@ export default function HomePage() {
 
         {/* Meetings Section */}
         <section id="meetings" className="mt-16 py-8">
-          <h2 className="text-3xl font-bold text-blue-400 mb-6">Young People's Meetings in Connecticut</h2>
+          <h2 className="text-4xl font-black mb-6 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent">
+            Young People's Meetings in Connecticut
+          </h2>
           <p className="text-gray-300 mb-6">
             Click on any meeting name to view more details on the CT-AA website. Click the arrow to expand and see
             address and meeting types.
