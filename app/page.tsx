@@ -436,8 +436,37 @@ export default function HomePage() {
                       </div>
                       <div>
                         <p className="text-gray-400 text-sm">Location</p>
-                        <p className="text-white font-bold">Enfield, CT</p>
-                        <p className="text-gray-500 text-xs">Address TBD</p>
+                        <p className="text-white font-bold">Enfield United Church of Christ</p>
+                        <p className="text-gray-400 text-xs">1295 Enfield St, Enfield, CT 06082</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-purple-600/20 p-2 rounded-lg">
+                        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-sm">Schedule</p>
+                        <p className="text-white font-bold text-sm">Hype 6:30-7:00 | Meeting 7:00-8:00</p>
+                        <p className="text-white font-bold text-sm">Dance 8:00-Dawn</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-green-600/20 p-2 rounded-lg">
+                        <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-sm">Suggested Contribution</p>
+                        <p className="text-green-400 font-bold text-2xl">$15</p>
                       </div>
                     </div>
                   </div>
@@ -446,16 +475,12 @@ export default function HomePage() {
                 <p className="text-gray-300 text-lg">
                   Join us for a spooky night of dancing, fellowship, and fun! Dress in your best zombie prom attire and celebrate recovery with friends from across the North East.
                 </p>
-                
-                <p className="text-purple-400 font-semibold">
-                  More details coming soon at NECYPAACT.COM
-                </p>
               </div>
               
               {/* Flyer */}
               <div className="lg:w-80 flex-shrink-0">
                 <FlyerWithModal
-                  src="/images/untitled-20design-20-288-29.jpeg"
+                  src="/images/zombie-prom-flyer.jpeg"
                   alt="Zombie Prom - Friday February 13th"
                   title="Zombie Prom"
                 />
@@ -869,9 +894,7 @@ export default function HomePage() {
                 ctbidfornecypaa@gmail.com
               </a>
             </div>
-            <p className="mt-8 text-gray-400">
-              &copy; {new Date().getFullYear()} NECYPAA CT Bid Committee. All rights reserved.
-            </p>
+
           </div>
         </div>
       </footer>
