@@ -102,6 +102,23 @@ export default function RegisterPage() {
               />
             )}
           </div>
+
+          {/* Hotel Booking CTA */}
+          <div className="mt-8 bg-gradient-to-r from-blue-900/50 to-blue-800/50 rounded-lg p-6 border border-blue-700/50 text-center">
+            <h3 className="text-xl font-bold text-white mb-2">Need a Place to Stay?</h3>
+            <p className="text-gray-300 mb-4">Book your room at our host hotel with the special NECYPAA rate!</p>
+            <a
+              href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1770049957031&key=GRP&app=resvlink"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Book Hotel
+            </a>
+          </div>
         </div>
       </div>
     </div>
