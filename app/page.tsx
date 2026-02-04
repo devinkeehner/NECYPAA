@@ -287,6 +287,14 @@ export default function HomePage() {
               ADVISORY
             </Link>
             <Link
+              href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1770049957031&key=GRP&app=resvlink"
+              className="text-gray-300 hover:text-blue-400 font-medium uppercase"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BOOK HOTEL
+            </Link>
+            <Link
               href="/register"
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-medium uppercase transition-colors"
             >
@@ -336,58 +344,110 @@ export default function HomePage() {
               </div>
 
               {/* Election info with bold design */}
-              <div className="max-w-3xl mx-auto mt-12">
-                <div className="bg-white text-slate-900 p-8 md:p-10 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                  <div className="bg-blue-600 text-white py-3 px-6 rounded-lg mb-6 inline-block">
-                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-wide">Host Committee Elections</h3>
+              <div className="max-w-4xl mx-auto mt-12 grid md:grid-cols-2 gap-6">
+                {/* Part One - Completed */}
+                <div className="bg-white/60 text-slate-900 p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                  <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    COMPLETED
+                  </div>
+                  <div className="bg-slate-500 text-white py-2 px-4 rounded-lg mb-4 inline-block">
+                    <h3 className="text-lg md:text-xl font-black uppercase tracking-wide">Elections Part 1</h3>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-2xl md:text-3xl font-bold">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-blue-100 p-3 rounded-full">
-                          <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2.5}
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                        </div>
-                        <span>Sunday, Feb 1st</span>
-                      </div>
-                      <div className="hidden md:block text-blue-300">|</div>
-                      <div className="flex items-center gap-3">
-                        <div className="bg-blue-100 p-3 rounded-full">
-                          <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2.5}
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                          </svg>
-                        </div>
-                        <span>2:00 PM</span>
-                      </div>
-                    </div>
-
-                    <div className="pt-6">
-                      <a
-                        href="https://us06web.zoom.us/j/5692382899?omn=86491828124"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-black text-xl py-5 px-10 rounded-xl transition-all duration-200 transform hover:scale-110 shadow-2xl uppercase tracking-wide"
-                      >
-                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M15.5 10.5l-4-2.5v5l4-2.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8z" />
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-xl font-bold text-slate-500">
+                      <div className="bg-slate-200 p-2 rounded-full">
+                        <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
                         </svg>
-                        Join the Meeting
-                      </a>
+                      </div>
+                      <span className="line-through">Sunday, Feb 1st</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-xl font-bold text-slate-500">
+                      <div className="bg-slate-200 p-2 rounded-full">
+                        <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="line-through">2:00 PM</span>
                     </div>
                   </div>
                 </div>
+
+                {/* Part Two - Active */}
+                <div className="bg-white text-slate-900 p-6 md:p-8 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300 border-4 border-yellow-400 relative">
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
+                    UPCOMING
+                  </div>
+                  <div className="bg-blue-600 text-white py-2 px-4 rounded-lg mb-4 inline-block">
+                    <h3 className="text-lg md:text-xl font-black uppercase tracking-wide">Elections Part 2</h3>
+                  </div>
+                  <p className="text-red-500 font-bold italic mb-4 text-lg">Electric Boogaloo!</p>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-xl font-bold">
+                      <div className="bg-blue-100 p-2 rounded-full">
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span>Sunday, Feb 15th</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-xl font-bold">
+                      <div className="bg-blue-100 p-2 rounded-full">
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <span>2:00 PM</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <a
+                      href="https://us06web.zoom.us/j/5692382899?omn=86491828124"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-black text-lg py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-110 shadow-2xl uppercase tracking-wide"
+                    >
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.5 10.5l-4-2.5v5l4-2.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8z" />
+                      </svg>
+                      Join on Zoom
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Elections Flyer */}
+              <div className="max-w-sm mx-auto mt-8">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/NECYPAA%20vote%20%285%29-DVPawFt9UO18OIBM5xL8ivnvkR2rTZ.png"
+                  alt="NECYPAA CT Elections Part Two - February 15th"
+                  width={400}
+                  height={500}
+                  className="rounded-2xl shadow-2xl border-4 border-yellow-400"
+                />
               </div>
             </div>
           </div>
@@ -436,8 +496,8 @@ export default function HomePage() {
                       </div>
                       <div>
                         <p className="text-gray-400 text-sm">Location</p>
-                        <p className="text-white font-bold">Enfield United Church of Christ</p>
-                        <p className="text-gray-400 text-xs">1295 Enfield St, Enfield, CT 06082</p>
+                        <p className="text-white font-bold">Enfield Congregational Church</p>
+                        <p className="text-gray-400 text-xs">1295 Enfield Street, Enfield, CT 06082</p>
                       </div>
                     </div>
                   </div>

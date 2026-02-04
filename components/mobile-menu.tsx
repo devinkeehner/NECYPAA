@@ -81,6 +81,15 @@ export function MobileMenu() {
               ADVISORY
             </Link>
             <Link
+              href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1770049957031&key=GRP&app=resvlink"
+              className="text-gray-300 hover:text-blue-400 font-medium py-2 uppercase"
+              onClick={toggleMenu}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BOOK HOTEL
+            </Link>
+            <Link
               href="/register"
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-medium text-center uppercase transition-colors"
               onClick={toggleMenu}
