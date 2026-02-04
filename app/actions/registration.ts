@@ -57,10 +57,12 @@ export async function startRegistrationCheckout(
     policy_signature_agreement: policyAgreements.signatureAgreement.toString(),
   }
 
+  const hotelBookingUrl = "https://www.marriott.com/event-reservations/reservation-link.mi?id=1770049957031&key=GRP&app=resvlink"
+
   try {
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
-      redirect_on_completion: "never",
+      return_url: hotelBookingUrl,
       customer_email: registrationData.email,
       line_items: [
         {
