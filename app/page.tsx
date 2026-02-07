@@ -344,48 +344,8 @@ export default function HomePage() {
               </div>
 
               {/* Election info with bold design */}
-              <div className="max-w-4xl mx-auto mt-12 grid md:grid-cols-2 gap-6">
-                {/* Part One - Completed */}
-                <div className="bg-white/60 text-slate-900 p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden">
-                  <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    COMPLETED
-                  </div>
-                  <div className="bg-slate-500 text-white py-2 px-4 rounded-lg mb-4 inline-block">
-                    <h3 className="text-lg md:text-xl font-black uppercase tracking-wide">Elections Part 1</h3>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-xl font-bold text-slate-500">
-                      <div className="bg-slate-200 p-2 rounded-full">
-                        <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <span className="line-through">Sunday, Feb 1st</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-xl font-bold text-slate-500">
-                      <div className="bg-slate-200 p-2 rounded-full">
-                        <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                      </div>
-                      <span className="line-through">2:00 PM</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Part Two - Active */}
-                <div className="bg-white text-slate-900 p-6 md:p-8 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300 border-4 border-yellow-400 relative">
+              <div className="max-w-3xl mx-auto mt-12">
+                <div className="bg-white text-slate-900 p-8 md:p-10 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300 border-4 border-yellow-400 relative">
                   <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
                     UPCOMING
                   </div>
