@@ -456,7 +456,7 @@ export default function HomePage() {
                       </div>
                       <div>
                         <p className="text-gray-400 text-sm">Location</p>
-                        <p className="text-white font-bold">Enfield Congregational Church</p>
+                        <p className="text-white font-bold">Enfield United Church of Christ</p>
                         <p className="text-gray-400 text-xs">1295 Enfield Street, Enfield, CT 06082</p>
                       </div>
                     </div>
