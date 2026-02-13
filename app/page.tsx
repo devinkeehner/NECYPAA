@@ -288,7 +288,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/register"
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2.5 rounded-lg hover:from-blue-400 hover:to-blue-500 font-bold uppercase tracking-wider transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-400/40 hover:scale-105 border border-blue-400/30"
+              className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2.5 rounded-lg hover:from-red-400 hover:to-red-500 font-bold uppercase tracking-wider transition-all shadow-lg shadow-red-500/30 hover:shadow-red-400/40 hover:scale-105 border border-red-400/30"
             >
               REGISTER
             </Link>
