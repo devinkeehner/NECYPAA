@@ -82,7 +82,7 @@ export function MobileMenu() {
             </Link>
             <Link
               href="/register"
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-medium text-center uppercase transition-colors"
+              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-blue-400 hover:to-blue-500 font-bold text-center uppercase tracking-wider transition-all shadow-lg shadow-blue-500/30 border border-blue-400/30"
               onClick={toggleMenu}
             >
               REGISTER
