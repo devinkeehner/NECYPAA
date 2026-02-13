@@ -155,138 +155,119 @@ export default function TestregCheckout({
         Back
       </Button>
 
-      {/* Breakfast Add-ons Section */}
-      <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-        <h3 className="text-lg font-semibold text-white mb-1">
-          Add Breakfast Tickets
-        </h3>
-        <p className="text-slate-400 text-sm mb-4">
-          $20.00 each - Optional breakfast at the convention.
-        </p>
+      {/* Registration Fee + Breakfast Add-ons */}
+      <div className="bg-slate-800 rounded-lg p-5 border border-slate-700">
+        {/* Registration price shown prominently */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-base font-semibold text-white">Registration Fee</h3>
+            <p className="text-slate-400 text-xs">NECYPAA XXXVI - The Archway of Freedom</p>
+          </div>
+          <span className="text-xl font-bold text-amber-400">${registrationFee.toFixed(2)}</span>
+        </div>
 
-        <div className="space-y-3">
-          {/* Friday - New Year's Day highlighted */}
-          {fridayProduct && (
-            <button
-              type="button"
-              onClick={() =>
-                handleToggleBreakfast(
-                  fridayProduct.id,
-                  !breakfastSelections[fridayProduct.id]
-                )
-              }
-              className={`w-full text-left rounded-lg p-4 transition-colors border ${
-                breakfastSelections[fridayProduct.id]
-                  ? "bg-amber-600/20 border-amber-500"
-                  : "bg-amber-900/20 border-amber-700/40 hover:border-amber-600/60"
-              }`}
-            >
-              <div className="flex items-start gap-3">
-                <Checkbox
-                  id={fridayProduct.id}
-                  checked={breakfastSelections[fridayProduct.id] || false}
-                  onCheckedChange={(checked) =>
-                    handleToggleBreakfast(
-                      fridayProduct.id,
-                      checked as boolean
-                    )
-                  }
-                  className="mt-1 border-amber-600 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
-                  onClick={(e) => e.stopPropagation()}
-                />
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <Label className="text-white font-semibold cursor-pointer">
-                      {fridayProduct.name}
-                    </Label>
-                    <span className="text-white font-medium text-sm">
-                      $20.00
-                    </span>
-                  </div>
-                  <p className="text-amber-400 text-sm mt-1">
-                    New Year's Day -- most local restaurants will be closed!
-                    Start your new year right with breakfast and fellowship.
-                  </p>
-                </div>
-              </div>
-            </button>
-          )}
+        <div className="border-t border-slate-700 pt-3">
+          <p className="text-sm text-slate-300 mb-2">
+            Add breakfast tickets <span className="text-slate-500">($20 each)</span>
+          </p>
 
-          {/* Saturday and Sunday */}
-          {BREAKFAST_PRODUCTS.filter((p) => p.id !== "breakfast-friday").map(
-            (bp) => (
+          <div className="space-y-2">
+            {/* Friday - New Year's Day */}
+            {fridayProduct && (
               <button
-                key={bp.id}
                 type="button"
                 onClick={() =>
-                  handleToggleBreakfast(bp.id, !breakfastSelections[bp.id])
+                  handleToggleBreakfast(
+                    fridayProduct.id,
+                    !breakfastSelections[fridayProduct.id]
+                  )
                 }
-                className={`w-full text-left rounded-lg p-4 transition-colors border ${
-                  breakfastSelections[bp.id]
-                    ? "bg-slate-700/60 border-amber-500"
-                    : "bg-slate-800/60 border-slate-600 hover:border-slate-500"
+                className={`w-full text-left rounded-md px-3 py-2.5 transition-colors border ${
+                  breakfastSelections[fridayProduct.id]
+                    ? "bg-amber-600/20 border-amber-500"
+                    : "bg-amber-900/10 border-amber-700/30 hover:border-amber-600/60"
                 }`}
               >
-                <div className="flex items-start gap-3">
+                <div className="flex items-center gap-2.5">
                   <Checkbox
-                    id={bp.id}
-                    checked={breakfastSelections[bp.id] || false}
+                    id={fridayProduct.id}
+                    checked={breakfastSelections[fridayProduct.id] || false}
                     onCheckedChange={(checked) =>
-                      handleToggleBreakfast(bp.id, checked as boolean)
+                      handleToggleBreakfast(fridayProduct.id, checked as boolean)
                     }
-                    className="mt-1 border-slate-500 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
+                    className="border-amber-600 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
                     onClick={(e) => e.stopPropagation()}
                   />
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <Label className="text-white font-medium cursor-pointer">
-                        {bp.name}
+                      <Label className="text-sm text-white font-medium cursor-pointer">
+                        Friday - New Year{"'"}s Day
                       </Label>
-                      <span className="text-white font-medium text-sm">
-                        $20.00
-                      </span>
+                      <span className="text-sm text-white font-medium">$20</span>
                     </div>
-                    <p className="text-slate-400 text-sm mt-1">
-                      {bp.description}
+                    <p className="text-amber-400 text-xs mt-0.5">
+                      Most restaurants closed -- start your new year with fellowship!
                     </p>
                   </div>
                 </div>
               </button>
-            )
-          )}
-        </div>
-      </div>
+            )}
 
-      {/* Order Summary */}
-      <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-        <h3 className="text-lg font-semibold text-white mb-4">
-          Order Summary
-        </h3>
-        <div className="space-y-2 text-slate-300">
-          <div className="flex justify-between">
-            <span>Registration Fee</span>
-            <span className="font-medium text-white">
-              ${registrationFee.toFixed(2)}
-            </span>
+            {/* Saturday and Sunday */}
+            {BREAKFAST_PRODUCTS.filter((p) => p.id !== "breakfast-friday").map(
+              (bp) => (
+                <button
+                  key={bp.id}
+                  type="button"
+                  onClick={() =>
+                    handleToggleBreakfast(bp.id, !breakfastSelections[bp.id])
+                  }
+                  className={`w-full text-left rounded-md px-3 py-2.5 transition-colors border ${
+                    breakfastSelections[bp.id]
+                      ? "bg-slate-700/60 border-amber-500"
+                      : "bg-slate-800/60 border-slate-600 hover:border-slate-500"
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Checkbox
+                      id={bp.id}
+                      checked={breakfastSelections[bp.id] || false}
+                      onCheckedChange={(checked) =>
+                        handleToggleBreakfast(bp.id, checked as boolean)
+                      }
+                      className="border-slate-500 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                    <div className="flex-1 flex items-center justify-between">
+                      <Label className="text-sm text-white cursor-pointer">
+                        {bp.id === "breakfast-saturday" ? "Saturday" : "Sunday"}
+                      </Label>
+                      <span className="text-sm text-white font-medium">$20</span>
+                    </div>
+                  </div>
+                </button>
+              )
+            )}
           </div>
+        </div>
 
+        {/* Inline order summary */}
+        <div className="border-t border-slate-700 mt-4 pt-3 space-y-1.5 text-sm">
+          <div className="flex justify-between text-slate-300">
+            <span>Registration</span>
+            <span className="text-white">${registrationFee.toFixed(2)}</span>
+          </div>
           {selectedBreakfasts.map((bp) => (
-            <div key={bp.id} className="flex justify-between text-sm">
-              <span>{bp.name}</span>
-              <span className="font-medium text-white">
-                ${(bp.priceInCents / 100).toFixed(2)}
-              </span>
+            <div key={bp.id} className="flex justify-between text-slate-300">
+              <span>Breakfast - {bp.id === "breakfast-friday" ? "Friday" : bp.id === "breakfast-saturday" ? "Saturday" : "Sunday"}</span>
+              <span className="text-white">${(bp.priceInCents / 100).toFixed(2)}</span>
             </div>
           ))}
-
-          <div className="border-t border-slate-700 my-2" />
-          <div className="flex justify-between text-sm">
-            <span>Processing Fee (2.9% + $0.30)</span>
-            <span className="font-medium text-white">
-              ${processingFee.toFixed(2)}
-            </span>
+          <div className="flex justify-between text-slate-400 text-xs">
+            <span>Processing fee (2.9% + $0.30)</span>
+            <span>${processingFee.toFixed(2)}</span>
           </div>
-          <div className="border-t border-slate-600 pt-2 mt-2 flex justify-between text-lg font-bold">
+          <div className="border-t border-slate-600 pt-2 mt-1 flex justify-between font-bold">
             <span className="text-white">Total</span>
             <span className="text-amber-400">${totalAmount.toFixed(2)}</span>
           </div>
