@@ -3,13 +3,10 @@
 import { useState } from "react"
 import RegistrationForm from "@/components/registration-form"
 import PolicyAgreement from "@/components/policy-agreement"
-import BreakfastTicketSelector from "@/components/breakfast-ticket-selector"
 import TestregCheckout from "@/components/testreg-checkout"
-import { Button } from "@/components/ui/button"
 import type { PolicyAgreements } from "@/components/policy-agreement"
-import type { BreakfastSelections } from "@/components/breakfast-ticket-selector"
 
-type Step = "info" | "policy" | "extras" | "payment"
+type Step = "info" | "policy" | "payment"
 
 interface RegistrationData {
   name: string
@@ -28,8 +25,6 @@ export default function TestRegPage() {
     useState<RegistrationData | null>(null)
   const [policyAgreements, setPolicyAgreements] =
     useState<PolicyAgreements | null>(null)
-  const [breakfastSelections, setBreakfastSelections] =
-    useState<BreakfastSelections>({})
 
   const handleInfoComplete = (data: RegistrationData) => {
     setRegistrationData(data)
@@ -38,18 +33,13 @@ export default function TestRegPage() {
 
   const handlePolicyComplete = (agreements: PolicyAgreements) => {
     setPolicyAgreements(agreements)
-    setCurrentStep("extras")
-  }
-
-  const handleExtrasComplete = () => {
     setCurrentStep("payment")
   }
 
   const steps = [
     { key: "info" as const, label: "Information", number: 1 },
     { key: "policy" as const, label: "Policy", number: 2 },
-    { key: "extras" as const, label: "Add-ons", number: 3 },
-    { key: "payment" as const, label: "Payment", number: 4 },
+    { key: "payment" as const, label: "Payment", number: 3 },
   ]
 
   return (
@@ -110,39 +100,13 @@ export default function TestRegPage() {
               />
             )}
 
-            {currentStep === "extras" && (
-              <div className="space-y-8">
-                <BreakfastTicketSelector
-                  selections={breakfastSelections}
-                  onChange={setBreakfastSelections}
-                />
-                <div className="flex gap-4">
-                  <Button
-                    type="button"
-                    onClick={() => setCurrentStep("policy")}
-                    variant="outline"
-                    className="flex-1 border-slate-700 text-white hover:bg-slate-800 bg-transparent"
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    onClick={handleExtrasComplete}
-                    className="flex-1 bg-amber-600 hover:bg-amber-700 text-white"
-                  >
-                    Continue to Payment
-                  </Button>
-                </div>
-              </div>
-            )}
-
             {currentStep === "payment" &&
               registrationData &&
               policyAgreements && (
                 <TestregCheckout
                   registrationData={registrationData}
                   policyAgreements={policyAgreements}
-                  breakfastSelections={breakfastSelections}
-                  onBack={() => setCurrentStep("extras")}
+                  onBack={() => setCurrentStep("policy")}
                 />
               )}
           </div>
