@@ -306,204 +306,140 @@ export default function HomePage() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
+        {/* Convention Hero - Mimics flyer style */}
         <section className="mb-16">
-          <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-slate-900 p-8 md:p-16 rounded-3xl shadow-2xl overflow-hidden">
-            {/* Animated background elements */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-400 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute bottom-10 right-10 w-40 h-40 bg-blue-400 rounded-full blur-3xl animate-pulse delay-150"></div>
-              <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full blur-2xl animate-pulse delay-300"></div>
+          <div className="relative p-8 md:p-16 rounded-3xl shadow-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1a0533 0%, #2d1b69 25%, #1e3a5f 50%, #4a1942 75%, #0d1b2a 100%)" }}>
+            {/* Cosmic background glow effects */}
+            <div className="absolute inset-0 opacity-30">
+              <div className="absolute top-0 left-1/4 w-64 h-64 bg-pink-500 rounded-full blur-[100px] animate-pulse"></div>
+              <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-500 rounded-full blur-[100px] animate-pulse delay-150"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600 rounded-full blur-[120px] animate-pulse delay-300"></div>
             </div>
 
-            {/* Confetti-like decorative elements */}
+            {/* Subtle star-like dots */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-20 left-[10%] w-3 h-3 bg-yellow-400 rotate-45 opacity-60"></div>
-              <div className="absolute top-40 right-[15%] w-2 h-2 bg-blue-300 rounded-full opacity-70"></div>
-              <div className="absolute bottom-32 left-[20%] w-4 h-4 bg-white rotate-12 opacity-50"></div>
-              <div className="absolute top-[30%] right-[25%] w-3 h-3 bg-yellow-300 opacity-60"></div>
-              <div className="absolute bottom-20 right-[35%] w-2 h-2 bg-blue-400 rounded-full opacity-70"></div>
-              <div className="absolute top-[60%] left-[15%] w-3 h-3 bg-white rotate-45 opacity-50"></div>
+              <div className="absolute top-[15%] left-[8%] w-1 h-1 bg-white rounded-full opacity-60"></div>
+              <div className="absolute top-[25%] right-[12%] w-1.5 h-1.5 bg-white rounded-full opacity-40"></div>
+              <div className="absolute bottom-[20%] left-[30%] w-1 h-1 bg-white rounded-full opacity-50"></div>
+              <div className="absolute top-[60%] right-[20%] w-1 h-1 bg-white rounded-full opacity-70"></div>
+              <div className="absolute top-[40%] left-[60%] w-1.5 h-1.5 bg-white rounded-full opacity-30"></div>
+              <div className="absolute bottom-[35%] right-[40%] w-1 h-1 bg-white rounded-full opacity-50"></div>
             </div>
 
-            <div className="relative z-10 text-center space-y-6">
-              {/* Victory badge */}
-              <div className="inline-block">
-                <div className="bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-sm md:text-base uppercase tracking-wider shadow-lg transform -rotate-2">
-                  🎉 Connecticut Wins the Bid! 🎉
-                </div>
-              </div>
-
-              {/* Main announcement with bold typography */}
-              <div className="space-y-4">
-                <h2 className="text-6xl md:text-8xl font-black text-white leading-none tracking-tight drop-shadow-2xl">
-                  NECYPAA
-                  <span className="block text-yellow-400 mt-2">36</span>
-                </h2>
-                <p className="text-3xl md:text-5xl font-bold text-white">IS COMING TO</p>
-                <p className="text-4xl md:text-6xl font-black text-blue-200 uppercase tracking-wide">Connecticut</p>
-              </div>
-
-              {/* Election info with bold design */}
-              <div className="max-w-3xl mx-auto mt-12">
-                <div className="bg-white text-slate-900 p-8 md:p-10 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300 border-4 border-yellow-400 relative">
-                  <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
-                    UPCOMING
-                  </div>
-                  <div className="bg-blue-600 text-white py-2 px-4 rounded-lg mb-4 inline-block">
-                    <h3 className="text-lg md:text-xl font-black uppercase tracking-wide">Elections Part 2</h3>
-                  </div>
-                  <p className="text-red-500 font-bold italic mb-4 text-lg">Electric Boogaloo!</p>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-xl font-bold">
-                      <div className="bg-blue-100 p-2 rounded-full">
-                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <span>Sunday, Feb 15th</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-xl font-bold">
-                      <div className="bg-blue-100 p-2 rounded-full">
-                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                      </div>
-                      <span>2:00 PM</span>
-                    </div>
+            <div className="relative z-10">
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                {/* Left side - Convention info */}
+                <div className="flex-1 text-center lg:text-left space-y-6">
+                  {/* Title */}
+                  <div>
+                    <h2 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tight drop-shadow-2xl" style={{ textShadow: "0 0 40px rgba(255,255,255,0.15)" }}>
+                      NECYPAA XXXVI
+                    </h2>
+                    <p className="text-lg md:text-xl text-pink-200 mt-2 italic font-medium">
+                      The Northeast Convention of Young People In Alcoholics Anonymous
+                    </p>
                   </div>
 
-                  <div className="pt-4">
+                  {/* New Year's Eve callout */}
+                  <div className="inline-block">
+                    <p className="text-3xl md:text-4xl font-black italic text-yellow-300 drop-shadow-lg" style={{ textShadow: "0 0 20px rgba(253,224,71,0.4)" }}>
+                      {"New Year's Eve!!!"}
+                    </p>
+                  </div>
+
+                  {/* Convention details */}
+                  <div className="space-y-3 text-lg md:text-xl text-green-300 font-semibold">
+                    <p>4 Day YPAA Convention</p>
+                    <p>@ the Hartford Marriott Downtown</p>
+                    <p className="text-white font-bold">Thursday, December 31, 2026</p>
+                    <p className="text-white font-bold">- Sunday, January 3, 2027</p>
+                  </div>
+
+                  {/* Book rooms callout */}
+                  <p className="text-red-400 font-bold text-lg italic" style={{ textShadow: "0 0 10px rgba(248,113,113,0.3)" }}>
+                    *Book Rooms Now - Pay Later
+                  </p>
+
+                  {/* Registration + Hotel buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <Link
+                      href="/register"
+                      className="inline-flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-black text-lg py-3 px-8 rounded-xl transition-all duration-200 shadow-lg shadow-pink-600/30 uppercase tracking-wide"
+                    >
+                      Pre-Register - $40
+                    </Link>
                     <a
-                      href="https://us06web.zoom.us/j/5692382899?omn=86491828124"
+                      href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1770049957031&key=GRP&app=resvlink"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-black text-lg py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-110 shadow-2xl uppercase tracking-wide"
+                      className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg py-3 px-8 rounded-xl transition-all duration-200 shadow-lg shadow-blue-600/30 uppercase tracking-wide"
                     >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M15.5 10.5l-4-2.5v5l4-2.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8z" />
-                      </svg>
-                      Join on Zoom
+                      Book Hotel
                     </a>
                   </div>
                 </div>
-              </div>
 
-              {/* Elections Flyer */}
-              <div className="max-w-sm mx-auto mt-8">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/NECYPAA%20vote%20%285%29-DVPawFt9UO18OIBM5xL8ivnvkR2rTZ.png"
-                  alt="NECYPAA CT Elections Part Two - February 15th"
-                  width={400}
-                  height={500}
-                  className="rounded-2xl shadow-2xl border-4 border-yellow-400"
-                />
+                {/* Right side - Flyer image */}
+                <div className="lg:w-96 flex-shrink-0">
+                  <FlyerWithModal
+                    src="/images/necypaa-xxxvi-flyer.png"
+                    alt="NECYPAA XXXVI - New Year's Eve 2026 - 4 Day YPAA Convention at the Hartford Marriott Downtown"
+                    title="NECYPAA XXXVI"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Upcoming Event - Zombie Prom */}
-        <section className="mt-16 py-8">
+        {/* Next Business Meeting */}
+        <section className="mb-16">
           <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent">
-            Upcoming Event
+            Next Business Meeting
           </h2>
-          
-          <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 hover:border-purple-500/50 transition-all duration-300">
-            <div className="flex flex-col lg:flex-row gap-8 items-center">
-              {/* Event Info */}
-              <div className="flex-1 space-y-6">
-                <div>
-                  <span className="inline-block bg-purple-600 text-white text-sm font-bold px-4 py-1 rounded-full mb-4">SAVE THE DATE</span>
-                  <h3 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-500 mb-2">
-                    Zombie Prom
-                  </h3>
-                  <p className="text-gray-400 text-lg">Hosted by NECYPAA 36 and The Bay State Bid for NECYPAA</p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-purple-600/20 p-2 rounded-lg">
-                        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm">Date</p>
-                        <p className="text-white font-bold">Friday, February 13th</p>
-                      </div>
+
+          <div className="bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl border border-gray-700">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="flex-1 space-y-4">
+                <h3 className="text-2xl font-bold text-white">NECYPAA 36 Business Meeting</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-blue-600/20 p-2 rounded-lg">
+                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-sm">Date</p>
+                      <p className="text-white font-bold">Sunday, March 1st</p>
                     </div>
                   </div>
-                  
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-purple-600/20 p-2 rounded-lg">
-                        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm">Location</p>
-                        <p className="text-white font-bold">Enfield United Church of Christ</p>
-                        <p className="text-gray-400 text-xs">1295 Enfield Street, Enfield, CT 06082</p>
-                      </div>
+                  <div className="flex items-center gap-3">
+                    <div className="bg-blue-600/20 p-2 rounded-lg">
+                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
                     </div>
-                  </div>
-                  
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-purple-600/20 p-2 rounded-lg">
-                        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm">Schedule</p>
-                        <p className="text-white font-bold text-sm">Hype 6:30-7:00 | Meeting 7:00-8:00</p>
-                        <p className="text-white font-bold text-sm">Dance 8:00-Dawn</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-green-600/20 p-2 rounded-lg">
-                        <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm">Suggested Contribution</p>
-                        <p className="text-green-400 font-bold text-2xl">$15</p>
-                      </div>
+                    <div>
+                      <p className="text-gray-400 text-sm">Time</p>
+                      <p className="text-white font-bold">2:00 PM</p>
                     </div>
                   </div>
                 </div>
-                
-                <p className="text-gray-300 text-lg">
-                  Join us for a spooky night of dancing, fellowship, and fun! Dress in your best zombie prom attire and celebrate recovery with friends from across the North East.
+                <p className="text-gray-300">
+                  Join us on Zoom for the next NECYPAA 36 business meeting. All are welcome!
                 </p>
-              </div>
-              
-              {/* Flyer */}
-              <div className="lg:w-80 flex-shrink-0">
-                <FlyerWithModal
-                  src="/images/zombie-prom-flyer.jpeg"
-                  alt="Zombie Prom - Friday February 13th"
-                  title="Zombie Prom"
-                />
+                <a
+                  href="https://us06web.zoom.us/j/5692382899?omn=86491828124"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-xl transition-all duration-200 shadow-lg"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M15.5 10.5l-4-2.5v5l4-2.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8z" />
+                  </svg>
+                  Join on Zoom
+                </a>
               </div>
             </div>
           </div>
@@ -533,6 +469,45 @@ export default function HomePage() {
           </h2>
 
           <div className="space-y-6">
+            {/* Zombie Prom */}
+            <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-blue-500/20 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex-1 space-y-3 text-gray-300">
+                  <h3 className="text-2xl font-bold text-blue-400 mb-4">Zombie Prom</h3>
+                  <p>
+                    <span className="font-semibold text-blue-400">Date:</span> Friday, February 13th, 2026
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Location:</span> Enfield United Church of Christ, 1295 Enfield Street, Enfield, CT 06082
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Schedule:</span>
+                  </p>
+                  <ul className="ml-6 list-disc space-y-1">
+                    <li>{"Hype: 6:30 - 7:00 PM"}</li>
+                    <li>{"Meeting: 7:00 - 8:00 PM"}</li>
+                    <li>{"Dance: 8:00 PM - Dawn"}</li>
+                  </ul>
+                  <p>
+                    <span className="font-semibold text-blue-400">Hosted by:</span> NECYPAA 36 and The Bay State Bid for NECYPAA
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-400">Suggested Contribution:</span> $15
+                  </p>
+                  <p className="mt-4 text-gray-400 italic">
+                    A spooky night of dancing, fellowship, and fun! Attendees dressed in their best zombie prom attire and celebrated recovery with friends from across the North East.
+                  </p>
+                </div>
+                <div className="w-full md:w-72 flex-shrink-0">
+                  <FlyerWithModal
+                    src="/images/zombie-prom-flyer.jpeg"
+                    alt="Zombie Prom - Friday February 13th"
+                    title="Zombie Prom"
+                  />
+                </div>
+              </div>
+            </div>
+
             {/* NYE Meeting 2026 */}
             <div className="group bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 hover:shadow-blue-500/20 hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6">
