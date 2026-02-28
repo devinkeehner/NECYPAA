@@ -57,7 +57,10 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
   const selfRegistrationQuantity = registrationData.isScholarship ? 0 : 1
   const effectiveScholarshipQuantity = isScholarshipMode ? scholarshipQuantity : 0
 
-  const selectedBreakfasts = BREAKFAST_PRODUCTS.filter((bp) => breakfastSelections[bp.id])
+  const canAddBreakfast = selfRegistrationQuantity > 0
+  const selectedBreakfasts = canAddBreakfast
+    ? BREAKFAST_PRODUCTS.filter((bp) => breakfastSelections[bp.id])
+    : []
   const breakfastTotalCents = selectedBreakfasts.reduce((sum, bp) => sum + bp.priceInCents, 0)
 
   const registrationSubtotalCents = unitRegistrationFeeCents * (selfRegistrationQuantity + effectiveScholarshipQuantity)
@@ -90,7 +93,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
   const fetchClientSecret = useCallback(async () => {
     try {
       const reservedNames = reservedForPeople.map((name) => name.trim()).filter(Boolean)
-      const selectedBreakfastIds = selectedBreakfasts.map((bp) => bp.id)
+      const selectedBreakfastIds = canAddBreakfast ? selectedBreakfasts.map((bp) => bp.id) : []
 
       return await startRegistrationCheckout(
         "necypaa-xxxvi-registration",
@@ -109,6 +112,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
     }
   }, [
     aaEntity,
+    canAddBreakfast,
     effectiveScholarshipQuantity,
     policyAgreements,
     registrationData,
@@ -305,75 +309,77 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
         </div>
       </div>
 
-      <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 space-y-4">
-        <h3 className="text-lg font-semibold text-white">New Years Day Breakfast!</h3>
-        <p className="text-sm text-slate-400">
-          Keep your mornings simple at the convention hotel. Friday is especially useful since many local restaurants
-          are closed on New Year&apos;s Day.
-        </p>
+      {canAddBreakfast && (
+        <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 space-y-4">
+          <h3 className="text-lg font-semibold text-white">New Years Day Breakfast!</h3>
+          <p className="text-sm text-slate-400">
+            Keep your mornings simple at the convention hotel. Friday is especially useful since many local restaurants
+            are closed on New Year&apos;s Day.
+          </p>
 
-        {fridayProduct && (
-          <button
-            type="button"
-            onClick={() => toggleBreakfast(fridayProduct.id, !breakfastSelections[fridayProduct.id])}
-            className={`w-full text-left rounded-md px-4 py-3 transition-colors border ${
-              breakfastSelections[fridayProduct.id]
-                ? "bg-amber-600/20 border-amber-500"
-                : "bg-amber-900/10 border-amber-700/30 hover:border-amber-600/60"
-            }`}
-          >
-            <div className="flex items-start gap-3">
-              <Checkbox
-                id={fridayProduct.id}
-                checked={breakfastSelections[fridayProduct.id] || false}
-                onCheckedChange={(checked) => toggleBreakfast(fridayProduct.id, checked as boolean)}
-                className="mt-1 border-amber-600 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
-                onClick={(e) => e.stopPropagation()}
-              />
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm text-white font-semibold cursor-pointer">Friday - New Year&apos;s Day</Label>
-                  <span className="text-sm text-white font-semibold">$20</span>
-                </div>
-                <p className="text-amber-300 text-xs mt-1">
-                  Strongly recommended: most local restaurants are closed.
-                </p>
-              </div>
-            </div>
-          </button>
-        )}
-
-        <div className="grid gap-2 sm:grid-cols-2">
-          {weekendProducts.map((bp) => (
+          {fridayProduct && (
             <button
-              key={bp.id}
               type="button"
-              onClick={() => toggleBreakfast(bp.id, !breakfastSelections[bp.id])}
-              className={`w-full text-left rounded-md px-3 py-2.5 transition-colors border ${
-                breakfastSelections[bp.id]
-                  ? "bg-slate-700/60 border-amber-500"
-                  : "bg-slate-800/60 border-slate-600 hover:border-slate-500"
+              onClick={() => toggleBreakfast(fridayProduct.id, !breakfastSelections[fridayProduct.id])}
+              className={`w-full text-left rounded-md px-4 py-3 transition-colors border ${
+                breakfastSelections[fridayProduct.id]
+                  ? "bg-amber-600/20 border-amber-500"
+                  : "bg-amber-900/10 border-amber-700/30 hover:border-amber-600/60"
               }`}
             >
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-start gap-3">
                 <Checkbox
-                  id={bp.id}
-                  checked={breakfastSelections[bp.id] || false}
-                  onCheckedChange={(checked) => toggleBreakfast(bp.id, checked as boolean)}
-                  className="border-slate-500 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
+                  id={fridayProduct.id}
+                  checked={breakfastSelections[fridayProduct.id] || false}
+                  onCheckedChange={(checked) => toggleBreakfast(fridayProduct.id, checked as boolean)}
+                  className="mt-1 border-amber-600 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
                   onClick={(e) => e.stopPropagation()}
                 />
-                <div className="flex-1 flex items-center justify-between">
-                  <Label className="text-sm text-white cursor-pointer">
-                    {bp.id === "breakfast-saturday" ? "Saturday Breakfast" : "Sunday Breakfast"}
-                  </Label>
-                  <span className="text-sm text-white font-medium">$20</span>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm text-white font-semibold cursor-pointer">Friday - New Year&apos;s Day</Label>
+                    <span className="text-sm text-white font-semibold">$20</span>
+                  </div>
+                  <p className="text-amber-300 text-xs mt-1">
+                    Strongly recommended: most local restaurants are closed.
+                  </p>
                 </div>
               </div>
             </button>
-          ))}
+          )}
+
+          <div className="grid gap-2 sm:grid-cols-2">
+            {weekendProducts.map((bp) => (
+              <button
+                key={bp.id}
+                type="button"
+                onClick={() => toggleBreakfast(bp.id, !breakfastSelections[bp.id])}
+                className={`w-full text-left rounded-md px-3 py-2.5 transition-colors border ${
+                  breakfastSelections[bp.id]
+                    ? "bg-slate-700/60 border-amber-500"
+                    : "bg-slate-800/60 border-slate-600 hover:border-slate-500"
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Checkbox
+                    id={bp.id}
+                    checked={breakfastSelections[bp.id] || false}
+                    onCheckedChange={(checked) => toggleBreakfast(bp.id, checked as boolean)}
+                    className="border-slate-500 data-[state=checked]:bg-amber-600 data-[state=checked]:border-amber-600"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                  <div className="flex-1 flex items-center justify-between">
+                    <Label className="text-sm text-white cursor-pointer">
+                      {bp.id === "breakfast-saturday" ? "Saturday Breakfast" : "Sunday Breakfast"}
+                    </Label>
+                    <span className="text-sm text-white font-medium">$20</span>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {isScholarshipMode && (
         <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 space-y-4">
