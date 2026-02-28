@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 interface FlyerWithModalProps {
   src: string
   alt: string
+  title?: string
   className?: string
 }
 

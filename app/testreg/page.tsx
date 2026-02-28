@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import RegistrationForm from "@/components/registration-form"
 import PolicyAgreement from "@/components/policy-agreement"
 import TestregCheckout from "@/components/testreg-checkout"
@@ -35,6 +35,10 @@ export default function TestRegPage() {
     setPolicyAgreements(agreements)
     setCurrentStep("payment")
   }
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" })
+  }, [currentStep])
 
   const steps = [
     { key: "info" as const, label: "Information", number: 1 },

@@ -18,13 +18,17 @@ interface RegistrationData {
   handicapAccessibility: boolean
   willingToServe: boolean
   homegroup: string
+  isScholarship: boolean
+  scholarshipRecipientName: string
+  scholarshipRecipientEmail: string
 }
 
 interface RegistrationFormProps {
   onComplete: (data: RegistrationData) => void
+  enableScholarship?: boolean
 }
 
-export default function RegistrationForm({ onComplete }: RegistrationFormProps) {
+export default function RegistrationForm({ onComplete, enableScholarship = false }: RegistrationFormProps) {
   const [formData, setFormData] = useState<RegistrationData>({
     name: "",
     state: "",
@@ -34,6 +38,9 @@ export default function RegistrationForm({ onComplete }: RegistrationFormProps) 
     handicapAccessibility: false,
     willingToServe: false,
     homegroup: "",
+    isScholarship: false,
+    scholarshipRecipientName: "",
+    scholarshipRecipientEmail: "",
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,18 +48,58 @@ export default function RegistrationForm({ onComplete }: RegistrationFormProps) 
     onComplete(formData)
   }
 
+  const handleScholarshipQuickStart = () => {
+    onComplete({
+      name: "",
+      state: "",
+      email: "",
+      accommodations: "",
+      interpretationNeeded: false,
+      handicapAccessibility: false,
+      willingToServe: false,
+      homegroup: "",
+      isScholarship: true,
+      scholarshipRecipientName: "",
+      scholarshipRecipientEmail: "",
+    })
+  }
+
   const isFormValid = () => {
-    return (
+    const baseValid =
       formData.name.trim() !== "" &&
       formData.state.trim() !== "" &&
       formData.email.trim() !== "" &&
       formData.homegroup.trim() !== ""
-    )
+
+    if (!baseValid) {
+      return false
+    }
+
+    if (enableScholarship && formData.isScholarship) {
+      return formData.scholarshipRecipientName.trim() !== ""
+    }
+
+    return true
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-4">
+        {enableScholarship && (
+          <div className="bg-slate-900/30 rounded-lg border border-slate-700/70 p-3">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-slate-300 text-center sm:text-left">Buying registration for someone else?</p>
+              <Button
+                type="button"
+                onClick={handleScholarshipQuickStart}
+                className="w-full sm:w-auto bg-slate-700 hover:bg-slate-600 text-white h-9 px-4"
+              >
+                Scholarship
+              </Button>
+            </div>
+          </div>
+        )}
+
         <div>
           <Label htmlFor="name" className="text-white">
             Name <span className="text-amber-500">*</span>
