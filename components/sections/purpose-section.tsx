@@ -68,10 +68,10 @@ export default function PurposeSection() {
             <p className="text-sm font-semibold" style={{ color: "var(--nec-cyan)" }}>
               Questions? Reach out at{" "}
               <a
-                href="mailto:ctbidfornecypaa@gmail.com"
+                href="mailto:info@necypaa.org"
                 className="underline underline-offset-2 hover:opacity-80 transition-opacity"
               >
-                ctbidfornecypaa@gmail.com
+                info@necypaa.org
               </a>
             </p>
           </div>
