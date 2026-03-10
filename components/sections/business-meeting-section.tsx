@@ -102,8 +102,7 @@ export default function BusinessMeetingSection() {
         </div>
 
         <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-          All are welcome to attend our business meetings on Zoom. Come see how the convention is
-          built — committees, updates, votes, and fellowship.
+          All are welcome — join us on Zoom. No commitment required.
         </p>
 
         <a

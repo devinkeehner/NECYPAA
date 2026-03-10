@@ -1,12 +1,17 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Bangers, Pacifico } from "next/font/google"
+import { Plus_Jakarta_Sans, Outfit, Bangers, Pacifico } from "next/font/google"
 import "./globals.css"
 import SiteHeader from "@/components/site-header"
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+})
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-heading",
 })
 
 const bangers = Bangers({
@@ -62,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${bangers.variable} ${pacifico.variable} ${inter.className}`}>
+      <body className={`${jakarta.variable} ${outfit.variable} ${bangers.variable} ${pacifico.variable} ${jakarta.className}`}>
         <SiteHeader />
         {children}
       </body>

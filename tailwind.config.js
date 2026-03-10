@@ -11,6 +11,12 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'sans-serif'],
+        heading: ['var(--font-heading)', 'Outfit', 'sans-serif'],
+        display: ['var(--font-display)', 'Bangers', 'cursive'],
+        script: ['var(--font-script)', 'Pacifico', 'cursive'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

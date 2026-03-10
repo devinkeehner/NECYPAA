@@ -22,6 +22,27 @@
   --nec-muted:    #8896ae;
 
   --radius: 0.75rem;
+
+  /* shadcn/ui HSL tokens – mapped to NECYPAA palette */
+  --background: 220 30% 8%;        /* navy */
+  --foreground: 214 32% 91%;       /* light text */
+  --card: 220 25% 15%;
+  --card-foreground: 214 32% 91%;
+  --popover: 220 25% 15%;
+  --popover-foreground: 214 32% 91%;
+  --primary: 333 100% 45%;         /* pink */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 25% 18%;
+  --secondary-foreground: 214 32% 91%;
+  --muted: 220 20% 18%;
+  --muted-foreground: 215 16% 56%;
+  --accent: 186 100% 45%;          /* cyan */
+  --accent-foreground: 220 30% 8%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 22% 24%;           /* nec-border */
+  --input: 220 22% 24%;
+  --ring: 186 100% 45%;            /* cyan focus ring */
 }
 
 @layer base {
@@ -32,8 +53,12 @@
   body {
     background-color: var(--nec-navy);
     color: var(--nec-text);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans), 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), 'Outfit', sans-serif;
   }
 
   /* Anchor scroll offset for sticky header */

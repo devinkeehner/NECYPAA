@@ -38,7 +38,8 @@ export default function FlyerWithModal({ src, alt, className = "" }: FlyerWithMo
         />
         {/* Magnifying glass icon in upper right */}
         <button
-          className="absolute top-2 right-2 p-2 bg-blue-600/80 hover:bg-blue-600 rounded-full transition-all opacity-70 group-hover:opacity-100"
+          className="absolute top-2 right-2 p-2 rounded-full transition-all opacity-70 group-hover:opacity-100"
+          style={{ background: "rgba(0,212,232,0.7)" }}
           aria-label="Click to enlarge"
         >
           <Search className="w-4 h-4 text-white" />
