@@ -68,14 +68,14 @@ export default function CTASection() {
             </span>
             <h3 className="text-2xl font-black text-white mt-1">Hartford Marriott Downtown</h3>
             <p className="text-sm text-gray-400 mt-2 leading-relaxed">
-              We have a room block at the Marriott with a special NECYPAA group rate. Book now and
-              pay later — rooms go fast around New Year&apos;s Eve.
+              We have a room block at the Marriott with a special NECYPAA group rate. Rooms go
+              fast around New Year&apos;s Eve — reserve yours early.
             </p>
             <p
               className="text-sm font-bold italic mt-2"
               style={{ color: "var(--nec-gold)" }}
             >
-              ✦ Book now, pay later — no upfront charge
+              ✦ Special NECYPAA group rate available
             </p>
           </div>
           <a

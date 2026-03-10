@@ -58,8 +58,8 @@ export default function BusinessMeetingSection() {
       <div className="mb-6">
         <span className="section-badge">Planning</span>
         <h2 className="section-heading mt-3" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>Next Business Meeting</h2>
-        <p className="mt-2 text-sm text-gray-400">
-          Held on the 1st and 3rd Sundays of each month at 2:00 PM ET via Zoom.
+        <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+          Get to know us at our business meetings on Zoom! Come see how the convention is built — through committee work, updates, votes, and fellowship. There are always opportunities for service for anyone who wants to get involved.
         </p>
       </div>
 
