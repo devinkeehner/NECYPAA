@@ -18,7 +18,7 @@ export default function PurposeSection() {
     {
       icon: "🌱",
       title: "New to NECYPAA?",
-      body: "You don't need to be young. You don't need years of sobriety. You just need to be curious. All are welcome — come as you are.",
+      body: "NECYPAA is for the young and young at heart. The only requirement is an honest desire to stop drinking. All are welcome — come as you are.",
     },
   ]
 
@@ -60,8 +60,8 @@ export default function PurposeSection() {
           <div className="flex-1 space-y-2">
             <h3 className="text-lg font-bold text-white" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>First time at NECYPAA?</h3>
             <p className="text-sm text-gray-400 leading-relaxed max-w-xl">
-              NECYPAA is an open AA event — you don&apos;t need any particular amount of sobriety or
-              age to attend. If you&apos;re in AA (or curious about it), you belong here. We&apos;ll have
+              NECYPAA is for the young and young at heart — the only requirement is an honest desire
+              to stop drinking. If you&apos;re in AA, you belong here. We&apos;ll have
               speaker meetings, workshops, dances, and a whole lot of fellowship from Dec 31 – Jan 3
               at the Hartford Marriott Downtown.
             </p>

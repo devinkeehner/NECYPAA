@@ -38,7 +38,7 @@ const facts = [
     icon: "🎉",
     label: "Convention Type",
     value: "4-Day YPAA",
-    sub: "All ages welcome",
+    sub: "Young & young at heart",
     color: "var(--nec-orange)",
   },
   {
