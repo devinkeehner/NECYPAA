@@ -17,7 +17,7 @@ export default function SiteFooter() {
         }}
       />
 
-      <div className="container mx-auto px-4 py-12 relative z-10">
+      <div className="container mx-auto px-4 py-12 pb-24 md:pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Identity column */}
           <div className="space-y-3">
