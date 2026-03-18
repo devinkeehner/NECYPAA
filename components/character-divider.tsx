@@ -8,17 +8,17 @@ interface CharacterDividerProps {
 
 const CHARACTERS = {
   "mad-hatter": {
-    src: "/images/mad-hatter-character.jpg",
+    src: "/images/mad-hatter-character.png",
     alt: "The Mad Hatter character in purple coat and orange vest with top hat",
     accentRgb: "124,58,237",
   },
   "cheshire-cat": {
-    src: "/images/cheshire-cat-character.jpg",
+    src: "/images/cheshire-cat-character.png",
     alt: "The Cheshire Cat character in pink and purple stripes with a wide grin",
     accentRgb: "192,38,211",
   },
   caterpillar: {
-    src: "/images/caterpillar-character.jpg",
+    src: "/images/caterpillar-character.png",
     alt: "The Caterpillar character in brown coat and fedora hat",
     accentRgb: "234,179,8",
   },
@@ -57,15 +57,18 @@ export default function CharacterDivider({
           }}
         />
         <div
-          className="relative w-16 h-16 sm:w-20 sm:h-20"
+          className="relative w-20 h-20 sm:w-24 sm:h-24"
           style={{ transform: flip ? "scaleX(-1)" : undefined }}
         >
           <Image
             src={char.src}
             alt=""
-            width={80}
-            height={120}
-            className="w-full h-full object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
+            width={96}
+            height={144}
+            className="w-full h-full object-contain"
+            style={{
+              filter: `drop-shadow(0 2px 12px rgba(${char.accentRgb},0.35)) drop-shadow(0 1px 4px rgba(0,0,0,0.4))`,
+            }}
             aria-hidden="true"
           />
         </div>

@@ -52,18 +52,19 @@ export default function HeroSection() {
         {/* Theme logo — "Escaping the Mad Realm" calligraphic art */}
         <div className="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[440px] lg:max-w-[500px]">
           <div
-            className="absolute inset-0 scale-[1.4] opacity-50"
+            className="absolute inset-0 scale-[1.5] opacity-60"
+            aria-hidden="true"
             style={{
-              background: "radial-gradient(ellipse 60% 55% at 50% 45%, rgba(124,58,237,0.40) 0%, rgba(192,38,211,0.18) 40%, transparent 70%)",
-              filter: "blur(40px)",
+              background: "radial-gradient(ellipse 60% 55% at 50% 45%, rgba(124,58,237,0.45) 0%, rgba(192,38,211,0.20) 40%, transparent 70%)",
+              filter: "blur(44px)",
             }}
           />
           <Image
-            src="/images/mad-realm-logo.jpg"
+            src="/images/mad-realm-logo.png"
             alt="Escaping the Mad Realm — NECYPAA XXXVI theme logo featuring ornate calligraphic lettering in a gradient from teal to magenta to gold"
             width={500}
             height={750}
-            className="relative z-10 w-full h-auto drop-shadow-[0_4px_30px_rgba(124,58,237,0.4)] rounded-2xl"
+            className="relative z-10 w-full h-auto drop-shadow-[0_4px_30px_rgba(124,58,237,0.4)]"
             priority
             sizes="(max-width: 640px) 80vw, (max-width: 1024px) 360px, 500px"
           />
