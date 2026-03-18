@@ -2,6 +2,52 @@
 
 > Keeping track of what changed and when.
 
+## [Unreleased] - 2026-03-16
+
+*Accessibility deep dive, doc audit, highest-standard directive. — Nikki*
+
+### Added
+- `ACCESSIBILITY_GUIDELINES.md` — comprehensive 10-section inclusion & accessibility document from the Accessibilities Chair. Now a governing document.
+- `components/accessibility-panel.tsx` — slide-out settings panel with 6 user customization modes: dark/light, high-contrast, font size, dyslexia font, reduce motion, grayscale. Persists to localStorage.
+- `lib/accessibility-context.tsx` — React context + provider for accessibility settings state.
+- `app/accessibility/page.tsx` — real accessibility page with digital features grid, in-person accommodations, accommodation request, anonymous feedback form, and accessibility statement.
+- `components/anonymous-feedback-form.tsx` — anonymous feedback form (no name/email required) on the accessibility page. Category selector + freeform text.
+- `components/content-warning.tsx` — reusable click-to-expand content warning component for sensitive topics.
+- `components/language-switcher.tsx` — i18n language switcher component (visual placeholder, ready to theme).
+- `messages/en.json` + `messages/es.json` — i18n message files for static UI strings.
+- `i18n/request.ts` — next-intl request configuration.
+- `lib/data/states.ts` — all 12 NECYPAA member states + DC with intergroup, YPAA, Al-Anon, Alateen, and meeting finder links.
+- `lib/data/faq.ts` — 6 categories, 16 draft Q&As for the FAQ page.
+- `components/faq-accordion.tsx` — Radix UI accordion with category tabs for the FAQ page.
+- AA trademark acknowledgment added to site footer.
+- Accessibility statement + report-a-problem link added to site footer.
+- Skip-to-content link and global `focus-visible` outline in `globals.css`.
+- Escape key handlers + `role="dialog"` + `aria-modal="true"` on all modals (`flyer-modal.tsx`, `flyer-with-modal.tsx`, `accessibility-panel.tsx`).
+
+### Changed
+- WCAG target upgraded from AA to **AAA wherever achievable** (AA as absolute floor) — per Website Chair directive.
+- All user-facing error messages rewritten for warm/inviting tone. No more "Payment Error" or "Failed to create checkout session." Now: "Hmm, something went wrong" with helpful next steps.
+- `ACCESSIBILITY_GUIDELINES.md` follow-up items — all 5 resolved with highest-standard defaults (maximum anonymity, maximum sensitivity, AAA compliance, anonymous reporting, Chair sign-off before launch).
+- `CONTRIBUTING.md` — added `.windsurf/rules.md` and `ACCESSIBILITY_GUIDELINES.md` to governing docs table, expanded project structure to reflect current codebase.
+- `.windsurf/rules.md` — added `ACCESSIBILITY_GUIDELINES.md` as required reading.
+- `NECYPREAMBLE.md` — full audit against codebase. Updated Sections 2, 4, 5, 6, 7, 11, 12, 16 to reflect current state. Marked completed items, flagged remaining work.
+
+### Housekeeping
+- Person-first language and banned language audit — clean across all source files.
+- No auto-play media anywhere — confirmed clean.
+- Vitest unit tests: 30/30 passing (`pnpm test`).
+- Build: 21 routes, 87.3 kB shared JS — under 100kB target.
+
+### Known follow-up items
+- `/testreg` route still exists (`app/actions/testreg.ts`, `components/testreg-checkout.tsx`) — must remove before production.
+- CSRF protection not yet implemented.
+- Stripe webhook verification not yet implemented.
+- Automated a11y testing (axe-core + Playwright) not yet set up.
+- Locale routing (`/en/...`, `/es/...`) not yet active.
+- Schedule pre-launch review meeting with Accessibilities Chair before anything goes live.
+
+---
+
 ## [Unreleased] - 2026-03-10
 
 *Full site polish, UX overhaul, and brand pass — with full art integration. Branch: `feat/site-polish-ux-brand-pass`. — Nikki*

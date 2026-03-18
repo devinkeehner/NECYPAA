@@ -1,6 +1,8 @@
 "use server"
 
 import { stripe } from "@/lib/stripe"
+import { rateLimitFreeRegistration } from "@/lib/rate-limit"
+import { registrationDataSchema, policyAgreementsSchema } from "@/lib/validation"
 
 interface RegistrationData {
   name: string
@@ -8,7 +10,7 @@ interface RegistrationData {
   email: string
   accommodations: string
   interpretationNeeded: boolean
-  handicapAccessibility: boolean
+  mobilityAccessibility: boolean
   willingToServe: boolean
   homegroup: string
 }
@@ -27,6 +29,16 @@ export async function submitFreeRegistration(
   registrationData: RegistrationData,
   policyAgreements: PolicyAgreements,
 ) {
+  // ── Validate inputs ────────────────────────────────────────────
+  const validatedData = registrationDataSchema.parse(registrationData)
+  const validatedPolicy = policyAgreementsSchema.parse(policyAgreements)
+
+  // ── Rate limit by email ────────────────────────────────────────
+  const rl = rateLimitFreeRegistration(validatedData.email)
+  if (!rl.success) {
+    throw new Error("Too many registration attempts. Please wait a moment and try again.")
+  }
+
   const metadata: Record<string, string> = {
     registration_type: "free",
     attendee_name: registrationData.name,
@@ -34,7 +46,7 @@ export async function submitFreeRegistration(
     attendee_email: registrationData.email,
     accommodations: registrationData.accommodations || "None",
     interpretation_needed: registrationData.interpretationNeeded.toString(),
-    handicap_accessibility: registrationData.handicapAccessibility.toString(),
+    mobility_accessibility: registrationData.mobilityAccessibility.toString(),
     willing_to_serve: registrationData.willingToServe.toString(),
     homegroup_committee: registrationData.homegroup,
     policy_read_and_understood: policyAgreements.readPolicy.toString(),
@@ -73,6 +85,6 @@ export async function submitFreeRegistration(
     return { success: true, customerId: customer.id }
   } catch (error) {
     console.error("Failed to save registration:", error)
-    throw new Error("Failed to save registration. Please try again.")
+    throw new Error("We had trouble saving your registration. Please try again in a moment — and if it keeps happening, reach out to us at info@necypaa.org.")
   }
 }

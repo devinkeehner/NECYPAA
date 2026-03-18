@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { X, Menu } from "lucide-react"
 import { HOTEL_BOOKING_URL, NECYPAA_ADVISORY_URL } from "@/lib/constants"
+import { useFocusTrap } from "@/lib/use-focus-trap"
 
 const navLinks = [
   { href: "#purpose", label: "Purpose" },
@@ -18,6 +19,7 @@ const navLinks = [
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const drawerRef = useFocusTrap<HTMLElement>(menuOpen)
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 12)
@@ -27,6 +29,16 @@ export default function SiteHeader() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : ""
+    if (menuOpen) {
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setMenuOpen(false)
+      }
+      window.addEventListener("keydown", handleEscape)
+      return () => {
+        document.body.style.overflow = ""
+        window.removeEventListener("keydown", handleEscape)
+      }
+    }
     return () => { document.body.style.overflow = "" }
   }, [menuOpen])
 
@@ -35,6 +47,8 @@ export default function SiteHeader() {
   return (
     <>
       <header
+        role="banner"
+        aria-label="Site header"
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-200"
         style={{
           background: scrolled
@@ -54,7 +68,7 @@ export default function SiteHeader() {
             >
               <Image
                 src="/images/necypaa-logo-transparent.webp"
-                alt="NECYPAA XXXVi"
+                alt="NECYPAA XXXVI"
                 width={720}
                 height={462}
                 className="h-10 w-auto group-hover:opacity-90 transition-opacity"
@@ -63,7 +77,7 @@ export default function SiteHeader() {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1">
               {navLinks.map((link) =>
                 link.external ? (
                   <a
@@ -109,12 +123,16 @@ export default function SiteHeader() {
 
       {/* Mobile drawer */}
       {menuOpen && (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- backdrop dismiss is supplementary to Escape key
         <div
           className="fixed inset-0 z-40 md:hidden"
           style={{ background: "rgba(0,0,0,0.6)" }}
           onClick={close}
         >
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- stopPropagation prevents accidental drawer close */}
           <nav
+            ref={drawerRef}
+            aria-label="Mobile navigation"
             className="absolute top-16 left-0 right-0 flex flex-col gap-1 p-4"
             style={{ background: "var(--nec-dark)", borderBottom: "1px solid var(--nec-border)" }}
             onClick={(e) => e.stopPropagation()}

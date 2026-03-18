@@ -3,6 +3,7 @@
 import { Search, X } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { useFocusTrap } from "@/lib/use-focus-trap"
 
 interface FlyerWithModalProps {
   src: string
@@ -13,10 +14,16 @@ interface FlyerWithModalProps {
 
 export default function FlyerWithModal({ src, alt, className = "" }: FlyerWithModalProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const modalRef = useFocusTrap<HTMLDivElement>(isOpen)
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setIsOpen(false)
+      }
+      window.addEventListener("keydown", handleEscape)
+      return () => window.removeEventListener("keydown", handleEscape)
     } else {
       document.body.style.overflow = "unset"
     }
@@ -28,7 +35,12 @@ export default function FlyerWithModal({ src, alt, className = "" }: FlyerWithMo
   return (
     <>
       {/* Flyer with enlarge button */}
-      <div className={`relative group cursor-pointer ${className}`} onClick={() => setIsOpen(true)}>
+      <button
+        type="button"
+        className={`relative group cursor-pointer border-0 bg-transparent p-0 ${className}`}
+        onClick={() => setIsOpen(true)}
+        aria-label={`Enlarge flyer: ${alt}`}
+      >
         <Image
           src={src || "/placeholder.svg"}
           alt={alt}
@@ -37,19 +49,24 @@ export default function FlyerWithModal({ src, alt, className = "" }: FlyerWithMo
           className="w-full h-full object-contain rounded-lg"
         />
         {/* Magnifying glass icon in upper right */}
-        <button
+        <span
           className="absolute top-2 right-2 p-2 rounded-full transition-all opacity-70 group-hover:opacity-100"
           style={{ background: "rgba(0,212,232,0.7)" }}
-          aria-label="Click to enlarge"
+          aria-hidden="true"
         >
           <Search className="w-4 h-4 text-white" />
-        </button>
-      </div>
+        </span>
+      </button>
 
       {/* Modal */}
       {isOpen && (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- backdrop dismiss is supplementary to Escape key and close button
         <div 
+          ref={modalRef}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-8" 
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged flyer image"
           onClick={() => setIsOpen(false)}
         >
           <button
@@ -59,6 +76,7 @@ export default function FlyerWithModal({ src, alt, className = "" }: FlyerWithMo
           >
             <X className="w-6 h-6 text-white" />
           </button>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- stopPropagation prevents accidental close when clicking image */}
           <div
             className="relative w-auto max-w-[90vw] h-auto max-h-[calc(100vh-4rem)]"
             onClick={(e) => e.stopPropagation()}

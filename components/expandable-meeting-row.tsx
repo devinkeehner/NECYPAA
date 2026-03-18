@@ -45,6 +45,7 @@ export function ExpandableMeetingRow({ meeting }: { meeting: MeetingProps }) {
             onClick={() => setIsExpanded(!isExpanded)}
             className="focus:outline-none transition-colors"
             style={{ color: "var(--nec-cyan)" }}
+            aria-expanded={isExpanded}
             aria-label={isExpanded ? "Collapse details" : "Expand details"}
           >
             {isExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}

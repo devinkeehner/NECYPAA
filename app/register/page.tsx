@@ -14,12 +14,13 @@ interface RegistrationData {
   email: string
   accommodations: string
   interpretationNeeded: boolean
-  handicapAccessibility: boolean
+  mobilityAccessibility: boolean
   willingToServe: boolean
   homegroup: string
   isScholarship: boolean
   scholarshipRecipientName: string
   scholarshipRecipientEmail: string
+  accessCode: string
 }
 
 export default function RegisterPage() {

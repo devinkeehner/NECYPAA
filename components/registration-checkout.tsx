@@ -1,9 +1,10 @@
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
-import { startRegistrationCheckout } from "@/app/actions/registration"
+import { startRegistrationCheckout, submitAccessCodeRegistration } from "@/app/actions/registration"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
@@ -15,12 +16,13 @@ interface RegistrationData {
   email: string
   accommodations: string
   interpretationNeeded: boolean
-  handicapAccessibility: boolean
+  mobilityAccessibility: boolean
   willingToServe: boolean
   homegroup: string
   isScholarship: boolean
   scholarshipRecipientName: string
   scholarshipRecipientEmail: string
+  accessCode: string
 }
 
 interface PolicyAgreements {
@@ -40,6 +42,17 @@ interface RegistrationCheckoutProps {
 }
 
 export default function RegistrationCheckout({ registrationData, policyAgreements, onBack }: RegistrationCheckoutProps) {
+  const router = useRouter()
+  const hasAccessCode = (registrationData.accessCode ?? "").trim().length > 0
+
+  // ── All hooks must be declared unconditionally (Rules of Hooks) ──
+
+  // Access code flow state
+  const [accessCodeError, setAccessCodeError] = useState<string | null>(null)
+  const [isSubmittingCode, setIsSubmittingCode] = useState(false)
+  const [accessCodeSuccess, setAccessCodeSuccess] = useState(false)
+
+  // Standard paid checkout state
   const [stripePromise, setStripePromise] = useState<ReturnType<typeof loadStripe> | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isScholarshipMode, setIsScholarshipMode] = useState(registrationData.isScholarship)
@@ -69,13 +82,14 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
   const totalAmount = subtotalCents / 100 + processingFee
 
   useEffect(() => {
+    if (hasAccessCode) return
     const key = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
     if (key) {
       setStripePromise(loadStripe(key))
     } else {
-      setError("Stripe publishable key not found")
+      setError("We're having trouble loading the payment form. Please refresh the page or try again in a moment.")
     }
-  }, [])
+  }, [hasAccessCode])
 
   useEffect(() => {
     if (!isScholarshipMode) {
@@ -107,7 +121,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
         },
       )
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create checkout session")
+      setError(err instanceof Error ? err.message : "Something didn't go as planned. Please try again — and if it keeps happening, reach out to us at info@necypaa.org.")
       throw err
     }
   }, [
@@ -119,6 +133,36 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
     reservedForPeople,
     selectedBreakfasts,
   ])
+
+  // ── Access code handlers ──────────────────────────────────────
+
+  const handleAccessCodeSubmit = async () => {
+    if (!policyAgreements) {
+      setAccessCodeError("Policy agreements are required. Please go back and complete the policy step.")
+      return
+    }
+
+    setIsSubmittingCode(true)
+    setAccessCodeError(null)
+
+    try {
+      const result = await submitAccessCodeRegistration(registrationData, policyAgreements)
+
+      if (!result.success) {
+        setAccessCodeError(result.error)
+        return
+      }
+
+      setAccessCodeSuccess(true)
+      router.push("/register/success")
+    } catch {
+      setAccessCodeError("Something went wrong. Please try again — and if it keeps happening, reach out to us at info@necypaa.org.")
+    } finally {
+      setIsSubmittingCode(false)
+    }
+  }
+
+  // ── Paid checkout handlers ────────────────────────────────────
 
   const toggleBreakfast = (productId: string, checked: boolean) => {
     setBreakfastSelections((prev) => ({ ...prev, [productId]: checked }))
@@ -182,6 +226,65 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
   const fridayProduct = BREAKFAST_PRODUCTS.find((p) => p.id === "breakfast-friday")
   const weekendProducts = BREAKFAST_PRODUCTS.filter((p) => p.id !== "breakfast-friday")
 
+  // ── Access code checkout path ─────────────────────────────────
+
+  if (hasAccessCode) {
+    return (
+      <div className="space-y-6">
+        <Button
+          type="button"
+          onClick={onBack}
+          variant="outline"
+          className="text-white bg-transparent" style={{ borderColor: "var(--nec-border)" }}
+        >
+          Back
+        </Button>
+
+        <div className="rounded-2xl p-6 border space-y-4" style={{ background: "rgba(26,34,54,0.6)", borderColor: "var(--nec-border)" }}>
+          <h3 className="text-lg font-semibold text-white">Registration Summary</h3>
+          <div className="space-y-2 text-gray-300">
+            <div className="flex justify-between">
+              <span>Registration (Access Code)</span>
+              <span className="font-medium text-white">$0.00</span>
+            </div>
+            <div className="border-t pt-2 mt-2 flex justify-between text-lg font-bold" style={{ borderColor: "var(--nec-border)" }}>
+              <span className="text-white">Total</span>
+              <span style={{ color: "var(--nec-gold)" }}>$0.00</span>
+            </div>
+          </div>
+          <p className="text-xs text-gray-400">
+            Your registration will be completed using your access code. No payment is required.
+          </p>
+        </div>
+
+        <div aria-live="polite">
+          {accessCodeError && (
+            <div className="bg-red-900/30 border border-red-700 text-red-300 text-sm rounded-lg p-3 text-center" role="alert">
+              {accessCodeError}
+            </div>
+          )}
+        </div>
+
+        {accessCodeSuccess ? (
+          <div className="text-center py-4">
+            <p className="text-white font-semibold">Registration complete! Redirecting&hellip;</p>
+          </div>
+        ) : (
+          <Button
+            onClick={handleAccessCodeSubmit}
+            disabled={isSubmittingCode}
+            className="w-full text-white py-6 text-lg font-bold"
+            style={{ background: "var(--nec-pink)", boxShadow: "0 2px 16px rgba(232,0,110,0.3)" }}
+          >
+            {isSubmittingCode ? "Completing Registration\u2026" : "Complete Registration"}
+          </Button>
+        )}
+      </div>
+    )
+  }
+
+  // ── Standard paid checkout path ───────────────────────────────
+
   if (error) {
     return (
       <div className="space-y-6">
@@ -195,7 +298,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
         </Button>
         <div className="rounded-2xl p-4 min-h-[400px] flex items-center justify-center" style={{ background: "rgba(26,34,54,0.9)", border: "1px solid var(--nec-border)" }}>
           <div className="text-center space-y-2">
-            <p className="text-red-400 font-semibold">Payment Error</p>
+            <p className="text-red-400 font-semibold">Hmm, something went wrong</p>
             <p className="text-gray-400">{error}</p>
           </div>
         </div>
@@ -403,7 +506,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm text-gray-300">Reserved for individual (optional)</label>
+            <span className="block text-sm text-gray-300" id="reserved-for-label">Reserved for individual (optional)</span>
             {reservedForPeople.map((name, index) => (
               <input
                 key={`reserved-person-${index}`}
@@ -411,6 +514,8 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
                 value={name}
                 onChange={(e) => updateReservedPerson(index, e.target.value)}
                 placeholder="John S, Middletown USA"
+                aria-labelledby="reserved-for-label"
+                aria-label={`Reserved for person ${index + 1}`}
                 className="w-full rounded-xl border text-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                 style={{ borderColor: "var(--nec-border)", background: "rgba(17,24,39,0.8)" }}
               />

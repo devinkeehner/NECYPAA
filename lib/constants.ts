@@ -6,3 +6,5 @@ export const NECYPAA_ADVISORY_URL = "https://necypaa.org/"
 export const CONTACT_EMAIL = "info@necypaa.org"
 
 export const ZOOM_MEETING_URL = "https://us06web.zoom.us/j/5692382899?omn=86491828124"
+
+export const EVENT_SLUG = "necypaa-xxxvi"

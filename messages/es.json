@@ -1,0 +1,111 @@
+{
+  "site": {
+    "title": "NECYPAA XXXVI",
+    "tagline": "El Arco de la Libertad",
+    "convention": "Convención del Noreste de Jóvenes en AA",
+    "dates": "31 de diciembre de 2026 – 3 de enero de 2027",
+    "location": "Hartford Marriott Downtown, Hartford, CT"
+  },
+  "nav": {
+    "home": "Inicio",
+    "register": "Registrarse",
+    "program": "Programa",
+    "events": "Eventos",
+    "faq": "Preguntas Frecuentes",
+    "blog": "NECYBLOG",
+    "merch": "Mercancía",
+    "getInvolved": "Participa",
+    "bid": "Cómo Hacer una Oferta",
+    "journey": "El Camino",
+    "states": "Estados Miembros",
+    "alanon": "Al-Anon",
+    "asl": "ASL",
+    "prayer": "Oración",
+    "accessibility": "Accesibilidad",
+    "bookHotel": "Reservar Hotel",
+    "advisory": "Consultivo"
+  },
+  "common": {
+    "comingSoon": "Próximamente",
+    "comingSoonDescription": "Esta página está en construcción. Estamos creando algo especial — vuelve pronto.",
+    "learnMore": "Más Información",
+    "registerNow": "Regístrate Ahora",
+    "bookHotel": "Reservar Hotel",
+    "contactUs": "Contáctanos",
+    "email": "Correo Electrónico",
+    "viewAll": "Ver Todo",
+    "backToHome": "Volver al Inicio",
+    "externalLink": "Estás saliendo de nuestro sitio",
+    "loading": "Cargando…",
+    "error": "Algo salió mal",
+    "tryAgain": "Intentar de Nuevo",
+    "required": "Obligatorio",
+    "optional": "Opcional",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "skipToContent": "Ir al contenido principal"
+  },
+  "register": {
+    "badge": "Registro",
+    "title": "Regístrate para NECYPAA XXXVI",
+    "subtitle": "Únete a nosotros en Hartford para cuatro días de oradores, talleres, compañerismo y la víspera de Año Nuevo.",
+    "price": "$40 pre-registro",
+    "free": "Registro Gratuito / En Efectivo",
+    "scholarship": "Registro de Beca",
+    "scholarshipDescription": "Patrocina a alguien que no puede asistir.",
+    "processingFee": "Cargo por Procesamiento",
+    "processingFeeDescription": "Cargo por procesamiento de tarjeta de crédito (2.9% + $0.30)"
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Preguntas Frecuentes",
+    "subtitle": "¿Tienes preguntas? Tenemos respuestas.",
+    "contactPrompt": "¿No ves tu pregunta? Escríbenos a"
+  },
+  "journey": {
+    "badge": "Archivo",
+    "title": "El Camino Es Lo Primero",
+    "subtitle": "Una mirada a los eventos, recaudaciones y compañerismo que nos trajeron a Hartford. El camino es lo importante.",
+    "moreEvents": "Más eventos por venir. El camino continúa."
+  },
+  "alanon": {
+    "badge": "Recursos",
+    "title": "Al-Anon",
+    "subtitle": "Recursos para familiares y amigos de alcohólicos.",
+    "tradition6": "NECYPAA no está afiliado a los Grupos Familiares de Al-Anon, Inc. Esta página se proporciona como recurso para familiares y amigos de alcohólicos que asisten o están interesados en nuestra convención. Los enlaces a continuación son recursos externos — estarás saliendo de nuestro sitio.",
+    "tradition6Label": "Una nota sobre la Tradición 6:",
+    "whatIsAlanon": "¿Qué es Al-Anon?",
+    "alanonDescription": "Los Grupos Familiares de Al-Anon brindan apoyo a familiares y amigos de alcohólicos. Ya sea que el alcohólico en tu vida reconozca o no la existencia de un problema con la bebida, o busque ayuda, Al-Anon puede ayudarte.",
+    "visitAlanon": "Visitar al-anon.org",
+    "findMeeting": "Encontrar una Reunión de Al-Anon",
+    "findMeetingDescription": "Busca reuniones de Al-Anon cerca de ti o en cualquier parte del mundo.",
+    "meetingFinder": "Buscador de Reuniones de Al-Anon",
+    "alanonByState": "Al-Anon por Estado",
+    "alanonByStateDescription": "Encuentra los recursos de Al-Anon de tu estado. Cada enlace te lleva al sitio web de Al-Anon de ese estado.",
+    "alateenByState": "Alateen por Estado",
+    "alateenByStateDescription": "Alateen es para familiares y amigos más jóvenes de alcohólicos. Algunos estados comparten un sitio de Al-Anon/Alateen; otros tienen una página dedicada de Alateen."
+  },
+  "states": {
+    "badge": "Estados",
+    "title": "Estados Miembros",
+    "subtitle": "Recursos locales de AA, intergrupos y grupos de jóvenes en la región de NECYPAA."
+  },
+  "footer": {
+    "identity": "NECYPAA XXXVI — Connecticut",
+    "tagline": "El Arco de la Libertad",
+    "quickLinks": "Enlaces Rápidos",
+    "contact": "Contacto",
+    "copyright": "Comité Anfitrión de NECYPAA XXXVI CT. Todos los derechos reservados."
+  },
+  "a11y": {
+    "skipToContent": "Ir al contenido principal",
+    "mainNavigation": "Navegación principal",
+    "mobileMenu": "Menú móvil",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "externalLinkWarning": "Se abre en una nueva pestaña"
+  }
+}

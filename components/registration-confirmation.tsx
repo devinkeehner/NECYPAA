@@ -11,7 +11,7 @@ interface RegistrationData {
   email: string
   accommodations: string
   interpretationNeeded: boolean
-  handicapAccessibility: boolean
+  mobilityAccessibility: boolean
   willingToServe: boolean
   homegroup: string
 }
@@ -168,7 +168,7 @@ export default function RegistrationConfirmation({
               <span className="text-white">Needed</span>
             </div>
           )}
-          {registrationData.handicapAccessibility && (
+          {registrationData.mobilityAccessibility && (
             <div className="flex justify-between">
               <span className="text-gray-400">Accessibility</span>
               <span className="text-white">Needed</span>

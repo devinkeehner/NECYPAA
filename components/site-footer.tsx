@@ -37,7 +37,7 @@ export default function SiteFooter() {
           {/* Links column */}
           <div className="space-y-3">
             <h3 className="text-sm font-bold uppercase tracking-widest text-gray-400" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>Quick Links</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2" aria-label="Quick links">
               <li>
                 <Link href="/register" className="text-sm text-gray-300 hover:text-white transition-colors">
                   Pre-Register — $40
@@ -92,9 +92,30 @@ export default function SiteFooter() {
           </div>
         </div>
 
+        {/* Accessibility statement */}
+        <div
+          className="mt-10 pt-6 border-t text-xs text-gray-500 leading-relaxed"
+          style={{ borderColor: "rgba(42,53,82,0.5)" }}
+        >
+          <p className="max-w-2xl">
+            <strong className="text-gray-400">Accessibility:</strong>{" "}
+            NECYPAA XXXVI is committed to digital accessibility for people of all abilities.
+            This site targets WCAG 2.1 Level AAA wherever achievable, with Level AA as our minimum.{" "}
+            <Link href="/accessibility" className="underline text-gray-400 hover:text-white transition-colors">
+              Accessibility page
+            </Link>{" · "}
+            <a
+              href="mailto:info@necypaa.org?subject=Accessibility%20Issue"
+              className="underline text-gray-400 hover:text-white transition-colors"
+            >
+              Report a problem
+            </a>
+          </p>
+        </div>
+
         {/* Bottom bar */}
         <div
-          className="mt-10 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600"
+          className="mt-4 pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600"
           style={{ borderColor: "rgba(42,53,82,0.5)" }}
         >
           <p>
@@ -104,6 +125,11 @@ export default function SiteFooter() {
             Northeast Convention of Young People in Alcoholics Anonymous
           </p>
         </div>
+
+        {/* AA trademark acknowledgment (required per Tradition compliance) */}
+        <p className="mt-3 text-center text-[10px] text-gray-700 leading-relaxed">
+          Alcoholics Anonymous®, A.A.®, and The Big Book® are registered trademarks of Alcoholics Anonymous World Services, Inc.
+        </p>
       </div>
     </footer>
   )

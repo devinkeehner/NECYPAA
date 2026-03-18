@@ -2,7 +2,7 @@
 
 > The planning document that exists before the website does. Like a preamble, but for code.
 
-**Last updated:** 2026-03-04
+**Last updated:** 2026-03-16
 **Owner:** Nikki, Website Chair
 **Status:** Pre-theme. Preparing everything we can so the moment art drops, we ship.
 
@@ -53,24 +53,68 @@ It must also be:
 ## 2 · Current State
 
 ### What Exists
-- Next.js 14 app (App Router, TypeScript, Tailwind CSS)
-- Single-page site with event listings, meeting schedules, flyer modals
+- Next.js 14 app (App Router, TypeScript strict mode, Tailwind CSS)
+- **19 routes scaffolded** — all target pages exist (real content or placeholder)
 - Working Stripe registration flow (regular, scholarship, breakfast tickets, free/cash)
 - Policy agreement enforcement before payment
 - Deployed on Vercel
-- `AA_TRADITIONS_GUARDRAILS.md` — comprehensive traditions compliance doc
-- `.windsurf/workflows/changelog.md` — changelog tone rules
+- **87.3 kB shared JS** — under 100kB performance target
 
-### What Was Just Cleaned Up (2026-03-03)
-See `CHANGELOG.md` for details:
-- Duplicate config files removed
-- React 19 types fixed
-- Strict TypeScript builds enabled
-- Centralized types and constants created
-- Open Graph meta tags added
-- Build passes clean
+### Governing Documents (All Created)
+| Document | Status |
+|----------|--------|
+| `AA_TRADITIONS_GUARDRAILS.md` | ✅ Comprehensive traditions compliance |
+| `ACCESSIBILITY_GUIDELINES.md` | ✅ Full guidelines from Accessibilities Chair (received 2026-03-13) |
+| `CONTRIBUTING.md` | ✅ Human + AI contributor rules, escalation protocol |
+| `.windsurf/rules.md` | ✅ AI agent quick-reference |
+| `.windsurf/workflows/changelog.md` | ✅ Changelog tone rules |
+| `NECYPREAMBLE.md` | ✅ This document |
 
-### What Needs to Change
+### Infrastructure Built (2026-03-03 through 2026-03-16)
+- Route scaffolding — all pages from Section 3 exist
+- `PageShell` component for consistent placeholder pages
+- Security hardening — rate limiting (`lib/rate-limit.ts`), Zod input validation (`lib/validation.ts`), CSP headers (`next.config.mjs`)
+- ESLint + Prettier configured
+- Vitest unit tests — 30/30 passing (`pnpm test`)
+- i18n infrastructure — `next-intl` installed, `en.json`/`es.json` message files, language switcher component
+- Accessibility settings panel — 6 user customization modes (dark/light, high-contrast, font size, dyslexia font, reduce motion, grayscale)
+- Skip-to-content link, ARIA landmarks, focus-visible outlines (global `focus-visible` in `globals.css`)
+- All modals have Escape key handlers and `role="dialog"` attributes
+- Member states data (`lib/data/states.ts`) — all 12 states + DC with intergroup, YPAA, Al-Anon, Alateen, and meeting finder links
+- FAQ data (`lib/data/faq.ts`) — 6 categories, 16 draft Q&As
+- Accessibility statement in footer with report-a-problem link
+- Anonymous feedback form (`components/anonymous-feedback-form.tsx`) on `/accessibility` page
+- Content warning component (`components/content-warning.tsx`) — reusable click-to-expand for sensitive content
+- AA trademark acknowledgment in footer
+- All user-facing error messages audited for warm/inviting tone (per accessibility guidelines Section 2)
+
+### Pages With Real Content
+| Page | Status |
+|------|--------|
+| `/` (Landing) | ✅ Real — hero, meetings, past events, registration CTA |
+| `/register` | ✅ Real — multi-step form, Stripe checkout |
+| `/breakfast` | ✅ Real — breakfast ticket checkout |
+| `/cash` | ✅ Real — free registration flow |
+| `/register/success` | ✅ Real — confirmation page |
+| `/faq` | ✅ Real — accordion with 16 draft Q&As |
+| `/journey` | ✅ Real — past event archive from events.ts |
+| `/alanon` | ✅ Real — Tradition 6 disclaimer, state grids, meeting finder |
+| `/accessibility` | ✅ Real — digital/in-person features, accommodation request, report a problem |
+
+### Pages Still Placeholder (Coming Soon)
+| Page | Blocker |
+|------|---------|
+| `/program` | Needs final schedule from Program Chair |
+| `/events` | Needs event data (or CMS decision) |
+| `/blog` + `/blog/[slug]` | Needs CMS decision or MDX setup |
+| `/bid` | Needs Nikki's raw content websiteified |
+| `/get-involved` | Needs content + name decision |
+| `/prayer` | Needs content from Prayer Chair |
+| `/merch` | Needs payment/shipping decision from Merch Chair |
+| `/states` | Data exists — needs page buildout + state flag SVGs |
+| `/asl` | Needs ASL interpreters/video content |
+
+### What Still Needs to Change
 **Everything visual.** The current site is a dark-mode gray/blue design inherited from v0.app scaffolding. It works, but it's not *ours*. The moment we have a theme, the entire visual layer gets rebuilt. The infrastructure, routing, and payment logic stay.
 
 ---
@@ -116,11 +160,11 @@ See `CHANGELOG.md` for details:
 
 These items have **zero dependency on theme, art, or committee votes.** They are infrastructure, architecture, and content scaffolding.
 
-### 4.1 Break Into Multi-Page App
-- Set up the route structure from Section 3
-- Create placeholder pages with consistent layout scaffolding
-- Set up shared layout components (nav, footer, mobile menu) that can be re-skinned later
-- Move existing registration, breakfast, and cash flows to their routes (already done)
+### 4.1 Break Into Multi-Page App ✅ DONE
+- ~~Set up the route structure from Section 3~~ — All 19 routes exist
+- ~~Create placeholder pages with consistent layout scaffolding~~ — `PageShell` component
+- ~~Set up shared layout components (nav, footer, mobile menu) that can be re-skinned later~~
+- ~~Move existing registration, breakfast, and cash flows to their routes~~
 
 ### 4.2 Content Management System (Maybe)
 **Exploring: Sanity CMS** (headless, pairs natively with Next.js, generous free tier, real-time preview, supports i18n)
@@ -136,54 +180,67 @@ If we go this route, schemas would cover:
 
 This *could* be built and populated before we have a theme. Content is content.
 
-### 4.3 Internationalization (i18n) Setup
-- Install and configure `next-intl` for locale routing (`/en/...`, `/es/...`)
-- Set up message files structure for static UI strings
-- Create translator-friendly content workflow (see Section 9)
-- Build language switcher component (unstyled, ready to theme)
+### 4.3 Internationalization (i18n) Setup — PARTIAL
+- ~~Install and configure `next-intl`~~ ✅
+- ~~Set up message files structure for static UI strings~~ ✅ (`messages/en.json`, `messages/es.json`)
+- ~~Build language switcher component (unstyled, ready to theme)~~ ✅ (`components/language-switcher.tsx`)
+- ❌ Locale routing (`/en/...`, `/es/...`) not yet active — needs `[locale]` route migration
+- ❌ Translator-friendly content workflow — blocked on finding a human translator
 
-### 4.4 Security Hardening
-- Audit Stripe integration (see Section 11)
-- Add rate limiting to server actions
-- Add CSRF protection
-- Set up Content Security Policy headers
-- Review env variable handling
-- Add input validation/sanitization on all form fields
+### 4.4 Security Hardening — PARTIAL
+- ~~Add rate limiting to server actions~~ ✅ (`lib/rate-limit.ts`)
+- ~~Add input validation/sanitization on all form fields~~ ✅ (`lib/validation.ts` — Zod schemas)
+- ~~Set up Content Security Policy headers~~ ✅ (`next.config.mjs`)
+- ❌ CSRF protection — not yet implemented
+- ❌ Stripe webhook verification — not yet implemented
+- ❌ Full env variable validation at startup — partial (only `lib/stripe.ts`)
+- ❌ Stripe integration audit — not yet done
 
-### 4.5 Accessibility Infrastructure
-- Set up automated a11y testing (axe-core + Playwright)
-- Ensure all existing components meet WCAG 2.1 AA minimum
-- Add skip-to-content links, ARIA landmarks, focus management
-- Set up a11y CI check in build pipeline
-- Prepare template/prompt for Accessibilities Chair (see Section 7)
+### 4.5 Accessibility Infrastructure ✅ DONE (expanded beyond original scope)
+- ~~Add skip-to-content links, ARIA landmarks, focus management~~ ✅
+- ~~Prepare template/prompt for Accessibilities Chair~~ ✅ — Guidelines received and implemented as `ACCESSIBILITY_GUIDELINES.md`
+- ✅ Accessibility settings panel — 6 user customization modes (dark/light, high-contrast, font size, dyslexia font, reduce motion, grayscale)
+- ✅ Real `/accessibility` page with digital/in-person features, accommodation request, report a problem
+- ✅ Anonymous feedback form on `/accessibility` page (`components/anonymous-feedback-form.tsx`)
+- ✅ Content warning component (`components/content-warning.tsx`) — reusable click-to-expand for sensitive content
+- ✅ Accessibility statement in footer + report-a-problem link
+- ✅ AA trademark acknowledgment in footer
+- ✅ All modals have Escape key handlers and `role="dialog"` attributes
+- ✅ Person-first language and banned language audit — clean
+- ✅ All error messages audited for warm/inviting tone (no cold/technical messages)
+- ✅ No auto-play media anywhere — all media opt-in
+- ✅ Global `focus-visible` outline on all interactive elements
+- ✅ WCAG target upgraded to AAA (AA as absolute floor) — per Website Chair directive
+- ❌ Automated a11y testing (axe-core + Playwright) — not yet set up
+- ❌ a11y CI check in build pipeline — not yet set up
 
-### 4.6 AI Agent Rules System
-- Ensure `AA_TRADITIONS_GUARDRAILS.md` is referenced in all agent contexts
-- Create `.windsurf/rules.md` or equivalent that points agents to all governing docs
-- Build a `CONTRIBUTING.md` that covers human + AI contributor rules
-- Create pre-commit or CI checks for tradition violations (see guardrails Section 7.2)
+### 4.6 AI Agent Rules System — MOSTLY DONE
+- ~~Ensure `AA_TRADITIONS_GUARDRAILS.md` is referenced in all agent contexts~~ ✅
+- ~~Create `.windsurf/rules.md`~~ ✅ — references all 5 governing docs
+- ~~Build a `CONTRIBUTING.md` that covers human + AI contributor rules~~ ✅
+- ❌ Pre-commit or CI checks for tradition violations — not yet set up
 
-### 4.7 Code Quality & Architecture
-- Set up ESLint + Prettier with consistent config
-- Add Playwright for e2e tests on registration flow
-- Add unit tests for processing fee calculation and other business logic
-- Set up staging environment on Vercel (preview deployments)
-- Clean up the `/testreg` test route (remove or protect behind auth)
+### 4.7 Code Quality & Architecture — PARTIAL
+- ~~Set up ESLint + Prettier with consistent config~~ ✅
+- ~~Add unit tests for processing fee calculation and other business logic~~ ✅ (30 tests passing — validation, rate-limit, registration products)
+- ❌ Add Playwright for e2e tests on registration flow — not yet set up
+- ❌ Set up staging environment on Vercel — not yet (preview deployments work natively)
+- ⚠️ `/testreg` test route still exists (`app/actions/testreg.ts`) — **needs removal before production**
 
-### 4.8 Member States Data
-- Build the data structure for all member states (see Section 15)
-- Research and compile intergroup links, YPAA contacts, meeting finder URLs
-- Compile per-state Al-Anon website URLs (for Al-Anon page state flag links)
-- Compile per-state Alateen website URLs
-- Collect state flag SVGs (public domain) for both the states page and the Al-Anon page
-- Research AA Meeting Guide API (https://www.aa.org/meeting-guide-app) for embedded AA meeting finder on states page
-- Research Al-Anon meeting finder embed/API options (al-anon.org/al-anon-meetings)
-- This is pure data work — no design dependency
+### 4.8 Member States Data — MOSTLY DONE
+- ~~Build the data structure for all member states~~ ✅ (`lib/data/states.ts` — all 12 states + DC)
+- ~~Research and compile intergroup links, YPAA contacts, meeting finder URLs~~ ✅
+- ~~Compile per-state Al-Anon website URLs~~ ✅
+- ~~Compile per-state Alateen website URLs~~ ✅
+- ❌ Collect state flag SVGs (public domain) — not yet collected
+- ❌ Research AA Meeting Guide API — not yet done
+- ❌ Research Al-Anon meeting finder embed/API options — not yet done
 
-### 4.9 "The Journey Comes First" Archive
-- Move existing past event data (Zombie Prom, NYE Meeting, Trivia Night, etc.) into a structured format
-- Collect additional flyers, event names, dates from committee history
-- Build data model for archived events (no faces, no full names per traditions)
+### 4.9 "The Journey Comes First" Archive ✅ DONE
+- ~~Move existing past event data into a structured format~~ ✅ (`lib/data/events.ts`)
+- ~~Build data model for archived events (no faces, no full names per traditions)~~ ✅
+- `/journey` page renders real content from events data
+- Additional flyers/event data can be added to `events.ts` as collected
 
 ### 4.10 Blog Infrastructure
 - Set up Sanity blog schema
@@ -206,13 +263,12 @@ These items need **design input, content from other chairs, or decisions** — b
 - Print-friendly version
 - Spanish parallel content structure
 
-### 5.2 FAQ Page
-**Needs:** Final FAQ content (can start drafting common questions)
-**Can plan now:**
-- Accordion/search UI pattern
-- Category grouping
-- CMS schema for easy editing
-- Spanish translation workflow
+### 5.2 FAQ Page ✅ DONE (draft content)
+- ~~Accordion/search UI pattern~~ ✅ — Radix UI Accordion with category tabs
+- ~~Category grouping~~ ✅ — 6 categories, 16 draft Q&As (`lib/data/faq.ts`)
+- `/faq` page has real content and functionality
+- CMS schema for easy editing — still open (depends on CMS decision)
+- Spanish translation — blocked on translator
 
 ### 5.3 Bid Page ("How to Start a Bid")
 **Needs:** Content from Nikki (raw content exists, needs to be websiteified)
@@ -237,9 +293,9 @@ These items need **design input, content from other chairs, or decisions** — b
 - What kind of content goes here (daily reflections? prayer requests? resources?)
 - Per traditions: no endorsement of specific religious content, frame as spiritual resource
 
-### 5.6 Al-Anon Page (CONFIRMED — Content Received)
-**Status:** Have copy from Al-Anon chair. Rough design direction defined.
-**Content:** Text-based — Al-Anon statement and resources, plus a unique combined graphic.
+### 5.6 Al-Anon Page ✅ DONE (Content Received, Page Built)
+**Status:** Page built with content from Al-Anon chair. Tradition 6 disclaimer, state grids (Al-Anon + Alateen), meeting finder link.
+**Content:** Text-based — Al-Anon statement and resources. State flag grid links to each state's Al-Anon and Alateen sites.
 **Tone:** More professional than the rest of the site. This page speaks with Al-Anon's voice, not ours.
 
 **Design vision:**
@@ -353,34 +409,22 @@ We will:
 - Establish review process (ideally two Spanish-speaking members review)
 - Prioritize: Landing page → Registration → Program → FAQ → Everything else
 
-### 6.3 ♿ Accessibilities Chair Guardrails (Blocked on: Email Response)
-**Status:** Nikki is emailing the Accessibilities Chair.
-**What we need from them:** A detailed and comprehensive rules/ideas/guardrails document for all programmers and AI agents covering:
-- Minimum accessibility standards (WCAG level)
-- Specific accommodations to support (screen readers, keyboard nav, color contrast, motion sensitivity, cognitive accessibility)
-- ASL implementation guidance
-- Interpretation services info
-- Physical accessibility info for the venue
-- Any accommodation request workflow
-
-**Template prompt for the email (ready to send):**
-
-> Hey [Name],
->
-> I'm building out the convention website and I want to make sure accessibility is baked into every single page from the start — not bolted on later.
->
-> Could you put together a document covering:
-> 1. What accessibility standards we should meet (WCAG 2.1 AA? AAA for some things?)
-> 2. Specific accommodations we should support on the website (screen readers, keyboard navigation, color contrast, reduced motion, cognitive accessibility, etc.)
-> 3. ASL — what should be in ASL on the site? Video of someone signing? Which pages?
-> 4. Any interpretation services we're offering and how to communicate them
-> 5. Physical venue accessibility info we should include
-> 6. How people should request accommodations (form? email? both?)
-> 7. Anything else you think programmers and AI tools should know
->
-> This will become a guardrails document that every person and AI agent working on the site has to follow. So the more detailed the better.
->
-> Thank you for your service on this. It matters.
+### 6.3 ♿ Accessibilities Chair Guardrails ✅ RESOLVED
+**Status:** Guidelines received (2026-03-13) and implemented as `ACCESSIBILITY_GUIDELINES.md`.
+**What was delivered:** Comprehensive 10-section document covering visual/sensory a11y, language/tone, imagery, forms/identity, AI rules, events, emails, privacy, recovery-specific inclusion, and governance.
+**What was implemented:**
+- 6 user customization modes (dark/light, high-contrast, font size, dyslexia font, reduce motion, grayscale)
+- Real `/accessibility` page with digital and in-person features
+- Anonymous feedback form on `/accessibility` page (no name/email required)
+- Content warning component for sensitive content (click-to-expand)
+- Accessibility statement in site footer with report-a-problem link
+- AA trademark acknowledgment in site footer
+- All modals have Escape key handlers and ARIA dialog attributes
+- Person-first language and banned language audit — clean
+- All error messages audited for warm/inviting tone
+- WCAG target upgraded to AAA (AA as absolute floor) — per Website Chair directive
+- All 5 follow-up items resolved with highest-standard defaults
+- Guidelines added as governing doc in `CONTRIBUTING.md` and `.windsurf/rules.md`
 
 ### 6.4 📦 Merch Implementation (Blocked on: Payment/Shipping Details)
 **Status:** Merch page confirmed. Dropshipping model.
@@ -396,7 +440,8 @@ We will:
 |---------|--------|--------|
 | Convention program | Program Chair | Not yet available |
 | Prayer page content | Prayer Chair | Not yet available |
-| Al-Anon resources | Al-Anon Chair | Copy received, design pending theme |
+| Al-Anon resources | Al-Anon Chair | ✅ Page built with received content |
+| Accessibility guidelines | Accessibilities Chair | ✅ Received and implemented |
 | Bid guide content | Nikki | Has raw content, needs to websiteify |
 | Blog posts | Various | No posts yet |
 | ASL videos | Accessibilities Chair + interpreters | Not yet planned |
@@ -410,9 +455,9 @@ We will:
 | Person/Role | What We Need | Priority | Status |
 |-------------|-------------|----------|--------|
 | **Arts Chair** | Theme, color palette, typography, graphics, illustrations | 🔴 Critical | Waiting on committee vote |
-| **Accessibilities Chair** | Guardrails document (see 6.3 template) | 🔴 Critical | Email pending |
+| **Accessibilities Chair** | ~~Guardrails document~~ | ~~🔴 Critical~~ | ✅ Received and implemented |
 | **Spanish Translator** | Full site translation | 🟡 High | Need to find someone |
-| **Merch Chair + Treasury** | Payment/shipping service for dropship merch, self-service edit access decision | � High | Contacted — awaiting details |
+| **Merch Chair + Treasury** | Payment/shipping service for dropship merch, self-service edit access decision | 🟡 High | Contacted — awaiting details |
 | **Program Chair** | Convention schedule | 🟡 High | Not yet available |
 | **Prayer Chair** | Prayer page content | 🟢 Low | Not yet started |
 | **Nikki** | Bid guide content, various editorial | 🟡 High | Ongoing |
@@ -490,10 +535,11 @@ The root `/` will detect browser language or show a language selector.
 
 ## 10 · Accessibility & ASL
 
-### Minimum Standards
-- WCAG 2.1 AA compliance (baseline)
-- AAA for critical paths (registration, payment)
-- Waiting on Accessibilities Chair for expanded requirements
+### Standards (Highest Path — Per Website Chair Directive)
+- **WCAG 2.1 AAA compliance** wherever achievable (AA as absolute floor — never below)
+- AAA required for critical paths (registration, payment, accessibility page)
+- Guidelines received from Accessibilities Chair — see `ACCESSIBILITY_GUIDELINES.md`
+- When any accessibility decision is unclear or unset: **choose the highest standard**
 
 ### ASL Strategy (Preliminary)
 **Known needs:**
@@ -523,20 +569,25 @@ The root `/` will detect browser language or show a language selector.
 
 ## 11 · Security
 
-### Current State
+### Current State (as of 2026-03-16)
 - Stripe embedded checkout (client-side session creation via server actions)
 - Environment variables for keys
-- Basic server-side validation
+- ~~Basic server-side validation~~ → Full Zod schema validation on all server action inputs (`lib/validation.ts`)
+- ~~No rate limiting~~ → Rate limiting on all checkout/registration server actions (`lib/rate-limit.ts`)
+- ~~No CSP~~ → Content Security Policy headers configured (`next.config.mjs`)
+- All user-facing error messages use warm/inviting tone (no technical jargon)
 
-### Improvements Needed
-- **Rate limiting** on all server actions (prevent abuse of checkout session creation)
-- **Input sanitization** on all form fields (registration, breakfast, free reg)
-- **CSRF tokens** on form submissions
-- **Content Security Policy** headers (restrict script sources, frame ancestors)
-- **Stripe webhook verification** for payment confirmation (if not already implemented)
-- **Dependency audit** — run `pnpm audit` regularly
-- **Environment variable validation** at app startup (partially done in `lib/stripe.ts`)
-- **Remove /testreg route** or protect behind authentication before production
+### Done ✅
+- **Rate limiting** on all server actions ✅ (`lib/rate-limit.ts`)
+- **Input validation/sanitization** on all form fields ✅ (`lib/validation.ts` — Zod schemas)
+- **Content Security Policy** headers ✅ (`next.config.mjs`)
+
+### Still Needed
+- **CSRF tokens** on form submissions — not yet implemented
+- **Stripe webhook verification** for payment confirmation — not yet implemented
+- **Dependency audit** — run `pnpm audit` regularly (not automated)
+- **Environment variable validation** at app startup — partial (only `lib/stripe.ts`)
+- **Remove /testreg route** — still exists (`app/actions/testreg.ts`, `components/testreg-checkout.tsx`) — **must remove before production**
 
 ---
 
@@ -548,10 +599,11 @@ Every AI agent and human contributor working on this project must be aware of an
 | Document | Location | Purpose |
 |----------|----------|---------|
 | `AA_TRADITIONS_GUARDRAILS.md` | Project root | Traditions compliance — **non-negotiable** |
-| `.windsurf/workflows/changelog.md` | Workflows dir | Changelog tone rules |
+| `ACCESSIBILITY_GUIDELINES.md` | Project root | Inclusion & accessibility — **non-negotiable** |
+| `CONTRIBUTING.md` | Project root | How to contribute (human + AI) |
 | `NECYPREAMBLE.md` | Project root | This planning document |
-| `CONTRIBUTING.md` | Project root (TODO) | How to contribute (human + AI) |
-| Accessibilities Guardrails | TBD | Accessibility standards (pending) |
+| `.windsurf/rules.md` | `.windsurf/` | AI agent quick-reference (references all docs above) |
+| `.windsurf/workflows/changelog.md` | `.windsurf/workflows/` | Changelog tone rules |
 
 ### How to Ensure AI Agents Know the Rules
 1. **Windsurf/Cascade:** `.windsurf/workflows/` and project-root `.md` files are automatically discoverable
@@ -688,19 +740,19 @@ These need answers before or during implementation:
 | 1 | What is the theme? | Committee vote → Arts Chair | Waiting |
 | 2 | What payment/shipping service for merch dropshipping? | Merch Chair + Treasury | Contacted — awaiting details |
 | 3 | Who is translating to Spanish? | Nikki / Committee | Looking |
-| 4 | What are the accessibility standards? | Accessibilities Chair | Email pending |
 | 5 | What goes on the Prayer Chair page? | Prayer Chair | Not started |
 | 6 | How much ASL content and on which pages? | Accessibilities Chair | Not started |
 | 7 | Better name for "Getting Involved" page? | Nikki / Committee | Open |
 | 8 | CMS choice — Sanity or keep it in code? | Nikki (technical decision) | Recommended Sanity |
-| 9 | Do we need auth for any member-only content? | Committee | Not discussed |
 | 10 | Will there be a virtual/hybrid component to the convention? | Committee | Unknown |
 | 11 | Budget for ASL video production? | Committee / Treasurer | Unknown |
 
 ### Resolved Questions
 | # | Question | Answer |
 |---|----------|--------|
-| ~~6~~ | Al-Anon page content and design | Content received from Al-Anon Chair. Design concept defined (themed borders bleeding into Al-Anon traditional core). See Section 5.6. |
+| ~~4~~ | What are the accessibility standards? | ✅ Received from Accessibilities Chair (2026-03-13). Implemented as `ACCESSIBILITY_GUIDELINES.md`. See Section 6.3. |
+| ~~6~~ | Al-Anon page content and design | ✅ Content received. Page built. See Section 5.6. |
+| ~~9~~ | Do we need auth for any member-only content? | **No.** This is a convention website — no user accounts, no logins, no profiles. |
 | ~~13~~ | Bid guide content | Yes, Nikki has raw content. See Section 5.3. |
 
 ---

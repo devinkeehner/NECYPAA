@@ -1,0 +1,53 @@
+# NECYPAA XXXVI — Project Rules for Cascade
+
+## Accessibility-First Development (MANDATORY)
+
+Every piece of code written, edited, or suggested for this project MUST comply with WCAG 2.1 Level AAA (AA as absolute minimum). This is non-negotiable.
+
+### When writing JSX/TSX:
+- Every `<img>` MUST have meaningful `alt` text. Decorative images use `aria-hidden="true"` and `alt=""`.
+- Every interactive element (`<button>`, `<a>`, clickable `<div>`) MUST be keyboard-accessible.
+- Never attach `onClick` to non-interactive elements (`<div>`, `<span>`) without also adding `role`, `tabIndex`, and `onKeyDown`/`onKeyPress`.
+- All modals/dialogs MUST use `role="dialog"`, `aria-modal="true"`, `aria-label`, Escape key to close, and the `useFocusTrap` hook from `@/lib/use-focus-trap`.
+- All form inputs MUST have associated `<label>` elements (via `htmlFor`) or `aria-label`.
+- Toggle controls MUST use `role="switch"` with `aria-checked`, or use Radix UI `Switch`.
+- Never use `tabindex` values greater than 0.
+- All `<nav>` elements MUST have `aria-label` to distinguish them.
+- Collapsible/expandable content MUST use `aria-expanded`.
+- Dynamic content changes MUST be announced via `aria-live` regions.
+
+### When writing CSS:
+- Never rely solely on color to convey meaning.
+- All text MUST meet contrast ratios: 4.5:1 for normal text, 3:1 for large text (AAA: 7:1 / 4.5:1).
+- Animations/transitions MUST be wrapped in a class that `.a11y-reduce-motion` can override.
+- Light mode overrides: if adding new CSS variables or component styles, add corresponding `[data-color-mode="light"]` rules.
+- High contrast overrides: if adding new accent colors or borders, add corresponding `.a11y-high-contrast` rules.
+- Focus indicators: never remove `:focus-visible` outlines. Enhance them, don't suppress.
+
+### When creating new components:
+- Use semantic HTML (`<main>`, `<nav>`, `<header>`, `<footer>`, `<section>`, `<article>`).
+- Prefer Radix UI primitives for complex widgets (they handle ARIA automatically).
+- Import and use `useFocusTrap` for any overlay/modal/drawer.
+- Test with these questions: Can a keyboard-only user operate this? Can a screen reader user understand this? Does this work in all 6 a11y modes?
+
+### Language & Tone:
+- Person-first language always ("people in recovery", not "addicts").
+- Gender-neutral greetings (no "ladies and gentlemen", "hey guys", etc.).
+- Plain, clear language. No jargon without explanation.
+- No banned terms: "clean/dirty" (for sobriety), "substance abuser", "addict" (as a noun), "suffering from addiction".
+
+### When committing:
+- ESLint with `eslint-plugin-jsx-a11y` strict mode runs on every commit via husky + lint-staged.
+- Zero warnings tolerance (`--max-warnings=0`). Fix violations, don't suppress them.
+- If a rule must be disabled for a specific line, add a comment explaining WHY.
+
+### Existing accessibility infrastructure:
+- `A11yProvider` (`@/lib/accessibility-context.tsx`) — manages 6 settings, persists to localStorage, detects OS preferences, announces changes via aria-live.
+- `AccessibilityPanel` (`@/components/accessibility-panel.tsx`) — floating settings UI.
+- `useFocusTrap` (`@/lib/use-focus-trap.ts`) — reusable focus trap hook.
+- `globals.css` — contains all a11y CSS layers (reduce-motion, grayscale, high-contrast, dyslexia-font, light mode).
+- Skip-to-content link in root layout.
+- `/accessibility` page with full public documentation.
+
+### When in doubt:
+Choose the most accessible path. WCAG AAA over AA. More ARIA over less. More keyboard support over less. If unsure, check the Accessibilities Chair's guidelines in `ACCESSIBILITY_GUIDELINES.md`.

@@ -15,12 +15,13 @@ interface RegistrationData {
   email: string
   accommodations: string
   interpretationNeeded: boolean
-  handicapAccessibility: boolean
+  mobilityAccessibility: boolean
   willingToServe: boolean
   homegroup: string
   isScholarship: boolean
   scholarshipRecipientName: string
   scholarshipRecipientEmail: string
+  accessCode: string
 }
 
 interface RegistrationFormProps {
@@ -35,13 +36,17 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
     email: "",
     accommodations: "",
     interpretationNeeded: false,
-    handicapAccessibility: false,
+    mobilityAccessibility: false,
     willingToServe: false,
     homegroup: "",
     isScholarship: false,
     scholarshipRecipientName: "",
     scholarshipRecipientEmail: "",
+    accessCode: "",
   })
+  const [showAccessCode, setShowAccessCode] = useState(false)
+
+  const hasAccessCode = formData.accessCode.trim().length > 0
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -55,12 +60,13 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
       email: "",
       accommodations: "",
       interpretationNeeded: false,
-      handicapAccessibility: false,
+      mobilityAccessibility: false,
       willingToServe: false,
       homegroup: "",
       isScholarship: true,
       scholarshipRecipientName: "",
       scholarshipRecipientEmail: "",
+      accessCode: "",
     })
   }
 
@@ -85,7 +91,7 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-4">
-        {enableScholarship && (
+        {enableScholarship && !hasAccessCode && (
           <div className="rounded-xl border p-3" style={{ background: "rgba(0,212,232,0.04)", borderColor: "var(--nec-border)" }}>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-gray-300 text-center sm:text-left">Buying registration for someone else?</p>
@@ -170,13 +176,13 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
 
           <div className="flex items-center space-x-2">
             <Checkbox
-              id="handicapAccessibility"
-              checked={formData.handicapAccessibility}
-              onCheckedChange={(checked) => setFormData({ ...formData, handicapAccessibility: checked as boolean })}
+              id="mobilityAccessibility"
+              checked={formData.mobilityAccessibility}
+              onCheckedChange={(checked) => setFormData({ ...formData, mobilityAccessibility: checked as boolean })}
               className="border-gray-700"
             />
-            <Label htmlFor="handicapAccessibility" className="text-white font-normal">
-              Handicap Accessibility
+            <Label htmlFor="mobilityAccessibility" className="text-white font-normal">
+              Wheelchair / Mobility Access
             </Label>
           </div>
 
@@ -206,6 +212,45 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
             className="text-white"
           />
         </div>
+      </div>
+
+      {/* Registration Access Code */}
+      <div
+        className="rounded-xl border p-3"
+        style={{ background: "rgba(0,212,232,0.04)", borderColor: "var(--nec-border)" }}
+      >
+        <button
+          type="button"
+          onClick={() => setShowAccessCode(!showAccessCode)}
+          aria-expanded={showAccessCode}
+          aria-controls="access-code-section"
+          className="w-full flex items-center justify-between text-sm text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded-lg px-1 py-0.5"
+        >
+          <span>Have a Registration Access Code?</span>
+          <span className="text-xs font-medium" style={{ color: "var(--nec-cyan)" }}>
+            {showAccessCode ? "Hide" : "Show"}
+          </span>
+        </button>
+        {showAccessCode && (
+          <div id="access-code-section" className="pt-3">
+            <Label htmlFor="accessCode" className="text-white text-sm">
+              Registration Access Code
+            </Label>
+            <p id="accessCode-description" className="text-xs text-gray-400 mt-1 mb-2">
+              For cash or scholarship registration only. Leave blank for standard paid registration.
+            </p>
+            <Input
+              id="accessCode"
+              type="text"
+              value={formData.accessCode}
+              onChange={(e) => setFormData({ ...formData, accessCode: e.target.value })}
+              className="text-white"
+              placeholder="Enter your access code"
+              autoComplete="off"
+              aria-describedby="accessCode-description"
+            />
+          </div>
+        )}
       </div>
 
       <Button

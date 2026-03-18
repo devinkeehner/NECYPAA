@@ -1,0 +1,111 @@
+{
+  "site": {
+    "title": "NECYPAA XXXVI",
+    "tagline": "The Archway of Freedom",
+    "convention": "Northeast Convention of Young People in AA",
+    "dates": "December 31, 2026 – January 3, 2027",
+    "location": "Hartford Marriott Downtown, Hartford, CT"
+  },
+  "nav": {
+    "home": "Home",
+    "register": "Register",
+    "program": "Program",
+    "events": "Events",
+    "faq": "FAQ",
+    "blog": "NECYBLOG",
+    "merch": "Merch",
+    "getInvolved": "Get Involved",
+    "bid": "How to Bid",
+    "journey": "The Journey",
+    "states": "Member States",
+    "alanon": "Al-Anon",
+    "asl": "ASL",
+    "prayer": "Prayer",
+    "accessibility": "Accessibility",
+    "bookHotel": "Book Hotel",
+    "advisory": "Advisory"
+  },
+  "common": {
+    "comingSoon": "Coming Soon",
+    "comingSoonDescription": "This page is under construction. We're building something special — check back soon.",
+    "learnMore": "Learn More",
+    "registerNow": "Register Now",
+    "bookHotel": "Book Hotel",
+    "contactUs": "Contact Us",
+    "email": "Email",
+    "viewAll": "View All",
+    "backToHome": "Back to Home",
+    "externalLink": "You are leaving our site",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "tryAgain": "Try Again",
+    "required": "Required",
+    "optional": "Optional",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "skipToContent": "Skip to main content"
+  },
+  "register": {
+    "badge": "Register",
+    "title": "Register for NECYPAA XXXVI",
+    "subtitle": "Join us in Hartford for four days of speakers, workshops, fellowship, and New Year's Eve.",
+    "price": "$40 pre-registration",
+    "free": "Free / Cash Registration",
+    "scholarship": "Scholarship Registration",
+    "scholarshipDescription": "Sponsor someone who can't afford to attend.",
+    "processingFee": "Processing Fee",
+    "processingFeeDescription": "Credit card processing fee (2.9% + $0.30)"
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Got questions? We've got answers.",
+    "contactPrompt": "Don't see your question? Reach out at"
+  },
+  "journey": {
+    "badge": "Archive",
+    "title": "The Journey Comes First",
+    "subtitle": "A look back at the events, fundraisers, and fellowship that brought us to Hartford. The journey is the point.",
+    "moreEvents": "More events to come. The journey continues."
+  },
+  "alanon": {
+    "badge": "Resources",
+    "title": "Al-Anon",
+    "subtitle": "Resources for friends and family of alcoholics.",
+    "tradition6": "NECYPAA is not affiliated with Al-Anon Family Groups, Inc. This page is provided as a resource for friends and family of alcoholics attending or interested in our convention. The links below are outbound resources — you will be leaving our site.",
+    "tradition6Label": "A note on Tradition 6:",
+    "whatIsAlanon": "What is Al-Anon?",
+    "alanonDescription": "Al-Anon Family Groups provide support for families and friends of alcoholics. Whether or not the alcoholic in your life recognizes the existence of a drinking problem or seeks help, Al-Anon can help you.",
+    "visitAlanon": "Visit al-anon.org",
+    "findMeeting": "Find an Al-Anon Meeting",
+    "findMeetingDescription": "Search for Al-Anon meetings near you or anywhere in the world.",
+    "meetingFinder": "Al-Anon Meeting Finder",
+    "alanonByState": "Al-Anon by State",
+    "alanonByStateDescription": "Find your state's Al-Anon resources. Each link takes you to that state's Al-Anon website.",
+    "alateenByState": "Alateen by State",
+    "alateenByStateDescription": "Alateen is for younger family members and friends of alcoholics. Some states share an Al-Anon/Alateen site; others have a dedicated Alateen page."
+  },
+  "states": {
+    "badge": "States",
+    "title": "Member States",
+    "subtitle": "Local AA resources, intergroups, and young people's groups across the NECYPAA region."
+  },
+  "footer": {
+    "identity": "NECYPAA XXXVI — Connecticut",
+    "tagline": "The Archway of Freedom",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "copyright": "NECYPAA XXXVI CT Host Committee. All rights reserved."
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "mainNavigation": "Main navigation",
+    "mobileMenu": "Mobile menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "externalLinkWarning": "Opens in a new tab"
+  }
+}

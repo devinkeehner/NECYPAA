@@ -36,7 +36,7 @@ export default function BreakfastCheckout() {
     if (key) {
       setStripePromise(loadStripe(key))
     } else {
-      setError("Stripe publishable key not found")
+      setError("We're having trouble loading the payment form. Please refresh the page or try again in a moment.")
     }
   }, [])
 
@@ -53,7 +53,7 @@ export default function BreakfastCheckout() {
         selectedBreakfastIds,
       )
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create checkout session")
+      setError(err instanceof Error ? err.message : "Something didn't go as planned. Please try again — and if it keeps happening, reach out to us at info@necypaa.org.")
       throw err
     }
   }, [email, firstName, lastName, selectedBreakfasts])
@@ -67,7 +67,7 @@ export default function BreakfastCheckout() {
     return (
       <div className="bg-white rounded-lg p-4 min-h-[300px] flex items-center justify-center">
         <div className="text-center space-y-2">
-          <p className="text-red-600 font-semibold">Checkout Error</p>
+          <p className="text-red-600 font-semibold">Hmm, something went wrong</p>
           <p className="text-gray-600">{error}</p>
         </div>
       </div>

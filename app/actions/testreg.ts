@@ -13,7 +13,7 @@ interface RegistrationData {
   email: string
   accommodations: string
   interpretationNeeded: boolean
-  handicapAccessibility: boolean
+  mobilityAccessibility: boolean
   willingToServe: boolean
   homegroup: string
 }
@@ -105,8 +105,8 @@ export async function startTestregCheckout(
     attendee_email: registrationData.email,
     accommodations: registrationData.accommodations || "None",
     interpretation_needed: registrationData.interpretationNeeded.toString(),
-    handicap_accessibility:
-      registrationData.handicapAccessibility.toString(),
+    mobility_accessibility:
+      registrationData.mobilityAccessibility.toString(),
     willing_to_serve: registrationData.willingToServe.toString(),
     homegroup_committee: registrationData.homegroup,
     policy_read_and_understood: policyAgreements.readPolicy.toString(),

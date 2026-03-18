@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from "next"
 import { Plus_Jakarta_Sans, Outfit, Bangers, Pacifico } from "next/font/google"
 import "./globals.css"
 import SiteHeader from "@/components/site-header"
+import { A11yProvider } from "@/lib/accessibility-context"
+import AccessibilityPanel from "@/components/accessibility-panel"
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -74,8 +76,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jakarta.variable} ${outfit.variable} ${bangers.variable} ${pacifico.variable} ${jakarta.className}`}>
-        <SiteHeader />
-        {children}
+        <A11yProvider>
+          {/* Skip-to-content link for keyboard/screen-reader users */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-bold focus:text-white focus:outline-none"
+            style={{ backgroundColor: "var(--nec-pink)" }}
+          >
+            Skip to main content
+          </a>
+          <SiteHeader />
+          <div id="main-content">
+            {children}
+          </div>
+          <AccessibilityPanel />
+        </A11yProvider>
       </body>
     </html>
   )

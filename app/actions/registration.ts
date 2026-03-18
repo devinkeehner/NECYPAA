@@ -1,7 +1,19 @@
 "use server"
 
+import { createHash } from "node:crypto"
 import { stripe } from "@/lib/stripe"
 import { BREAKFAST_PRODUCTS, REGISTRATION_PRODUCTS, calculateProcessingFee } from "@/lib/registration-products"
+import { rateLimitCheckout, rateLimitCodeRedemption } from "@/lib/rate-limit"
+import {
+  registrationDataSchema,
+  policyAgreementsSchema,
+  purchaseAttributionSchema,
+  productIdSchema,
+  scholarshipQuantitySchema,
+  breakfastIdsSchema,
+} from "@/lib/validation"
+import { redeemRegistrationCode, maskAccessCode } from "@/lib/issuer-client"
+import { EVENT_SLUG } from "@/lib/constants"
 
 interface RegistrationData {
   name: string
@@ -9,12 +21,13 @@ interface RegistrationData {
   email: string
   accommodations: string
   interpretationNeeded: boolean
-  handicapAccessibility: boolean
+  mobilityAccessibility: boolean
   willingToServe: boolean
   homegroup: string
   isScholarship: boolean
   scholarshipRecipientName: string
   scholarshipRecipientEmail: string
+  accessCode: string
 }
 
 interface PolicyAgreements {
@@ -40,13 +53,27 @@ export async function startRegistrationCheckout(
   breakfastIds: string[] = [],
   attribution?: PurchaseAttribution,
 ) {
-  const product = REGISTRATION_PRODUCTS.find((p) => p.id === productId)
-  if (!product) {
-    throw new Error(`Registration product with id "${productId}" not found`)
+  // ── Validate all inputs ──────────────────────────────────────
+  const validatedProductId = productIdSchema.parse(productId)
+  const validatedData = registrationDataSchema.parse(registrationData)
+  const validatedScholarshipQty = scholarshipQuantitySchema.parse(scholarshipQuantity)
+  const validatedBreakfastIds = breakfastIdsSchema.parse(breakfastIds)
+  const validatedAttribution = purchaseAttributionSchema.parse(attribution)
+  const validatedPolicy = policyAgreements ? policyAgreementsSchema.parse(policyAgreements) : null
+
+  // ── Rate limit by email ──────────────────────────────────────
+  const rl = rateLimitCheckout(validatedData.email)
+  if (!rl.success) {
+    throw new Error("Too many checkout attempts. Please wait a moment and try again.")
   }
 
-  if (!registrationData.isScholarship && !policyAgreements) {
-    throw new Error("Policy agreement is required for non-scholarship registrations")
+  const product = REGISTRATION_PRODUCTS.find((p) => p.id === validatedProductId)
+  if (!product) {
+    throw new Error("Hmm, we couldn't find that registration option. Please go back and try selecting it again.")
+  }
+
+  if (!validatedData.isScholarship && !validatedPolicy) {
+    throw new Error("We need you to review and accept the policy agreement before continuing. You can find it on the previous step.")
   }
 
   console.log("Creating checkout for product:", product.name, "Price:", product.priceInCents)
@@ -85,7 +112,7 @@ export async function startRegistrationCheckout(
     attribution_reserved_for_person: attribution?.reservedForPerson || "None",
     accommodations: registrationData.isScholarship ? "Not provided (scholarship purchase)" : registrationData.accommodations || "None",
     interpretation_needed: registrationData.isScholarship ? "not_applicable" : registrationData.interpretationNeeded.toString(),
-    handicap_accessibility: registrationData.isScholarship ? "not_applicable" : registrationData.handicapAccessibility.toString(),
+    mobility_accessibility: registrationData.isScholarship ? "not_applicable" : registrationData.mobilityAccessibility.toString(),
     willing_to_serve: registrationData.isScholarship ? "not_applicable" : registrationData.willingToServe.toString(),
     homegroup_committee: registrationData.homegroup,
     policy_read_and_understood: policyAgreements ? policyAgreements.readPolicy.toString() : "not_applicable",
@@ -170,12 +197,107 @@ export async function startRegistrationCheckout(
     console.log("Client secret exists:", !!session.client_secret)
 
     if (!session.client_secret) {
-      throw new Error("No client secret returned from Stripe")
+      throw new Error("We had trouble connecting to our payment system. Please try again in a moment.")
     }
 
     return session.client_secret
   } catch (error) {
     console.error("Stripe session creation failed:", error)
     throw error
+  }
+}
+
+// ─── Access Code Registration ────────────────────────────────
+
+export async function submitAccessCodeRegistration(
+  registrationData: RegistrationData,
+  policyAgreements: PolicyAgreements,
+): Promise<{ success: true } | { success: false; error: string }> {
+  // ── Validate all inputs ──────────────────────────────────────
+  const validatedData = registrationDataSchema.parse(registrationData)
+  const validatedPolicy = policyAgreementsSchema.parse(policyAgreements)
+
+  if (!validatedData.accessCode) {
+    return { success: false, error: "A registration access code is required." }
+  }
+
+  // ── Rate limit by email ──────────────────────────────────────
+  const rl = rateLimitCodeRedemption(validatedData.email)
+  if (!rl.success) {
+    return { success: false, error: "Too many attempts. Please wait a moment and try again." }
+  }
+
+  // ── Generate stable idempotency key ──────────────────────────
+  const idempotencyKey = createHash("sha256")
+    .update(`${validatedData.email.toLowerCase()}-${validatedData.accessCode}`)
+    .digest("hex")
+    .slice(0, 36)
+
+  // ── Redeem code via issuer service ───────────────────────────
+  const result = await redeemRegistrationCode({
+    code: validatedData.accessCode,
+    eventSlug: EVENT_SLUG,
+    email: validatedData.email,
+    fullName: validatedData.name,
+    source: "necypaa-main-site",
+    idempotencyKey,
+  })
+
+  if (!result.success) {
+    return { success: false, error: result.error }
+  }
+
+  // ── Build metadata ───────────────────────────────────────────
+  const metadata: Record<string, string> = {
+    purchase_type: result.grantType,
+    attendee_name: validatedData.name,
+    attendee_state: validatedData.state,
+    attendee_email: validatedData.email,
+    accommodations: validatedData.accommodations || "None",
+    interpretation_needed: validatedData.interpretationNeeded.toString(),
+    mobility_accessibility: validatedData.mobilityAccessibility.toString(),
+    willing_to_serve: validatedData.willingToServe.toString(),
+    homegroup_committee: validatedData.homegroup,
+    access_grant_id: result.grantId,
+    access_redemption_id: result.redemptionId,
+    access_grant_type: result.grantType,
+    access_issuer_source: "archway-issuer",
+    access_code_masked: maskAccessCode(validatedData.accessCode),
+    policy_read_and_understood: validatedPolicy.readPolicy.toString(),
+    policy_questions_understood: validatedPolicy.understandQuestions.toString(),
+    policy_behavior_acknowledged: validatedPolicy.acknowledgeBehavior.toString(),
+    policy_admission_understood: validatedPolicy.understandAdmission.toString(),
+    policy_reporting_understood: validatedPolicy.understandReporting.toString(),
+    policy_investigation_understood: validatedPolicy.understandInvestigation.toString(),
+    policy_signature_agreement: validatedPolicy.signatureAgreement.toString(),
+  }
+
+  // ── Persist to Stripe as customer record ──────────────────────
+  try {
+    const existingCustomers = await stripe.customers.list({
+      email: validatedData.email,
+      limit: 1,
+    })
+
+    if (existingCustomers.data.length > 0) {
+      await stripe.customers.update(existingCustomers.data[0].id, {
+        name: validatedData.name,
+        metadata,
+      })
+    } else {
+      await stripe.customers.create({
+        name: validatedData.name,
+        email: validatedData.email,
+        metadata,
+      })
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error("Failed to save access code registration:", error)
+    return {
+      success: false,
+      error: "We had trouble saving your registration. Please try again in a moment.",
+    }
   }
 }
