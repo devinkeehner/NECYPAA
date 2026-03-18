@@ -57,15 +57,18 @@ export default function CharacterDivider({
           }}
         />
         <div
-          className="relative w-16 h-16 sm:w-20 sm:h-20"
+          className="relative w-20 h-20 sm:w-24 sm:h-24"
           style={{ transform: flip ? "scaleX(-1)" : undefined }}
         >
           <Image
             src={char.src}
             alt=""
-            width={80}
-            height={120}
-            className="w-full h-full object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
+            width={96}
+            height={144}
+            className="w-full h-full object-contain"
+            style={{
+              filter: `drop-shadow(0 2px 12px rgba(${char.accentRgb},0.35)) drop-shadow(0 1px 4px rgba(0,0,0,0.4))`,
+            }}
             aria-hidden="true"
           />
         </div>

@@ -52,10 +52,11 @@ export default function HeroSection() {
         {/* Theme logo — "Escaping the Mad Realm" calligraphic art */}
         <div className="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[440px] lg:max-w-[500px]">
           <div
-            className="absolute inset-0 scale-[1.4] opacity-50"
+            className="absolute inset-0 scale-[1.5] opacity-60"
+            aria-hidden="true"
             style={{
-              background: "radial-gradient(ellipse 60% 55% at 50% 45%, rgba(124,58,237,0.40) 0%, rgba(192,38,211,0.18) 40%, transparent 70%)",
-              filter: "blur(40px)",
+              background: "radial-gradient(ellipse 60% 55% at 50% 45%, rgba(124,58,237,0.45) 0%, rgba(192,38,211,0.20) 40%, transparent 70%)",
+              filter: "blur(44px)",
             }}
           />
           <Image

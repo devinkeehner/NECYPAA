@@ -16,7 +16,7 @@ export default function HomePage() {
       style={{ backgroundColor: "var(--nec-navy)" }}
     >
       {/* Page-level ambient vortex glow layer */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
         <div
           className="absolute -top-40 -left-40 w-[900px] h-[900px] rounded-full opacity-[0.06]"
           style={{

@@ -33,7 +33,7 @@ export default function SiteFooter() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           {/* Identity column */}
           <div className="space-y-3">
-            <div className="w-24 h-auto mb-2 opacity-80">
+            <div className="w-24 h-auto mb-2 opacity-90">
               <Image
                 src="/images/escaping-the-mad-realm-logo.png"
                 alt="Escaping the Mad Realm — NECYPAA XXXVI theme"
