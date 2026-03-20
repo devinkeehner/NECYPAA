@@ -416,7 +416,7 @@ export default function TetrisGame() {
         {gameOver && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 rounded-xl">
             <p className="text-2xl font-black mb-1" style={{ color: PINK }}>GAME OVER</p>
-            <p className="text-sm text-gray-300 mb-1">
+            <p className="text-sm text-[var(--nec-muted)] mb-1">
               &ldquo;Progress, not perfection.&rdquo;
             </p>
             <p className="text-lg font-bold text-white mb-1">Score: {score}</p>

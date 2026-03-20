@@ -29,7 +29,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
       <div className="rounded-2xl p-6 border border-[var(--nec-border)] bg-[rgba(26,16,48,0.6)]">
         <h3 className="text-xl font-bold text-white mb-4">NECYPAA Non-Discrimination and Anti-Harassment Policy</h3>
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- tabIndex={0} is required so keyboard-only users can scroll this overflow container */}
-        <div className="prose prose-invert max-w-none text-gray-300 space-y-4 max-h-96 overflow-y-auto text-sm" tabIndex={0} role="region" aria-label="Policy document — scroll to read full text">
+        <div className="prose prose-invert max-w-none text-[var(--nec-muted)] space-y-4 max-h-96 overflow-y-auto text-sm" tabIndex={0} role="region" aria-label="Policy document — scroll to read full text">
           <p>
             The North East Convention of Young People in Alcoholics Anonymous (NECYPAA) adheres to the spiritual
             principles of Alcoholics Anonymous ("AA"), its 12 Steps, Traditions, and Concepts. NECYPAA is committed to
@@ -187,7 +187,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
           Attendees must check each box in order to be allowed admission to the NECYPAA convention.{" "}
           <span className="text-pink-400" aria-hidden="true">*</span>
         </p>
-        <p className="text-sm text-gray-300"><span className="text-pink-400" aria-hidden="true">*</span> <span className="sr-only">Asterisk indicates</span> Required field</p>
+        <p className="text-sm text-[var(--nec-muted)]"><span className="text-pink-400" aria-hidden="true">*</span> <span className="sr-only">Asterisk indicates</span> Required field</p>
 
         <div className="space-y-3">
           <div className="flex items-start space-x-3">
@@ -195,7 +195,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
               id="readPolicy"
               checked={agreements.readPolicy}
               onCheckedChange={(checked) => setAgreements({ ...agreements, readPolicy: checked as boolean })}
-              className="mt-1 border-gray-700"
+              className="mt-1 border-[var(--nec-border)]"
               aria-required="true"
             />
             <Label htmlFor="readPolicy" className="text-white font-normal leading-relaxed">
@@ -209,7 +209,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
               id="understandQuestions"
               checked={agreements.understandQuestions}
               onCheckedChange={(checked) => setAgreements({ ...agreements, understandQuestions: checked as boolean })}
-              className="mt-1 border-gray-700"
+              className="mt-1 border-[var(--nec-border)]"
               aria-required="true"
             />
             <Label htmlFor="understandQuestions" className="text-white font-normal leading-relaxed">
@@ -223,7 +223,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
               id="acknowledgeBehavior"
               checked={agreements.acknowledgeBehavior}
               onCheckedChange={(checked) => setAgreements({ ...agreements, acknowledgeBehavior: checked as boolean })}
-              className="mt-1 border-gray-700"
+              className="mt-1 border-[var(--nec-border)]"
               aria-required="true"
             />
             <Label htmlFor="acknowledgeBehavior" className="text-white font-normal leading-relaxed">
@@ -238,7 +238,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
               id="understandAdmission"
               checked={agreements.understandAdmission}
               onCheckedChange={(checked) => setAgreements({ ...agreements, understandAdmission: checked as boolean })}
-              className="mt-1 border-gray-700"
+              className="mt-1 border-[var(--nec-border)]"
               aria-required="true"
             />
             <Label htmlFor="understandAdmission" className="text-white font-normal leading-relaxed">
@@ -252,7 +252,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
               id="understandReporting"
               checked={agreements.understandReporting}
               onCheckedChange={(checked) => setAgreements({ ...agreements, understandReporting: checked as boolean })}
-              className="mt-1 border-gray-700"
+              className="mt-1 border-[var(--nec-border)]"
               aria-required="true"
             />
             <Label htmlFor="understandReporting" className="text-white font-normal leading-relaxed">
@@ -268,7 +268,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
               onCheckedChange={(checked) =>
                 setAgreements({ ...agreements, understandInvestigation: checked as boolean })
               }
-              className="mt-1 border-gray-700"
+              className="mt-1 border-[var(--nec-border)]"
               aria-required="true"
             />
             <Label htmlFor="understandInvestigation" className="text-white font-normal leading-relaxed">
@@ -282,7 +282,7 @@ export default function PolicyAgreement({ onComplete, onBack }: PolicyAgreementP
               id="signatureAgreement"
               checked={agreements.signatureAgreement}
               onCheckedChange={(checked) => setAgreements({ ...agreements, signatureAgreement: checked as boolean })}
-              className="mt-1 border-gray-700"
+              className="mt-1 border-[var(--nec-border)]"
               aria-required="true"
             />
             <Label htmlFor="signatureAgreement" className="text-white font-normal leading-relaxed">

@@ -23,7 +23,7 @@ export default function ScholarshipAttribution({
     <div className="rounded-2xl p-6 border border-[var(--nec-border)] space-y-4 bg-[rgba(26,16,48,0.6)]">
       <h3 className="text-lg font-semibold text-white">Optional Scholarship Attribution</h3>
       <div>
-        <label htmlFor="aaEntity" className="block text-sm text-gray-300 mb-1">
+        <label htmlFor="aaEntity" className="block text-sm text-[var(--nec-muted)] mb-1">
           YPAA Committee, Meeting, District, Area, or State (optional)
         </label>
         <input
@@ -37,7 +37,7 @@ export default function ScholarshipAttribution({
       </div>
 
       <div className="space-y-2">
-        <span className="block text-sm text-gray-300" id="reserved-for-label">Reserved for individual (optional)</span>
+        <span className="block text-sm text-[var(--nec-muted)]" id="reserved-for-label">Reserved for individual (optional)</span>
         {reservedForPeople.map((name, index) => (
           <input
             key={`reserved-person-${index}`}

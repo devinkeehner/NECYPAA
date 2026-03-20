@@ -120,7 +120,7 @@ function DesktopDropdown({ item, pathname }: { item: NavDropdown; pathname: stri
       onKeyDown={handleKeyDown}
     >
       <button
-        className="px-3 py-1.5 text-sm font-medium text-gray-300 hover:text-white rounded-lg
+        className="px-3 py-1.5 text-sm font-medium text-[var(--nec-muted)] hover:text-white rounded-lg
                    hover:bg-white/5 transition-all duration-150 uppercase tracking-wide
                    inline-flex items-center gap-1"
         onClick={() => setOpen((o) => !o)}
@@ -151,7 +151,7 @@ function DesktopDropdown({ item, pathname }: { item: NavDropdown; pathname: stri
                 role="menuitem"
                 tabIndex={open ? 0 : -1}
                 onClick={() => setOpen(false)}
-                className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                className="block px-4 py-2 text-sm text-[var(--nec-muted)] hover:text-white hover:bg-white/5 transition-colors"
               >
                 {child.label}
                 <span className="sr-only"> (opens in new tab)</span>
@@ -166,7 +166,7 @@ function DesktopDropdown({ item, pathname }: { item: NavDropdown; pathname: stri
                 className={`block px-4 py-2 text-sm transition-colors ${
                   isActivePath(pathname, child.href)
                     ? "text-white bg-white/[0.07] font-semibold"
-                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                    : "text-[var(--nec-muted)] hover:text-white hover:bg-white/5"
                 }`}
                 {...(isActivePath(pathname, child.href) ? { "aria-current": "page" as const } : {})}
               >
@@ -194,7 +194,7 @@ function MobileDropdown({
   return (
     <div>
       <button
-        className="w-full px-4 py-3 text-base font-semibold text-gray-200 hover:text-white
+        className="w-full px-4 py-3 text-base font-semibold text-[var(--nec-text)] hover:text-white
                    hover:bg-white/5 rounded-xl transition-all uppercase tracking-wide
                    flex items-center justify-between"
         onClick={() => setOpen((o) => !o)}
@@ -218,7 +218,7 @@ function MobileDropdown({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onClose}
-                className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white
+                className="block px-4 py-2.5 text-sm text-[var(--nec-muted)] hover:text-white
                            hover:bg-white/5 rounded-lg transition-colors"
               >
                 {child.label}
@@ -232,7 +232,7 @@ function MobileDropdown({
                 className={`block px-4 py-2.5 text-sm rounded-lg transition-colors ${
                   isActivePath(pathname, child.href)
                     ? "text-white bg-white/[0.07] font-semibold border-l-2"
-                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                    : "text-[var(--nec-muted)] hover:text-white hover:bg-white/5"
                 }`}
                 style={isActivePath(pathname, child.href) ? { borderLeftColor: "var(--nec-purple)" } : undefined}
                 {...(isActivePath(pathname, child.href) ? { "aria-current": "page" as const } : {})}
@@ -329,7 +329,7 @@ export default function SiteHeader() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-1.5 text-sm font-medium text-gray-300 hover:text-white rounded-lg
+                    className="px-3 py-1.5 text-sm font-medium text-[var(--nec-muted)] hover:text-white rounded-lg
                                hover:bg-white/5 transition-all duration-150 uppercase tracking-wide"
                   >
                     {item.label}
@@ -343,7 +343,7 @@ export default function SiteHeader() {
                                transition-all duration-150 uppercase tracking-wide ${
                                isActivePath(pathname, item.href)
                                  ? "text-white bg-white/[0.07]"
-                                 : "text-gray-300 hover:text-white hover:bg-white/5"
+                                 : "text-[var(--nec-muted)] hover:text-white hover:bg-white/5"
                                }`}
                     {...(isActivePath(pathname, item.href) ? { "aria-current": "page" as const } : {})}
                   >
@@ -361,7 +361,7 @@ export default function SiteHeader() {
 
             {/* Mobile hamburger */}
             <button
-              className="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+              className="md:hidden p-2 rounded-lg text-[var(--nec-muted)] hover:text-white hover:bg-white/5 transition-colors"
               onClick={() => setMenuOpen((o) => !o)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
@@ -405,7 +405,7 @@ export default function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={close}
-              className="px-4 py-3 text-base font-semibold text-gray-200 hover:text-white
+              className="px-4 py-3 text-base font-semibold text-[var(--nec-text)] hover:text-white
                          hover:bg-white/5 rounded-xl transition-all uppercase tracking-wide"
             >
               {item.label}
@@ -419,7 +419,7 @@ export default function SiteHeader() {
               className={`px-4 py-3 text-base font-semibold rounded-xl transition-all uppercase tracking-wide ${
                 isActivePath(pathname, item.href)
                   ? "text-white bg-white/[0.07] border-l-2"
-                  : "text-gray-200 hover:text-white hover:bg-white/5"
+                  : "text-[var(--nec-text)] hover:text-white hover:bg-white/5"
               }`}
               style={isActivePath(pathname, item.href) ? { borderLeftColor: "var(--nec-purple)" } : undefined}
               {...(isActivePath(pathname, item.href) ? { "aria-current": "page" as const } : {})}
@@ -428,7 +428,7 @@ export default function SiteHeader() {
             </Link>
           )
         )}
-        <div className="pt-2 border-t border-gray-700/50 mt-1 space-y-2">
+        <div className="pt-2 border-t border-[var(--nec-border)] mt-1 space-y-2">
           <Link
             href="/register"
             onClick={close}

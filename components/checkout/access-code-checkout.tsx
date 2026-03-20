@@ -57,7 +57,7 @@ export default function AccessCodeCheckout({ registrationData, policyAgreements,
 
       <div className="nec-card rounded-2xl p-6 border border-[var(--nec-border)] space-y-4 bg-[rgba(26,16,48,0.6)]">
         <h3 className="text-lg font-semibold text-white">Registration Summary</h3>
-        <div className="space-y-2 text-gray-300">
+        <div className="space-y-2 text-[var(--nec-muted)]">
           <div className="flex justify-between">
             <span>Registration (Access Code)</span>
             <span className="font-medium text-white">$0.00</span>
@@ -67,7 +67,7 @@ export default function AccessCodeCheckout({ registrationData, policyAgreements,
             <span className="text-[var(--nec-gold)]">$0.00</span>
           </div>
         </div>
-        <p className="text-xs text-gray-300">
+        <p className="text-xs text-[var(--nec-muted)]">
           Your registration will be completed using your access code. No payment is required.
         </p>
       </div>

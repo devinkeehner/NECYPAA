@@ -117,7 +117,7 @@ export default function AnonymousFeedbackForm() {
           rows={4}
           required
           placeholder="Describe what you experienced or what could be improved..."
-          className="w-full rounded-lg px-3 py-2 text-sm text-white placeholder:text-gray-500 resize-y"
+          className="w-full rounded-lg px-3 py-2 text-sm text-white placeholder:text-[var(--nec-muted)] resize-y"
           style={{
             background: "var(--nec-bg-alt, #131b2e)",
             border: "1px solid var(--nec-border)",

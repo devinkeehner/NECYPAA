@@ -191,7 +191,7 @@ export default function ShareMenu({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+              className="p-1.5 rounded-lg text-[var(--nec-muted)] hover:text-white hover:bg-white/5 transition-colors"
               aria-label="Close share menu"
             >
               <X className="w-5 h-5" aria-hidden="true" />
@@ -217,7 +217,7 @@ export default function ShareMenu({
                 >
                   {platform.icon}
                 </div>
-                <span className="text-[10px] text-gray-400 leading-tight text-center font-medium">
+                <span className="text-[10px] text-[var(--nec-muted)] leading-tight text-center font-medium">
                   {platform.name}
                 </span>
               </button>
@@ -235,9 +235,9 @@ export default function ShareMenu({
               className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
               style={{ background: "rgba(124,58,237,0.10)" }}
             >
-              <Copy className="w-4 h-4 text-gray-300" aria-hidden="true" />
+              <Copy className="w-4 h-4 text-[var(--nec-muted)]" aria-hidden="true" />
             </div>
-            <span className="text-sm text-gray-300 font-medium truncate flex-1 text-left">
+            <span className="text-sm text-[var(--nec-muted)] font-medium truncate flex-1 text-left">
               {resolvedUrl}
             </span>
             <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--nec-cyan)" }}>

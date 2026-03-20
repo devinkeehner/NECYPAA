@@ -31,8 +31,26 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
     accessCode: "",
   })
   const [showAccessCode, setShowAccessCode] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   const hasAccessCode = (formData.accessCode ?? "").trim().length > 0
+
+  const validateField = (field: string, value: string) => {
+    let error = ""
+    switch (field) {
+      case "name":
+        if (!value.trim()) error = "Name is required"
+        break
+      case "email":
+        if (!value.trim()) error = "Email is required"
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = "Please enter a valid email"
+        break
+      case "state":
+        if (!value) error = "Please select a state"
+        break
+    }
+    setErrors(prev => ({ ...prev, [field]: error }))
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -80,7 +98,7 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
         {enableScholarship && !hasAccessCode && (
           <div className="rounded-xl border border-[var(--nec-border)] p-3 bg-[rgba(124,58,237,0.05)]">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-gray-300 text-center sm:text-left">Buying registration for someone else?</p>
+              <p className="text-sm text-[var(--nec-muted)] text-center sm:text-left">Buying registration for someone else?</p>
               <Button
                 type="button"
                 onClick={handleScholarshipQuickStart}
@@ -101,10 +119,21 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
             type="text"
             required
             aria-required="true"
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "name-error" : undefined}
             value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={(e) => {
+              setFormData({ ...formData, name: e.target.value })
+              if (errors.name) setErrors(prev => ({ ...prev, name: "" }))
+            }}
+            onBlur={(e) => validateField("name", e.target.value)}
             className="text-white"
           />
+          {errors.name && (
+            <p id="name-error" role="alert" className="text-xs mt-1" style={{ color: "var(--nec-pink)" }}>
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div>
@@ -116,10 +145,21 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
             type="text"
             required
             aria-required="true"
+            aria-invalid={!!errors.state}
+            aria-describedby={errors.state ? "state-error" : undefined}
             value={formData.state}
-            onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+            onChange={(e) => {
+              setFormData({ ...formData, state: e.target.value })
+              if (errors.state) setErrors(prev => ({ ...prev, state: "" }))
+            }}
+            onBlur={(e) => validateField("state", e.target.value)}
             className="text-white"
           />
+          {errors.state && (
+            <p id="state-error" role="alert" className="text-xs mt-1" style={{ color: "var(--nec-pink)" }}>
+              {errors.state}
+            </p>
+          )}
         </div>
 
         <div>
@@ -131,10 +171,21 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
             type="email"
             required
             aria-required="true"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) => {
+              setFormData({ ...formData, email: e.target.value })
+              if (errors.email) setErrors(prev => ({ ...prev, email: "" }))
+            }}
+            onBlur={(e) => validateField("email", e.target.value)}
             className="text-white"
           />
+          {errors.email && (
+            <p id="email-error" role="alert" className="text-xs mt-1" style={{ color: "var(--nec-pink)" }}>
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div>
@@ -213,7 +264,7 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
           onClick={() => setShowAccessCode(!showAccessCode)}
           aria-expanded={showAccessCode}
           aria-controls="access-code-section"
-          className="w-full flex items-center justify-between text-sm text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded-lg px-1 py-0.5"
+          className="w-full flex items-center justify-between text-sm text-[var(--nec-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 rounded-lg px-1 py-0.5"
         >
           <span>Have a Registration Access Code?</span>
           <span className="text-xs font-medium text-[var(--nec-cyan)]">
@@ -225,7 +276,7 @@ export default function RegistrationForm({ onComplete, enableScholarship = false
             <Label htmlFor="accessCode" className="text-white text-sm">
               Registration Access Code
             </Label>
-            <p id="accessCode-description" className="text-xs text-gray-300 mt-1 mb-2">
+            <p id="accessCode-description" className="text-xs text-[var(--nec-muted)] mt-1 mb-2">
               For cash or scholarship registration only. Leave blank for standard paid registration.
             </p>
             <Input

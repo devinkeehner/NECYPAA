@@ -402,7 +402,7 @@ export default function MemoryGame() {
         {gameComplete && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 rounded-xl">
             <p className="text-2xl font-black mb-2" style={{ color: GOLD }}>ALL MATCHED!</p>
-            <p className="text-sm text-gray-300 mb-3 text-center px-4">
+            <p className="text-sm text-[var(--nec-muted)] mb-3 text-center px-4">
               &ldquo;Finding answers, one match at a time.&rdquo;
             </p>
             <p className="text-lg font-bold text-white mb-1">

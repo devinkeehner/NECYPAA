@@ -16,6 +16,7 @@ export default function BreakfastCheckout() {
   const [email, setEmail] = useState("")
   const [breakfastSelections, setBreakfastSelections] = useState<Record<string, boolean>>({})
   const [stripePromise, setStripePromise] = useState<ReturnType<typeof loadStripe> | null>(null)
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const [error, setError] = useState<string | null>(null)
   const [checkoutReady, setCheckoutReady] = useState(false)
   const [checkoutKey, setCheckoutKey] = useState(0)
@@ -27,6 +28,25 @@ export default function BreakfastCheckout() {
 
   const fridayProduct = BREAKFAST_PRODUCTS.find((p) => p.id === "breakfast-friday")
   const weekendProducts = BREAKFAST_PRODUCTS.filter((p) => p.id !== "breakfast-friday")
+
+  const validateField = (field: string, value: string) => {
+    let errorMsg = ""
+    if (!value.trim()) {
+      const labels: Record<string, string> = { firstName: "First name", lastName: "Last name", email: "Email" }
+      errorMsg = `${labels[field] || field} is required.`
+    } else if (field === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
+      errorMsg = "Please enter a valid email address."
+    }
+    setErrors((prev) => {
+      const next = { ...prev }
+      if (errorMsg) {
+        next[field] = errorMsg
+      } else {
+        delete next[field]
+      }
+      return next
+    })
+  }
 
   const isFormValid =
     firstName.trim() !== "" && lastName.trim() !== "" && email.trim() !== "" && selectedBreakfasts.length > 0
@@ -97,11 +117,16 @@ export default function BreakfastCheckout() {
               onChange={(e) => {
                 setFirstName(e.target.value)
                 setCheckoutReady(false)
+                if (errors.firstName) setErrors((prev) => { const next = { ...prev }; delete next.firstName; return next })
               }}
+              onBlur={() => validateField("firstName", firstName)}
               required
               aria-required="true"
+              aria-invalid={!!errors.firstName}
+              aria-describedby={errors.firstName ? "firstName-error" : undefined}
               className="text-white"
             />
+            {errors.firstName && <p id="firstName-error" role="alert" className="text-xs mt-1" style={{ color: "var(--nec-pink)" }}>{errors.firstName}</p>}
           </div>
           <div>
             <Label htmlFor="lastName" className="text-white">
@@ -113,11 +138,16 @@ export default function BreakfastCheckout() {
               onChange={(e) => {
                 setLastName(e.target.value)
                 setCheckoutReady(false)
+                if (errors.lastName) setErrors((prev) => { const next = { ...prev }; delete next.lastName; return next })
               }}
+              onBlur={() => validateField("lastName", lastName)}
               required
               aria-required="true"
+              aria-invalid={!!errors.lastName}
+              aria-describedby={errors.lastName ? "lastName-error" : undefined}
               className="text-white"
             />
+            {errors.lastName && <p id="lastName-error" role="alert" className="text-xs mt-1" style={{ color: "var(--nec-pink)" }}>{errors.lastName}</p>}
           </div>
         </div>
         <div>
@@ -131,17 +161,22 @@ export default function BreakfastCheckout() {
             onChange={(e) => {
               setEmail(e.target.value)
               setCheckoutReady(false)
+              if (errors.email) setErrors((prev) => { const next = { ...prev }; delete next.email; return next })
             }}
+            onBlur={() => validateField("email", email)}
             required
             aria-required="true"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
             className="text-white"
           />
+          {errors.email && <p id="email-error" role="alert" className="text-xs mt-1" style={{ color: "var(--nec-pink)" }}>{errors.email}</p>}
         </div>
       </div>
 
       <div className="rounded-2xl p-6 border border-[var(--nec-border)] space-y-4 bg-[rgba(26,16,48,0.6)]">
         <h3 className="text-lg font-semibold text-white">New Years Day Breakfast!</h3>
-        <p className="text-sm text-gray-300">
+        <p className="text-sm text-[var(--nec-muted)]">
           Friday is especially recommended. Most local restaurants are closed on New Year&apos;s Day.
         </p>
 
@@ -152,8 +187,8 @@ export default function BreakfastCheckout() {
             aria-pressed={breakfastSelections[fridayProduct.id] || false}
             className="w-full text-left rounded-xl px-4 py-3 transition-colors border"
             style={{
-              background: breakfastSelections[fridayProduct.id] ? "rgba(249,115,22,0.12)" : "rgba(249,115,22,0.04)",
-              borderColor: breakfastSelections[fridayProduct.id] ? "rgba(249,115,22,0.5)" : "rgba(249,115,22,0.15)",
+              background: breakfastSelections[fridayProduct.id] ? "rgba(212,160,23,0.12)" : "rgba(212,160,23,0.04)",
+              borderColor: breakfastSelections[fridayProduct.id] ? "rgba(212,160,23,0.5)" : "rgba(212,160,23,0.15)",
             }}
           >
             <div className="flex items-start gap-3">
@@ -161,7 +196,7 @@ export default function BreakfastCheckout() {
                 id={fridayProduct.id}
                 checked={breakfastSelections[fridayProduct.id] || false}
                 onCheckedChange={(checked) => toggleBreakfast(fridayProduct.id, checked as boolean)}
-                className="mt-1 border-orange-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600"
+                className="mt-1 border-[var(--nec-gold)] data-[state=checked]:bg-[var(--nec-gold)] data-[state=checked]:border-[var(--nec-gold)]"
                 onClick={(e) => e.stopPropagation()}
               />
               <div className="flex-1">
@@ -169,7 +204,7 @@ export default function BreakfastCheckout() {
                   <Label htmlFor={fridayProduct.id} className="text-sm text-white font-semibold cursor-pointer">Friday - New Year&apos;s Day</Label>
                   <span className="text-sm text-white font-semibold">$20</span>
                 </div>
-                <p className="text-orange-300 text-xs mt-1">
+                <p className="text-[var(--nec-gold)] text-xs mt-1">
                   Start your day on-site with fellowship and no restaurant scramble.
                 </p>
               </div>
@@ -187,7 +222,7 @@ export default function BreakfastCheckout() {
               className="nec-breakfast-option w-full text-left rounded-xl px-3 py-2.5 transition-colors border"
               style={{
                 background: breakfastSelections[bp.id] ? "rgba(45,31,78,0.6)" : "rgba(26,16,48,0.6)",
-                borderColor: breakfastSelections[bp.id] ? "rgba(249,115,22,0.5)" : "var(--nec-border)",
+                borderColor: breakfastSelections[bp.id] ? "rgba(212,160,23,0.5)" : "var(--nec-border)",
               }}
             >
               <div className="flex items-center gap-2.5">
@@ -195,7 +230,7 @@ export default function BreakfastCheckout() {
                   id={bp.id}
                   checked={breakfastSelections[bp.id] || false}
                   onCheckedChange={(checked) => toggleBreakfast(bp.id, checked as boolean)}
-                  className="border-gray-600 data-[state=checked]:bg-orange-600 data-[state=checked]:border-orange-600"
+                  className="border-[var(--nec-border)] data-[state=checked]:bg-[var(--nec-gold)] data-[state=checked]:border-[var(--nec-gold)]"
                   onClick={(e) => e.stopPropagation()}
                 />
                 <div className="flex-1 flex items-center justify-between">
@@ -212,8 +247,8 @@ export default function BreakfastCheckout() {
 
       <div className="rounded-2xl p-6 border border-[var(--nec-border)] bg-[rgba(26,16,48,0.6)]">
         <h3 className="text-lg font-semibold text-white mb-4">Order Summary</h3>
-        <div className="space-y-2 text-gray-300">
-          {selectedBreakfasts.length === 0 && <p className="text-gray-300 text-sm">Select at least one breakfast.</p>}
+        <div className="space-y-2 text-[var(--nec-muted)]">
+          {selectedBreakfasts.length === 0 && <p className="text-[var(--nec-muted)] text-sm">Select at least one breakfast.</p>}
           {selectedBreakfasts.map((bp) => (
             <div key={bp.id} className="flex justify-between">
               <span>{bp.name}</span>

@@ -27,6 +27,24 @@
   --nec-muted:    #b4a5d0;
   --nec-bg-alt:   #131b2e;
 
+  /* RGB variants for rgba() usage */
+  --nec-purple-rgb: 124, 58, 237;
+  --nec-pink-rgb:   192, 38, 211;
+  --nec-cyan-rgb:   20, 184, 166;
+  --nec-gold-rgb:   212, 160, 23;
+  --nec-navy-rgb:   15, 10, 30;
+  --nec-card-rgb:   26, 16, 48;
+  --nec-dark-rgb:   21, 14, 40;
+
+  /* Shadow tokens */
+  --shadow-text:    0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card:    0 2px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-glow-purple: 0 0 24px rgba(124, 58, 237, 0.25);
+  --shadow-glow-pink:   0 0 24px rgba(192, 38, 211, 0.25);
+  --shadow-glow-gold:   0 0 24px rgba(212, 160, 23, 0.30);
+  --shadow-glow-cyan:   0 0 24px rgba(20, 184, 166, 0.25);
+
   /* Al-Anon brand colors (from official SVG) */
   --alanon-blue:     #0093D0;
   --alanon-blue-dim: #007BB5;
@@ -243,14 +261,14 @@
   /* ── CTA card (purple accent) ─────────────────── */
   .nec-cta-card-purple {
     background: linear-gradient(135deg, rgba(124,58,237,0.14) 0%, rgba(26,16,48,0.85) 50%, rgba(192,38,211,0.04) 100%);
-    border: 1px solid rgba(124,58,237,0.30);
+    border: 1px solid rgba(124,58,237,0.40);
     box-shadow: 0 4px 32px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.04);
   }
 
   /* ── CTA card (gold accent) ──────────────────── */
   .nec-cta-card-gold {
     background: linear-gradient(135deg, rgba(212,160,23,0.10) 0%, rgba(26,16,48,0.85) 50%, rgba(212,160,23,0.03) 100%);
-    border: 1px solid rgba(212,160,23,0.25);
+    border: 1px solid rgba(212,160,23,0.35);
     box-shadow: 0 4px 32px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.04);
   }
 
@@ -314,6 +332,19 @@
     background: linear-gradient(90deg, var(--nec-purple), var(--nec-gold));
     border-radius: 99px;
     opacity: 0.7;
+  }
+
+  /* Standardized interactive card hover */
+  .nec-interactive-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .nec-interactive-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(124, 58, 237, 0.35);
+  }
+  .nec-interactive-card:active {
+    transform: translateY(0);
   }
 }
 
@@ -411,7 +442,7 @@
 
 /* ── Blog Page ─────────────────────────────── */
 @keyframes blogCardEntrance {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .blog-card {
@@ -516,7 +547,7 @@
     transparent 100%
   );
   background-size: 200% 100%;
-  animation: badgeShimmer 3s ease-in-out infinite;
+  animation: badgeShimmer 9s ease-in-out infinite;
 }
 
 /* ── Character divider float ────────────────── */
@@ -557,7 +588,7 @@
 }
 .gradient-shimmer {
   background-size: 200% auto;
-  animation: gradientShimmer 6s ease-in-out infinite;
+  animation: gradientShimmer 9s ease-in-out infinite;
 }
 
 /* ── Button press feedback ──────────────────── */

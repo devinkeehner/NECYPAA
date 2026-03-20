@@ -146,7 +146,7 @@ export default function HeroSection() {
           >
             Dec 31, 2026 &ndash; Jan 3, 2027
           </p>
-          <p className="text-xs sm:text-sm text-gray-300 tracking-wide font-medium">
+          <p className="text-xs sm:text-sm text-[var(--nec-muted)] tracking-wide font-medium">
             Hartford Marriott Downtown
           </p>
         </div>
@@ -169,8 +169,8 @@ export default function HeroSection() {
               $40
             </span>
             <div className="text-left leading-tight">
-              <span className="text-sm font-semibold text-gray-200 block">Pre-Registration</span>
-              <span className="text-gray-300 text-xs">Limited pricing · Lock in your spot</span>
+              <span className="text-sm font-semibold text-[var(--nec-text)] block">Pre-Registration</span>
+              <span className="text-[var(--nec-muted)] text-xs">Limited pricing · Lock in your spot</span>
             </div>
           </div>
 

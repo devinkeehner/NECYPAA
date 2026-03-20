@@ -72,7 +72,7 @@ export default function FlyerWithModal({ src, alt, className = "" }: FlyerWithMo
         >
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
+            className="absolute top-4 right-4 p-2 bg-[rgba(124,58,237,0.4)] hover:bg-[rgba(124,58,237,0.6)] rounded-full transition-colors"
             aria-label="Close"
           >
             <X className="w-6 h-6 text-white" />

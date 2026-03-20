@@ -20,6 +20,22 @@ export default function BreakfastPage() {
 
           </div>
 
+          <div
+            className="rounded-xl p-5 mb-6 text-sm leading-relaxed"
+            style={{
+              background: "rgba(26,16,48,0.7)",
+              border: "1px solid var(--nec-border)",
+              color: "var(--nec-muted)",
+            }}
+          >
+            <p className="mb-2">
+              <strong className="text-white">New Year's Day Breakfast</strong> — Start your morning with fellowship and a great meal at the Hartford Marriott Downtown.
+            </p>
+            <p>
+              Dietary accommodations available. Select your dates below and check out securely.
+            </p>
+          </div>
+
           <BreakfastCheckout />
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function EventsPreviewSection() {
           <h2 className="section-heading mt-3" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>
             Next Event
           </h2>
-          <p className="mt-2 text-base text-gray-300 max-w-xl">
+          <p className="mt-2 text-base text-[var(--nec-muted)] max-w-xl">
             Our next fundraiser is right around the corner. Come hang!
           </p>
         </div>
@@ -99,11 +99,11 @@ export default function EventsPreviewSection() {
                 </h3>
 
                 <div className="flex flex-col sm:flex-row gap-3 text-sm">
-                  <span className="inline-flex items-center gap-2 text-gray-300">
+                  <span className="inline-flex items-center gap-2 text-[var(--nec-muted)]">
                     <Calendar className="w-4 h-4 flex-shrink-0" style={{ color: "var(--nec-cyan)" }} aria-hidden="true" />
                     {upcomingEvent.date}
                   </span>
-                  <span className="inline-flex items-center gap-2 text-gray-300">
+                  <span className="inline-flex items-center gap-2 text-[var(--nec-muted)]">
                     <MapPin className="w-4 h-4 flex-shrink-0" style={{ color: "var(--nec-gold)" }} aria-hidden="true" />
                     {upcomingEvent.location}
                   </span>
@@ -173,7 +173,7 @@ export default function EventsPreviewSection() {
               >
                 {event.title}
               </h3>
-              <p className="text-xs text-gray-300">{event.date}</p>
+              <p className="text-xs text-[var(--nec-muted)]">{event.date}</p>
             </div>
           ))}
         </div>

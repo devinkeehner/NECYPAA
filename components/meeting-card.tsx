@@ -47,28 +47,28 @@ export function MeetingCard({ day, meetings }: MeetingCardProps) {
               meeting.name
             )}
           </h3>
-          <p className="text-gray-300">
-            <span className="text-gray-300">Time:</span> {meeting.time}
+          <p className="text-[var(--nec-muted)]">
+            <span className="text-[var(--nec-muted)]">Time:</span> {meeting.time}
           </p>
-          <p className="text-gray-300">
-            <span className="text-gray-300">Location:</span> {meeting.location}
+          <p className="text-[var(--nec-muted)]">
+            <span className="text-[var(--nec-muted)]">Location:</span> {meeting.location}
           </p>
           {meeting.address && (
-            <p className="text-gray-300">
-              <span className="text-gray-300">Address:</span> {meeting.address}
+            <p className="text-[var(--nec-muted)]">
+              <span className="text-[var(--nec-muted)]">Address:</span> {meeting.address}
             </p>
           )}
-          <p className="text-gray-300">
-            <span className="text-gray-300">City:</span> {meeting.city}
+          <p className="text-[var(--nec-muted)]">
+            <span className="text-[var(--nec-muted)]">City:</span> {meeting.city}
           </p>
           {meeting.attendance && (
-            <p className="text-gray-300">
-              <span className="text-gray-300">Attendance:</span> {meeting.attendance}
+            <p className="text-[var(--nec-muted)]">
+              <span className="text-[var(--nec-muted)]">Attendance:</span> {meeting.attendance}
             </p>
           )}
           {meeting.types && (
-            <p className="text-gray-300">
-              <span className="text-gray-300">Types:</span> {meeting.types}
+            <p className="text-[var(--nec-muted)]">
+              <span className="text-[var(--nec-muted)]">Types:</span> {meeting.types}
             </p>
           )}
         </div>

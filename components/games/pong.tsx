@@ -452,7 +452,7 @@ export default function PongGame() {
             <p className="text-2xl font-black mb-2" style={{ color: won ? GOLD : PINK }}>
               {won ? "MESSAGE CARRIED!" : "GAME OVER"}
             </p>
-            <p className="text-sm text-gray-300 mb-3 text-center px-4">
+            <p className="text-sm text-[var(--nec-muted)] mb-3 text-center px-4">
               {won
                 ? "\u201CWe carry the message to the alcoholic who still suffers.\u201D"
                 : "\u201CKeep coming back. It works if you work it.\u201D"}

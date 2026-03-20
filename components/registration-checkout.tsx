@@ -166,7 +166,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
         <div className="rounded-2xl p-4 min-h-[400px] flex items-center justify-center bg-[rgba(26,16,48,0.9)] border border-[var(--nec-border)]" role="alert" aria-live="assertive">
           <div className="text-center space-y-2">
             <p className="text-red-400 font-semibold">Hmm, something went wrong</p>
-            <p className="text-gray-300">{error}</p>
+            <p className="text-[var(--nec-muted)]">{error}</p>
           </div>
         </div>
       </div>
@@ -187,7 +187,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
         <div className="rounded-2xl p-4 min-h-[400px] flex items-center justify-center bg-[rgba(26,16,48,0.9)] border border-[var(--nec-border)]" role="status" aria-live="polite">
           <div className="text-center space-y-3">
             <div className="w-8 h-8 mx-auto border-2 border-[var(--nec-purple)] border-t-transparent rounded-full animate-spin" aria-hidden="true" />
-            <p className="text-gray-300">Loading payment form&hellip;</p>
+            <p className="text-[var(--nec-muted)]">Loading payment form&hellip;</p>
           </div>
         </div>
       </div>
@@ -214,7 +214,7 @@ export default function RegistrationCheckout({ registrationData, policyAgreement
 
       <div className="rounded-2xl p-6 border border-[var(--nec-border)] space-y-4 bg-[rgba(26,16,48,0.6)]">
         <h3 className="text-lg font-semibold text-white">Registration Summary</h3>
-        <div className="space-y-2 text-gray-300">
+        <div className="space-y-2 text-[var(--nec-muted)]">
           {selfRegistrationQuantity > 0 && (
             <div className="flex justify-between">
               <span>Registration Fee</span>

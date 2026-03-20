@@ -413,7 +413,7 @@ export default function BreakoutGame() {
               {won ? "WALL BROKEN!" : "GAME OVER"}
             </p>
             {won && (
-              <p className="text-sm text-gray-300 mb-3 text-center px-4">
+              <p className="text-sm text-[var(--nec-muted)] mb-3 text-center px-4">
                 &ldquo;We will comprehend the word serenity.&rdquo; — The Promises
               </p>
             )}

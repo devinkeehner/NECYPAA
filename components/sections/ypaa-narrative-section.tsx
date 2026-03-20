@@ -422,7 +422,7 @@ export default function YpaaNarrativeSection() {
                   style={{
                     color: step.emphasis ? "white" : "var(--nec-text)",
                     textShadow: step.emphasis
-                      ? `0 0 30px ${step.color}`
+                      ? `0 0 20px ${step.color}`
                       : undefined,
                   }}
                 >
@@ -474,7 +474,7 @@ export default function YpaaNarrativeSection() {
                   className="text-xl sm:text-2xl md:text-3xl font-black"
                   style={{
                     color: "white",
-                    textShadow: "0 0 30px rgba(124,58,237,0.4)",
+                    textShadow: "0 0 20px rgba(124,58,237,0.4)",
                   }}
                 >
                   Welcome home.

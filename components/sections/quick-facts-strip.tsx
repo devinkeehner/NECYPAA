@@ -57,12 +57,12 @@ const facts = [
 export default function QuickFactsStrip() {
   return (
     <section aria-label="Quick facts" className="px-4 md:px-0">
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
         {facts.map((fact) => {
           const inner = (
             <div
               key={fact.label}
-              className="fact-pill group fact-pill-interactive transition-all duration-200"
+              className="fact-pill group fact-pill-interactive transition-all duration-200 hover:scale-[1.02] hover:-translate-y-0.5"
               style={{
                 cursor: fact.href ? "pointer" : undefined,
               }}
@@ -80,7 +80,7 @@ export default function QuickFactsStrip() {
               >
                 {fact.value}
               </span>
-              <span className="text-xs text-gray-300 leading-tight">{fact.sub}</span>
+              <span className="text-xs text-[var(--nec-muted)] leading-tight">{fact.sub}</span>
             </div>
           )
 

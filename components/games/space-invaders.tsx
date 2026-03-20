@@ -349,7 +349,7 @@ export default function SpaceInvadersGame() {
               {won ? "DEFECTS REMOVED!" : "GAME OVER"}
             </p>
             {won && (
-              <p className="text-sm text-gray-300 mb-3 text-center px-4">
+              <p className="text-sm text-[var(--nec-muted)] mb-3 text-center px-4">
                 &ldquo;We were reborn.&rdquo; — Big Book, p. 63
               </p>
             )}
