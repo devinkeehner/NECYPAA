@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { X, Menu, ChevronDown } from "lucide-react"
 import { HOTEL_BOOKING_URL, NECYPAA_ADVISORY_URL } from "@/lib/constants"
 import { useFocusTrap } from "@/lib/use-focus-trap"
@@ -40,7 +41,7 @@ const navItems: NavItem[] = [
   {
     label: "Community",
     children: [
-      { href: "/#what-is-ypaa", label: "What is YPAA?" },
+      { href: "/#what-is-ypaa", label: "What is YPAA? ↓" },
       { href: "/blog", label: "Blog" },
       { href: "/journey", label: "The Journey" },
       { href: "/prayer", label: "Prayer" },
@@ -52,7 +53,7 @@ const navItems: NavItem[] = [
   {
     label: "Get Involved",
     children: [
-      { href: "/#business-meeting", label: "Business Meeting" },
+      { href: "/#business-meeting", label: "Business Meeting ↓" },
       { href: "/service", label: "Service Opportunities" },
       { href: "/bid", label: "Start a Bid" },
     ],
@@ -61,7 +62,14 @@ const navItems: NavItem[] = [
   { href: NECYPAA_ADVISORY_URL, label: "Advisory", external: true },
 ]
 
-function DesktopDropdown({ item }: { item: NavDropdown }) {
+function isActivePath(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/" || pathname === "/en" || pathname === "/es"
+  const clean = pathname.replace(/^\/(en|es)/, "")
+  if (href.startsWith("/#")) return clean === "/" || clean === ""
+  return clean === href || clean.startsWith(href + "/")
+}
+
+function DesktopDropdown({ item, pathname }: { item: NavDropdown; pathname: string }) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const timeout = useRef<ReturnType<typeof setTimeout>>()
@@ -155,7 +163,12 @@ function DesktopDropdown({ item }: { item: NavDropdown }) {
                 role="menuitem"
                 tabIndex={open ? 0 : -1}
                 onClick={() => setOpen(false)}
-                className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                className={`block px-4 py-2 text-sm transition-colors ${
+                  isActivePath(pathname, child.href)
+                    ? "text-white bg-white/[0.07] font-semibold"
+                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                }`}
+                {...(isActivePath(pathname, child.href) ? { "aria-current": "page" as const } : {})}
               >
                 {child.label}
               </Link>
@@ -170,9 +183,11 @@ function DesktopDropdown({ item }: { item: NavDropdown }) {
 function MobileDropdown({
   item,
   onClose,
+  pathname,
 }: {
   item: NavDropdown
   onClose: () => void
+  pathname: string
 }) {
   const [open, setOpen] = useState(false)
 
@@ -214,8 +229,13 @@ function MobileDropdown({
                 key={child.label}
                 href={child.href}
                 onClick={onClose}
-                className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white
-                           hover:bg-white/5 rounded-lg transition-colors"
+                className={`block px-4 py-2.5 text-sm rounded-lg transition-colors ${
+                  isActivePath(pathname, child.href)
+                    ? "text-white bg-white/[0.07] font-semibold border-l-2"
+                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                }`}
+                style={isActivePath(pathname, child.href) ? { borderLeftColor: "var(--nec-purple)" } : undefined}
+                {...(isActivePath(pathname, child.href) ? { "aria-current": "page" as const } : {})}
               >
                 {child.label}
               </Link>
@@ -231,6 +251,7 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const drawerRef = useFocusTrap<HTMLElement>(menuOpen)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 12)
@@ -301,7 +322,7 @@ export default function SiteHeader() {
             >
               {navItems.map((item) =>
                 isDropdown(item) ? (
-                  <DesktopDropdown key={item.label} item={item} />
+                  <DesktopDropdown key={item.label} item={item} pathname={pathname} />
                 ) : item.external ? (
                   <a
                     key={item.label}
@@ -318,8 +339,13 @@ export default function SiteHeader() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="px-3 py-1.5 text-sm font-medium text-gray-300 hover:text-white rounded-lg
-                               hover:bg-white/5 transition-all duration-150 uppercase tracking-wide"
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg
+                               transition-all duration-150 uppercase tracking-wide ${
+                               isActivePath(pathname, item.href)
+                                 ? "text-white bg-white/[0.07]"
+                                 : "text-gray-300 hover:text-white hover:bg-white/5"
+                               }`}
+                    {...(isActivePath(pathname, item.href) ? { "aria-current": "page" as const } : {})}
                   >
                     {item.label}
                   </Link>
@@ -371,7 +397,7 @@ export default function SiteHeader() {
       >
         {navItems.map((item) =>
           isDropdown(item) ? (
-            <MobileDropdown key={item.label} item={item} onClose={close} />
+            <MobileDropdown key={item.label} item={item} onClose={close} pathname={pathname} />
           ) : item.external ? (
             <a
               key={item.label}
@@ -390,8 +416,13 @@ export default function SiteHeader() {
               key={item.label}
               href={item.href}
               onClick={close}
-              className="px-4 py-3 text-base font-semibold text-gray-200 hover:text-white
-                         hover:bg-white/5 rounded-xl transition-all uppercase tracking-wide"
+              className={`px-4 py-3 text-base font-semibold rounded-xl transition-all uppercase tracking-wide ${
+                isActivePath(pathname, item.href)
+                  ? "text-white bg-white/[0.07] border-l-2"
+                  : "text-gray-200 hover:text-white hover:bg-white/5"
+              }`}
+              style={isActivePath(pathname, item.href) ? { borderLeftColor: "var(--nec-purple)" } : undefined}
+              {...(isActivePath(pathname, item.href) ? { "aria-current": "page" as const } : {})}
             >
               {item.label}
             </Link>

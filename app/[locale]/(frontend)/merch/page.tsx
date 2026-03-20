@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import InventoryShell from "@/components/games/inventory-shell"
-import BreakoutGame from "@/components/games/breakout"
+
+const BreakoutGame = dynamic(() => import("@/components/games/breakout"))
 
 export const metadata: Metadata = {
   title: "Merch — NECYPAA XXXVI",

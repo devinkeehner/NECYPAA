@@ -1,8 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { CheckCircle, Hotel, Home, Mail, ArrowRight } from "lucide-react"
+import { CheckCircle, Hotel, Home, Mail, ArrowRight, UtensilsCrossed } from "lucide-react"
 import { HOTEL_BOOKING_URL, CONTACT_EMAIL } from "@/lib/constants"
+import AddToCalendar from "@/components/add-to-calendar"
+import ShareMenu from "@/components/share-menu"
 
 export default function RegistrationSuccessPage() {
   return (
@@ -127,6 +129,39 @@ export default function RegistrationSuccessPage() {
           </div>
         </div>
 
+        {/* Breakfast cross-sell */}
+        <div
+          className="rounded-2xl p-5 space-y-3 backdrop-blur-sm"
+          style={{
+            background: "linear-gradient(135deg, rgba(234,88,12,0.08) 0%, rgba(26,16,48,0.7) 50%, rgba(212,160,23,0.05) 100%)",
+            border: "1px solid rgba(234,88,12,0.20)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)",
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(234,88,12,0.12)", border: "1px solid rgba(234,88,12,0.30)" }}
+            >
+              <UtensilsCrossed className="w-5 h-5" style={{ color: "var(--nec-orange)" }} aria-hidden="true" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">Don&apos;t forget breakfast!</p>
+              <p className="text-xs mt-0.5" style={{ color: "var(--nec-muted)" }}>
+                Start your New Year right with the NECYPAA XXXVI breakfast event.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/breakfast"
+            className="btn-ghost w-full !justify-center !text-sm"
+            style={{ borderColor: "rgba(234,88,12,0.35)", color: "var(--nec-orange)" }}
+          >
+            Get Breakfast Tickets
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </Link>
+        </div>
+
         {/* CTA buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
           <a
@@ -138,6 +173,9 @@ export default function RegistrationSuccessPage() {
             <Hotel className="w-4 h-4" aria-hidden="true" />
             Book Hotel Now<span className="sr-only"> (opens in new tab)</span>
           </a>
+          <AddToCalendar variant="ghost" className="flex-1 !justify-center" />
+        </div>
+        <div className="flex">
           <Link
             href="/"
             className="btn-ghost flex-1 !justify-center"
@@ -145,6 +183,16 @@ export default function RegistrationSuccessPage() {
             <Home className="w-4 h-4" aria-hidden="true" />
             Back to Home
           </Link>
+        </div>
+
+        {/* Share */}
+        <div className="text-center">
+          <ShareMenu
+            text="I just registered for NECYPAA XXXVI — Escaping the Mad Realm! Hartford, CT · New Year's Eve 2026"
+            url="https://www.necypaact.com/register"
+            triggerClassName="btn-ghost !text-sm"
+            triggerLabel="Tell Your Friends"
+          />
         </div>
 
         {/* Help */}

@@ -8,14 +8,7 @@ export default function CTASection() {
     <section aria-label="Register and book hotel" className="px-4 md:px-0 relative">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Register card */}
-        <div
-          className="nec-cta-card relative overflow-hidden rounded-2xl p-8 flex flex-col gap-5 backdrop-blur-sm"
-          style={{
-            background: "linear-gradient(135deg, rgba(124,58,237,0.14) 0%, rgba(26,16,48,0.85) 50%, rgba(192,38,211,0.04) 100%)",
-            border: "1px solid rgba(124,58,237,0.30)",
-            boxShadow: "0 4px 32px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.04)",
-          }}
-        >
+        <div className="nec-cta-card nec-cta-card-purple nec-card-lift relative overflow-hidden rounded-2xl p-8 flex flex-col gap-5 backdrop-blur-sm">
           <div
             className="absolute -top-16 -right-16 w-48 h-48 rounded-full opacity-15"
             style={{ background: "var(--nec-purple)", filter: "blur(60px)" }}
@@ -61,14 +54,7 @@ export default function CTASection() {
         </div>
 
         {/* Hotel card */}
-        <div
-          className="nec-cta-card relative overflow-hidden rounded-2xl p-8 flex flex-col gap-5 backdrop-blur-sm"
-          style={{
-            background: "linear-gradient(135deg, rgba(212,160,23,0.10) 0%, rgba(26,16,48,0.85) 50%, rgba(212,160,23,0.03) 100%)",
-            border: "1px solid rgba(212,160,23,0.25)",
-            boxShadow: "0 4px 32px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.04)",
-          }}
-        >
+        <div className="nec-cta-card nec-cta-card-gold nec-card-lift relative overflow-hidden rounded-2xl p-8 flex flex-col gap-5 backdrop-blur-sm">
           <div
             className="absolute -top-16 -right-16 w-48 h-48 rounded-full opacity-12"
             style={{ background: "var(--nec-gold)", filter: "blur(60px)" }}

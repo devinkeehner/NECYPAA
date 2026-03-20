@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Plus_Jakarta_Sans, Outfit, Bangers, Pacifico } from "next/font/google"
+import { Plus_Jakarta_Sans, Outfit, Bangers } from "next/font/google"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
 import { notFound } from "next/navigation"
@@ -25,12 +25,6 @@ const bangers = Bangers({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-display",
-})
-
-const pacifico = Pacifico({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-script",
 })
 
 export const viewport: Viewport = {
@@ -93,7 +87,7 @@ export default async function RootLayout({
       <head>
         <meta name="color-scheme" content="dark light" />
       </head>
-      <body className={`${jakarta.variable} ${outfit.variable} ${bangers.variable} ${pacifico.variable} ${jakarta.className}`}>
+      <body className={`${jakarta.variable} ${outfit.variable} ${bangers.variable} ${jakarta.className}`}>
         <NextIntlClientProvider messages={messages}>
           <A11yProvider>
             <MadRealmArtLayer />

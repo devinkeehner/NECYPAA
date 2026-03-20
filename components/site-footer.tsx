@@ -85,7 +85,7 @@ export default function SiteFooter() {
             <h3 className="text-sm font-bold uppercase tracking-widest" style={{ color: "var(--nec-cyan)", textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>Convention</h3>
             <ul className="space-y-2" aria-label="Convention links">
               <li>
-                <Link href="/register" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/register" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Pre-Register — $40
                 </Link>
               </li>
@@ -94,33 +94,33 @@ export default function SiteFooter() {
                   href={HOTEL_BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-300 hover:text-white transition-colors inline-flex items-center gap-1"
+                  className="text-sm text-gray-300 hover:text-white transition-colors footer-link inline-flex items-center gap-1"
                 >
                   Book Hotel <ExternalLink className="w-3 h-3" aria-hidden="true" /><span className="sr-only"> (opens in new tab)</span>
                 </a>
               </li>
               <li>
-                <Link href="/program" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/program" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Program
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/events" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Events
                 </Link>
               </li>
               <li>
-                <Link href="/merch" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/merch" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Merch
                 </Link>
               </li>
               <li>
-                <Link href="/breakfast" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/breakfast" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Breakfast
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/faq" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   FAQ
                 </Link>
               </li>
@@ -129,7 +129,7 @@ export default function SiteFooter() {
                   href={NECYPAA_ADVISORY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-300 hover:text-white transition-colors inline-flex items-center gap-1"
+                  className="text-sm text-gray-300 hover:text-white transition-colors footer-link inline-flex items-center gap-1"
                 >
                   Advisory Council <ExternalLink className="w-3 h-3" aria-hidden="true" /><span className="sr-only"> (opens in new tab)</span>
                 </a>
@@ -142,47 +142,47 @@ export default function SiteFooter() {
             <h3 className="text-sm font-bold uppercase tracking-widest" style={{ color: "var(--nec-pink)", textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}>Community</h3>
             <ul className="space-y-2" aria-label="Community links">
               <li>
-                <Link href="/blog" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/blog" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/service" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/service" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Get Involved
                 </Link>
               </li>
               <li>
-                <Link href="/journey" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/journey" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Our Journey
                 </Link>
               </li>
               <li>
-                <Link href="/prayer" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/prayer" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Prayer
                 </Link>
               </li>
               <li>
-                <Link href="/asl" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/asl" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   ASL Resources
                 </Link>
               </li>
               <li>
-                <Link href="/states" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/states" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Find Your State
                 </Link>
               </li>
               <li>
-                <Link href="/bid" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/bid" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Start a Bid
                 </Link>
               </li>
               <li>
-                <Link href="/alanon" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/alanon" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Al-Anon / Alateen
                 </Link>
               </li>
               <li>
-                <Link href="/accessibility" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/accessibility" className="text-sm text-gray-300 hover:text-white transition-colors footer-link">
                   Accessibility
                 </Link>
               </li>

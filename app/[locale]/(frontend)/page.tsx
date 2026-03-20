@@ -8,9 +8,11 @@ import SiteFooter from "@/components/site-footer"
 import MobileCtaBar from "@/components/mobile-cta-bar"
 import CharacterDivider from "@/components/character-divider"
 import OrnateDivider from "@/components/art/ornate-divider"
+import ScrollReveal from "@/components/scroll-reveal"
 import { ArtAccentCluster } from "@/components/art/graffiti-elements"
 import { GearCluster, MazePattern } from "@/components/art/steampunk-gears"
 import { KeyIcon, ClockIcon } from "@/components/art/steampunk-elements"
+import { EventJsonLd, OrganizationJsonLd } from "@/components/json-ld"
 
 export default function HomePage() {
   return (
@@ -18,6 +20,9 @@ export default function HomePage() {
       className="min-h-screen min-h-screen-safe flex flex-col relative"
       style={{ backgroundColor: "var(--nec-navy)" }}
     >
+      <EventJsonLd />
+      <OrganizationJsonLd />
+
       {/* Page-level ambient vortex glow layer */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
         <div
@@ -51,22 +56,22 @@ export default function HomePage() {
         </div>
 
         {/* 2. Quick facts strip */}
-        <div className="container mx-auto px-4 mb-10 relative">
+        <ScrollReveal className="container mx-auto px-4 mb-10 relative">
           <QuickFactsStrip />
           {/* Edge art accents */}
           <div className="absolute -top-4 -left-4 pointer-events-none hidden lg:block" aria-hidden="true">
             <GearCluster className="opacity-40" />
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* 3. Primary CTA block */}
-        <div className="container mx-auto px-4 mb-12 relative">
+        <ScrollReveal className="container mx-auto px-4 mb-12 relative">
           <CTASection />
           {/* Graffiti accent cluster — right side */}
           <div className="absolute -top-8 -right-4 pointer-events-none hidden lg:block" aria-hidden="true">
             <ArtAccentCluster mirror />
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Ornate gear divider + Mad Hatter */}
         <div className="container mx-auto px-4 mb-2">
@@ -77,7 +82,7 @@ export default function HomePage() {
         </div>
 
         {/* 4. What is a YPAA? — narrative section */}
-        <div className="container mx-auto px-4 mb-12 relative">
+        <ScrollReveal className="container mx-auto px-4 mb-12 relative">
           <YpaaNarrativeSection />
           {/* Floating maze pattern accent */}
           <div className="absolute top-8 -left-8 w-32 h-32 pointer-events-none hidden lg:block" aria-hidden="true">
@@ -87,7 +92,7 @@ export default function HomePage() {
           <div className="absolute bottom-4 -right-4 pointer-events-none hidden lg:block" aria-hidden="true">
             <KeyIcon size={48} opacity={0.08} />
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Ornate key divider + Cheshire Cat */}
         <div className="container mx-auto px-4 mb-2">
@@ -98,13 +103,13 @@ export default function HomePage() {
         </div>
 
         {/* 5. Next business meeting */}
-        <div className="container mx-auto px-4 mb-12 relative">
+        <ScrollReveal className="container mx-auto px-4 mb-12 relative">
           <BusinessMeetingSection />
           {/* Clock accent */}
           <div className="absolute top-2 -right-6 pointer-events-none hidden lg:block" aria-hidden="true">
             <ClockIcon size={56} opacity={0.07} />
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Ornate compass divider + Caterpillar */}
         <div className="container mx-auto px-4 mb-2">
@@ -115,13 +120,13 @@ export default function HomePage() {
         </div>
 
         {/* 6. Events preview — upcoming + recent past with link to full page */}
-        <div className="container mx-auto px-4 mb-4 pb-20 md:pb-4 relative">
+        <ScrollReveal className="container mx-auto px-4 mb-4 pb-20 md:pb-4 relative">
           <EventsPreviewSection />
           {/* Graffiti accent cluster — left side */}
           <div className="absolute -bottom-4 -left-4 pointer-events-none hidden lg:block" aria-hidden="true">
             <ArtAccentCluster />
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Final ornate potion divider before footer */}
         <div className="container mx-auto px-4">

@@ -6,6 +6,7 @@ import MobileCtaBar from "@/components/mobile-cta-bar"
 import FlyerWithModal from "@/components/flyer-with-modal"
 import { Calendar, MapPin, IceCream, Sparkles } from "lucide-react"
 import PageArtAccents from "@/components/art/page-art-accents"
+import ShareMenu from "@/components/share-menu"
 
 export const metadata: Metadata = {
   title: "Events — NECYPAA XXXVI",
@@ -57,6 +58,14 @@ export default function EventsPage() {
               Fundraisers, fellowship events, and good times. Every event
               brings us one step closer to NECYPAA XXXVI.
             </p>
+            <div className="mt-4">
+              <ShareMenu
+                text="Check out the events leading up to NECYPAA XXXVI — Escaping the Mad Realm!"
+                url="https://www.necypaact.com/events"
+                triggerClassName="text-sm font-semibold transition-opacity hover:opacity-75"
+                triggerLabel="Share Events"
+              />
+            </div>
           </div>
 
           {/* ── Upcoming Event ─────────────────────────────────────── */}

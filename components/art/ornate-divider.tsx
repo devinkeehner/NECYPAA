@@ -36,7 +36,7 @@ export default function OrnateDivider({
       </div>
 
       {/* Center motif */}
-      <div className="mx-2 flex-shrink-0">
+      <div className={`mx-2 flex-shrink-0 ${variant === "gear" || variant === "compass" ? "divider-motif-spin" : ""}`}>
         {variant === "gear" && <GearMotif color={accentColor} />}
         {variant === "key" && <KeyMotif color={accentColor} />}
         {variant === "potion" && <PotionMotif color={accentColor} />}

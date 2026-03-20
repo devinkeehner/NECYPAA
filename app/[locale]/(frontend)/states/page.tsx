@@ -13,7 +13,9 @@ type RegionFilter = "all" | "new-england" | "expansion"
 export default function StatesPage() {
   const [selectedState, setSelectedState] = useState<string | null>(null)
   const [regionFilter, setRegionFilter] = useState<RegionFilter>("all")
-  const [viewMode, setViewMode] = useState<"map" | "list">("map")
+  const [viewMode, setViewMode] = useState<"map" | "list">(() =>
+    typeof window !== "undefined" && window.innerWidth < 768 ? "list" : "map"
+  )
 
   const totalIntergroups = NECYPAA_STATES.reduce(
     (sum, s) => sum + s.intergroups.length,

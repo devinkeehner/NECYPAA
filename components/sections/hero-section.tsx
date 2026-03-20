@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { HOTEL_BOOKING_URL } from "@/lib/constants"
+import AddToCalendar from "@/components/add-to-calendar"
 import HeroPortalFrame from "@/components/art/hero-portal-frame"
 import { Sparkle, Splatter, Hex } from "@/components/art/graffiti-elements"
 import { VortexSwirl } from "@/components/art/steampunk-elements"
@@ -88,7 +89,7 @@ export default function HeroSection() {
         {/* Theme logo — "Escaping the Mad Realm" calligraphic art (transparent background) */}
         <div className="relative w-full max-w-[200px] sm:max-w-[240px] md:max-w-[300px] lg:max-w-[340px]">
           <div
-            className="absolute inset-0 scale-[1.6] opacity-50"
+            className="absolute inset-0 scale-[1.6] opacity-50 hero-glow-breathe"
             aria-hidden="true"
             style={{
               background: "radial-gradient(ellipse 55% 50% at 50% 48%, rgba(124,58,237,0.40) 0%, rgba(192,38,211,0.18) 40%, transparent 70%)",
@@ -108,10 +109,10 @@ export default function HeroSection() {
 
         {/* Convention title */}
         <h1
-          className="mt-3 md:mt-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-wide"
+          className="mt-3 md:mt-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-wide gradient-shimmer"
           style={{
             fontFamily: "var(--font-display), 'Bangers', cursive",
-            background: "linear-gradient(90deg, var(--nec-purple) 0%, var(--nec-pink) 50%, var(--nec-gold) 100%)",
+            background: "linear-gradient(90deg, var(--nec-purple) 0%, var(--nec-pink) 35%, var(--nec-gold) 65%, var(--nec-purple) 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -188,6 +189,8 @@ export default function HeroSection() {
               Book Hotel<span className="sr-only"> (opens in new tab)</span>
             </a>
           </div>
+
+          <AddToCalendar variant="inline" className="mt-1" />
         </div>
 
         <p className="sr-only">

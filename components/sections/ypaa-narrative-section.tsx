@@ -217,7 +217,7 @@ export default function YpaaNarrativeSection() {
       <div className="mb-20">
         {/* Section header */}
         <div className="text-center mb-10">
-          <span className="section-badge mb-4 inline-block">About YPAA</span>
+          <span className="section-badge section-badge-shimmer mb-4 inline-block">About YPAA</span>
           <h2
             className="section-heading mt-3"
             style={{ textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}
@@ -404,12 +404,13 @@ export default function YpaaNarrativeSection() {
               >
                 {/* Timeline dot */}
                 <div
-                  className="absolute left-2.5 md:left-4 top-1.5 w-3 h-3 rounded-full"
+                  className="absolute left-2.5 md:left-4 top-1.5 w-3 h-3 rounded-full timeline-dot-pulse"
                   aria-hidden="true"
                   style={{
                     background: step.color,
                     boxShadow: `0 0 8px ${step.color}`,
-                  }}
+                    "--dot-color": step.color,
+                  } as React.CSSProperties}
                 />
 
                 <p

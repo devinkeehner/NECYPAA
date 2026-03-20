@@ -11,7 +11,7 @@ export default function EventsPreviewSection() {
       {/* ── Featured Upcoming Event ──────────────────────────── */}
       <div>
         <div className="mb-8">
-          <span className="section-badge">Coming Up</span>
+          <span className="section-badge section-badge-shimmer">Coming Up</span>
           <h2 className="section-heading mt-3" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>
             Next Event
           </h2>

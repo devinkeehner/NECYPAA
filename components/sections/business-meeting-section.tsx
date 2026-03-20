@@ -81,7 +81,7 @@ export default function BusinessMeetingSection() {
   return (
     <section id="business-meeting" aria-label="Next business meeting" className="px-4 md:px-0">
       <div className="mb-6">
-        <span className="section-badge">Planning</span>
+        <span className="section-badge section-badge-shimmer">Planning</span>
         <h2 className="section-heading mt-3" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>Next Business Meeting</h2>
         <p className="mt-2 text-sm text-gray-300 leading-relaxed">
           Get to know us at our business meetings on Zoom! Come see how the convention is built — through committee work, updates, votes, and fellowship. There are always opportunities for service for anyone who wants to get involved.
@@ -89,7 +89,7 @@ export default function BusinessMeetingSection() {
       </div>
 
       <div
-        className="nec-card p-6 md:p-8 transition-all duration-200 backdrop-blur-sm relative overflow-hidden"
+        className="nec-card nec-card-lift p-6 md:p-8 backdrop-blur-sm relative overflow-hidden"
         style={{ maxWidth: "640px", boxShadow: "0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)" }}
       >
         {/* Steampunk gear accent */}

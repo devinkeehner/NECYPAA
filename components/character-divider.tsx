@@ -57,7 +57,7 @@ export default function CharacterDivider({
           }}
         />
         <div
-          className="relative w-20 h-20 sm:w-24 sm:h-24"
+          className={`relative w-20 h-20 sm:w-24 sm:h-24 ${flip ? "character-float-flip" : "character-float"}`}
           style={{ transform: flip ? "scaleX(-1)" : undefined }}
         >
           <Image

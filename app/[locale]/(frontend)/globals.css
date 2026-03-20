@@ -156,6 +156,27 @@
     box-shadow: 0 0 0 1px rgba(124,58,237,0.15), 0 8px 32px rgba(0,0,0,0.50), inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
+  /* ── CTA card (purple accent) ─────────────────── */
+  .nec-cta-card-purple {
+    background: linear-gradient(135deg, rgba(124,58,237,0.14) 0%, rgba(26,16,48,0.85) 50%, rgba(192,38,211,0.04) 100%);
+    border: 1px solid rgba(124,58,237,0.30);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  /* ── CTA card (gold accent) ──────────────────── */
+  .nec-cta-card-gold {
+    background: linear-gradient(135deg, rgba(212,160,23,0.10) 0%, rgba(26,16,48,0.85) 50%, rgba(212,160,23,0.03) 100%);
+    border: 1px solid rgba(212,160,23,0.25);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  /* ── Info/help card ──────────────────────────── */
+  .nec-info-card {
+    background: linear-gradient(135deg, rgba(26,16,48,0.9) 0%, rgba(15,10,30,0.95) 100%);
+    border: 1px solid var(--nec-border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+
   /* ── Magical glow accent text ────────────────── */
   .glow-cyan    { text-shadow: 0 0 18px rgba(20,184,166,0.60); }
   .glow-pink    { text-shadow: 0 0 18px rgba(192,38,211,0.60); }
@@ -367,6 +388,157 @@
   display: none !important;
 }
 
+/* ══════════════════════════════════════════════
+   UI/UX POLISH — Micro-interactions & Animations
+   All animations respect .a11y-reduce-motion
+   ══════════════════════════════════════════════ */
+
+/* ── Scroll-reveal (IntersectionObserver-driven) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── Hero logo breathing glow ───────────────── */
+@keyframes heroGlowBreathe {
+  0%, 100% { opacity: 0.45; transform: scale(1.55); }
+  50%      { opacity: 0.65; transform: scale(1.65); }
+}
+.hero-glow-breathe {
+  animation: heroGlowBreathe 4s ease-in-out infinite;
+}
+
+/* ── Section badge shimmer ──────────────────── */
+@keyframes badgeShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.section-badge-shimmer {
+  background-image: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255,255,255,0.12) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: badgeShimmer 3s ease-in-out infinite;
+}
+
+/* ── Character divider float ────────────────── */
+@keyframes characterFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.character-float {
+  animation: characterFloat 3.5s ease-in-out infinite;
+}
+.character-float-flip {
+  animation: characterFloat 3.5s ease-in-out infinite;
+}
+
+/* ── Ornate divider gear slow rotation ──────── */
+@keyframes gearSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.divider-motif-spin {
+  animation: gearSpin 30s linear infinite;
+}
+
+/* ── Timeline dot pulse ─────────────────────── */
+@keyframes timelinePulse {
+  0%, 100% { box-shadow: 0 0 8px var(--dot-color); }
+  50%      { box-shadow: 0 0 16px var(--dot-color), 0 0 24px var(--dot-color); }
+}
+.timeline-dot-pulse {
+  animation: timelinePulse 2.5s ease-in-out infinite;
+}
+
+/* ── Hero title gradient shimmer ────────────── */
+@keyframes gradientShimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-shimmer {
+  background-size: 200% auto;
+  animation: gradientShimmer 6s ease-in-out infinite;
+}
+
+/* ── Button press feedback ──────────────────── */
+.btn-primary:active  { transform: translateY(0) scale(0.97); }
+.btn-secondary:active { transform: translateY(0) scale(0.97); }
+.btn-ghost:active    { transform: scale(0.97); }
+
+/* ── Footer link hover underline ────────────── */
+.footer-link {
+  position: relative;
+  text-decoration: none;
+}
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.footer-link:hover::after,
+.footer-link:focus-visible::after {
+  width: 100%;
+}
+
+/* ── Enhanced card hover ────────────────────── */
+.nec-card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.nec-card-lift:hover {
+  transform: translateY(-3px);
+}
+
+/* ── Quick facts hover lift ─────────────────── */
+.fact-pill-interactive {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.fact-pill-interactive:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Reduce-motion overrides for all new animations ── */
+.a11y-reduce-motion .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+.a11y-reduce-motion .hero-glow-breathe { animation: none !important; }
+.a11y-reduce-motion .section-badge-shimmer { animation: none !important; background-image: none !important; }
+.a11y-reduce-motion .character-float,
+.a11y-reduce-motion .character-float-flip { animation: none !important; }
+.a11y-reduce-motion .divider-motif-spin { animation: none !important; }
+.a11y-reduce-motion .timeline-dot-pulse { animation: none !important; }
+.a11y-reduce-motion .gradient-shimmer { animation: none !important; }
+.a11y-reduce-motion .btn-primary:active,
+.a11y-reduce-motion .btn-secondary:active,
+.a11y-reduce-motion .btn-ghost:active { transform: none !important; }
+.a11y-reduce-motion .footer-link::after { transition: none !important; }
+.a11y-reduce-motion .nec-card-lift { transition: none !important; }
+.a11y-reduce-motion .nec-card-lift:hover { transform: none !important; }
+.a11y-reduce-motion .fact-pill-interactive { transition: none !important; }
+.a11y-reduce-motion .fact-pill-interactive:hover { transform: none !important; }
+
 /* ── Sticky bottom bar z-index ──────────────── */
 .sticky-cta-bar { z-index: 49; }
 
@@ -390,7 +562,11 @@
     scroll-behavior: auto !important;
   }
   .fade-up { animation: none; opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
   .btn-primary:hover, .btn-secondary:hover, .states-stat-card:hover { transform: none !important; }
+  .nec-card-lift:hover { transform: none !important; }
+  .fact-pill-interactive:hover { transform: none !important; }
+  .footer-link::after { transition: none !important; }
 }
 
 /* ── Focus visible outline for keyboard nav ── */
@@ -680,6 +856,25 @@
   border-bottom-color: #d0c4e0 !important;
   box-shadow: 0 4px 24px rgba(0,0,0,0.1) !important;
 }
+/* Section badge shimmer — use darker sweep in light mode */
+[data-color-mode="light"] .section-badge-shimmer {
+  background-image: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(109,40,217,0.10) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+}
+/* Footer link underline — use dark color in light mode */
+[data-color-mode="light"] .footer-link::after {
+  background: #1a1030;
+}
+/* Card lift shadow in light mode */
+[data-color-mode="light"] .nec-card-lift:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10), 0 0 0 1px rgba(109,40,217,0.08) !important;
+}
 [data-color-mode="light"] footer {
   background: linear-gradient(180deg, #ede8f5 0%, #e0dae8 100%) !important;
 }
@@ -813,9 +1008,35 @@
   background: rgba(249,115,22,0.06) !important;
   border-color: rgba(249,115,22,0.4) !important;
 }
+/* Info/help cards */
+[data-color-mode="light"] .nec-info-card {
+  background: rgba(255,255,255,0.90) !important;
+  border-color: #d0c4e0 !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06) !important;
+}
+.a11y-high-contrast .nec-cta-card-purple,
+.a11y-high-contrast .nec-cta-card-gold,
+.a11y-high-contrast .nec-info-card {
+  border-width: 2px !important;
+  border-color: #999 !important;
+}
 /* Mobile nav border divider */
 [data-color-mode="light"] .border-gray-700\/50 {
   border-color: #d0c4e0 !important;
+}
+
+/* ── Share Menu ──────────────────────────────── */
+.share-sheet-enter { transition: transform 0.2s ease, opacity 0.2s ease; }
+.a11y-reduce-motion .share-sheet-enter { transition: none !important; }
+
+[data-color-mode="light"] .nec-share-sheet {
+  background: rgba(255,255,255,0.98) !important;
+  border-color: #d0c4e0 !important;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.12) !important;
+}
+.a11y-high-contrast .nec-share-sheet {
+  border-width: 2px !important;
+  border-color: #999 !important;
 }
 
 /* ── Print Stylesheet ────────────────────────── */
