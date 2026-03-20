@@ -59,22 +59,27 @@ export default function AlAnonPage() {
           <div className="max-w-4xl mx-auto">
 
             {/* ── Al-Anon Logo & Header ──────────────────────────── */}
-            <div className="text-center mb-10">
-              {/* Conference-approved Al-Anon Family Groups logo */}
-              <div className="flex justify-center mb-6">
+            <div className="text-center mb-14">
+              <span className="section-badge-alanon mb-6 inline-block">Al-Anon & Alateen</span>
+              {/* Conference-approved Al-Anon Family Groups logo (dark-bg variant) */}
+              <div className="flex justify-center mb-8">
                 <Image
-                  src="/images/Al-anon-eng-logo.svg"
+                  src="/images/Al-anon-eng-logo-dark.svg"
                   alt="Al-Anon Family Groups — Hope and help for families and friends of alcoholics"
-                  width={280}
-                  height={68}
-                  className="h-auto w-auto max-w-[280px]"
+                  width={480}
+                  height={117}
+                  className="h-auto w-auto max-w-[320px] sm:max-w-[400px] md:max-w-[480px]"
                   priority
                 />
               </div>
-              <span className="section-badge mb-4 inline-block">Al-Anon & Alateen</span>
-              <h1 className="section-heading mb-3">Al-Anon / Alateen</h1>
-              <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--nec-muted)" }}>
-                Resources for friends and family members affected by someone else&apos;s drinking.
+              <h1
+                className="text-xl md:text-2xl font-bold mb-3"
+                style={{ color: "var(--alanon-blue)" }}
+              >
+                Resources &amp; Support
+              </h1>
+              <p className="text-base md:text-lg max-w-xl mx-auto" style={{ color: "var(--nec-muted)" }}>
+                For friends and family members affected by someone else&apos;s drinking.
               </p>
             </div>
 
@@ -105,10 +110,10 @@ export default function AlAnonPage() {
               href="https://al-anon.org/newcomers/self-quiz/"
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-xl p-6 md:p-8 mb-10 text-center transition-all hover:scale-[1.005] group"
+              className="nec-alanon-quiz block rounded-xl p-6 md:p-8 mb-10 text-center transition-all hover:scale-[1.005] group"
               style={{
-                background: "linear-gradient(135deg, rgba(74,122,181,0.15) 0%, rgba(192,57,43,0.10) 100%)",
-                border: "1px solid rgba(100,140,200,0.25)",
+                background: "linear-gradient(135deg, rgba(0,147,208,0.10) 0%, rgba(0,123,181,0.06) 100%)",
+                border: "1px solid rgba(0,147,208,0.20)",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
               }}
             >
@@ -121,23 +126,16 @@ export default function AlAnonPage() {
               <p className="text-sm mb-4" style={{ color: "var(--nec-muted)" }}>
                 Not sure if Al-Anon is right for you? Take the self-assessment quiz.
               </p>
-              <span
-                className="inline-flex items-center gap-2 text-sm font-bold px-6 py-3 rounded-lg text-white transition-all"
-                style={{
-                  background: "linear-gradient(135deg, rgba(74,122,181,0.35) 0%, rgba(100,140,200,0.45) 100%)",
-                  border: "1px solid rgba(100,140,200,0.35)",
-                  boxShadow: "0 2px 12px rgba(100,140,200,0.2)",
-                }}
-              >
+              <span className="btn-alanon">
                 Take the Quiz <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </span>
             </a>
 
             {/* ── NECYPAA Program Teaser ─────────────────────────── */}
             <section
-              className="rounded-xl p-6 md:p-8 mb-10"
+              className="nec-alanon-program rounded-xl p-6 md:p-8 mb-10"
               style={{
-                background: "linear-gradient(135deg, rgba(124,58,237,0.06) 0%, rgba(15,10,30,0.5) 50%, rgba(192,38,211,0.04) 100%)",
+                background: "linear-gradient(135deg, rgba(124,58,237,0.06) 0%, rgba(15,10,30,0.5) 50%, rgba(0,147,208,0.04) 100%)",
                 border: "1px solid rgba(124,58,237,0.15)",
               }}
               aria-label="Al-Anon and Alateen at NECYPAA XXXVI"
@@ -178,7 +176,7 @@ export default function AlAnonPage() {
 
             {/* ── Alateen Paperwork Placeholder ──────────────────── */}
             <section
-              className="rounded-xl p-6 md:p-8 mb-10 text-center"
+              className="nec-alateen-paperwork rounded-xl p-6 md:p-8 mb-10 text-center"
               style={{
                 background: "rgba(15,10,30,0.45)",
                 border: "1px dashed rgba(180,140,210,0.25)",
@@ -200,10 +198,10 @@ export default function AlAnonPage() {
 
             {/* ── Al-Anon Meeting Finder ─────────────────────────── */}
             <section
-              className="rounded-xl p-6 md:p-8 mb-10 text-center"
+              className="nec-alanon-finder rounded-xl p-6 md:p-8 mb-10 text-center"
               style={{
-                background: "linear-gradient(135deg, rgba(100,140,200,0.06) 0%, rgba(15,10,30,0.5) 100%)",
-                border: "1px solid rgba(100,140,200,0.15)",
+                background: "linear-gradient(135deg, rgba(0,147,208,0.06) 0%, rgba(15,10,30,0.5) 100%)",
+                border: "1px solid rgba(0,147,208,0.15)",
               }}
             >
               <h2 className="text-xl font-bold text-white mb-2">Find an Al-Anon Meeting</h2>
@@ -214,12 +212,7 @@ export default function AlAnonPage() {
                 href="https://al-anon.org/al-anon-meetings/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-bold px-6 py-3 rounded-lg transition-all text-white"
-                style={{
-                  background: "linear-gradient(135deg, rgba(100,140,200,0.25) 0%, rgba(70,110,180,0.35) 100%)",
-                  border: "1px solid rgba(100,140,200,0.3)",
-                  boxShadow: "0 2px 12px rgba(100,140,200,0.15)",
-                }}
+                className="btn-alanon"
               >
                 Al-Anon Meeting Finder <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
@@ -229,7 +222,7 @@ export default function AlAnonPage() {
             <section className="mb-10" aria-label="Al-Anon resources by state">
               <h2
                 className="text-lg font-bold uppercase tracking-widest mb-2 pl-1"
-                style={{ color: "#93b5e0", textShadow: "0 0 12px rgba(100,140,200,0.15)" }}
+                style={{ color: "var(--alanon-blue)", textShadow: "0 0 12px rgba(0,147,208,0.15)" }}
               >
                 Al-Anon by State
               </h2>
@@ -244,10 +237,10 @@ export default function AlAnonPage() {
                     href={state.alanon.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group rounded-xl p-4 text-center transition-all duration-200"
+                    className="nec-alanon-state-card group rounded-xl p-4 text-center transition-all duration-200"
                     style={{
                       background: "rgba(15,10,30,0.4)",
-                      border: "1px solid rgba(100,140,200,0.10)",
+                      border: "1px solid rgba(0,147,208,0.10)",
                     }}
                   >
                     <span
@@ -261,7 +254,7 @@ export default function AlAnonPage() {
                     </span>
                     <ExternalLink
                       className="w-3 h-3 mx-auto mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                      style={{ color: "#93b5e0" }}
+                      style={{ color: "var(--alanon-blue)" }}
                       aria-hidden="true"
                     />
                     <span className="sr-only"> (opens in new tab)</span>
@@ -291,7 +284,7 @@ export default function AlAnonPage() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group rounded-xl p-4 text-center transition-all duration-200"
+                      className="nec-alateen-state-card group rounded-xl p-4 text-center transition-all duration-200"
                       style={{
                         background: "rgba(15,10,30,0.4)",
                         border: "1px solid rgba(180,140,210,0.10)",

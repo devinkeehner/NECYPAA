@@ -26,6 +26,11 @@
   --nec-text:     #e8e0f0;
   --nec-muted:    #b4a5d0;
 
+  /* Al-Anon brand colors (from official SVG) */
+  --alanon-blue:     #0093D0;
+  --alanon-blue-dim: #007BB5;
+  --alanon-white:    #FFFFFF;
+
   --radius: 0.75rem;
 
   /* shadcn/ui HSL tokens – mapped to Mad Realm palette */
@@ -90,6 +95,46 @@
     background: rgba(124,58,237,0.15);
     border: 1px solid rgba(124,58,237,0.40);
     color: var(--nec-purple);
+  }
+
+  /* ── Al-Anon section badge (blue variant) ──── */
+  .section-badge-alanon {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest;
+    background: rgba(0,147,208,0.12);
+    border: 1px solid rgba(0,147,208,0.35);
+    color: var(--alanon-blue);
+  }
+
+  /* ── Al-Anon logo backdrop ───────────────────── */
+  .alanon-logo-backdrop {
+    @apply inline-flex items-center justify-center rounded-2xl;
+    background: linear-gradient(135deg, #edf6fc 0%, #f8fbff 50%, #e8f4fa 100%);
+    padding: 1.25rem 2rem;
+    border: 1.5px solid rgba(0,147,208,0.20);
+    box-shadow: 0 4px 24px rgba(0,147,208,0.10), 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  /* ── Al-Anon card (blue-tinted) ──────────────── */
+  .nec-alanon-card {
+    @apply rounded-xl transition-all duration-200;
+    background: rgba(0,147,208,0.04);
+    border: 1px solid rgba(0,147,208,0.12);
+  }
+  .nec-alanon-card:hover {
+    background: rgba(0,147,208,0.07);
+    border-color: rgba(0,147,208,0.22);
+  }
+
+  /* ── Al-Anon CTA button (blue) ───────────────── */
+  .btn-alanon {
+    @apply inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3 rounded-lg text-white transition-all duration-200;
+    background: linear-gradient(135deg, var(--alanon-blue) 0%, var(--alanon-blue-dim) 100%);
+    box-shadow: 0 2px 12px rgba(0,147,208,0.25);
+  }
+  .btn-alanon:hover {
+    background: linear-gradient(135deg, var(--alanon-blue-dim) 0%, #006999 100%);
+    box-shadow: 0 4px 20px rgba(0,147,208,0.40);
+    transform: translateY(-1px);
   }
 
   /* ── Section heading ───────────────────────── */
@@ -950,7 +995,84 @@
 /* Al-Anon accordion items */
 [data-color-mode="light"] .nec-alanon-item {
   background: rgba(255,255,255,0.85) !important;
-  border-color: rgba(100,140,200,0.20) !important;
+  border-color: rgba(0,147,208,0.18) !important;
+}
+/* Al-Anon logo backdrop — light mode */
+[data-color-mode="light"] .alanon-logo-backdrop {
+  background: linear-gradient(135deg, #edf6fc 0%, #f8fbff 50%, #e8f4fa 100%) !important;
+  border-color: rgba(0,147,208,0.25) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+}
+/* Al-Anon badge — light mode */
+[data-color-mode="light"] .section-badge-alanon {
+  background: rgba(0,147,208,0.08) !important;
+  border-color: rgba(0,147,208,0.30) !important;
+  color: var(--alanon-blue-dim) !important;
+}
+/* Al-Anon cards — light mode */
+[data-color-mode="light"] .nec-alanon-card {
+  background: rgba(0,147,208,0.03) !important;
+  border-color: rgba(0,147,208,0.15) !important;
+}
+/* Al-Anon CTA button — light mode */
+[data-color-mode="light"] .btn-alanon {
+  background: linear-gradient(135deg, var(--alanon-blue) 0%, var(--alanon-blue-dim) 100%) !important;
+}
+/* Al-Anon state grid cards — light mode */
+[data-color-mode="light"] .nec-alanon-state-card {
+  background: rgba(255,255,255,0.88) !important;
+  border-color: rgba(0,147,208,0.15) !important;
+}
+[data-color-mode="light"] .nec-alateen-state-card {
+  background: rgba(255,255,255,0.88) !important;
+  border-color: rgba(180,140,210,0.18) !important;
+}
+/* Al-Anon quiz banner — light mode */
+[data-color-mode="light"] .nec-alanon-quiz {
+  background: linear-gradient(135deg, rgba(0,147,208,0.08) 0%, rgba(0,123,181,0.04) 100%) !important;
+  border-color: rgba(0,147,208,0.20) !important;
+}
+[data-color-mode="light"] .nec-alanon-quiz p { color: #1a1030 !important; }
+[data-color-mode="light"] .nec-alanon-quiz .text-2xl,
+[data-color-mode="light"] .nec-alanon-quiz .text-3xl { color: var(--alanon-blue-dim) !important; text-shadow: none !important; }
+/* Al-Anon meeting finder — light mode */
+[data-color-mode="light"] .nec-alanon-finder {
+  background: rgba(0,147,208,0.04) !important;
+  border-color: rgba(0,147,208,0.15) !important;
+}
+[data-color-mode="light"] .nec-alanon-finder h2 { color: var(--alanon-blue-dim) !important; text-shadow: none !important; }
+/* Al-Anon program teaser — light mode */
+[data-color-mode="light"] .nec-alanon-program {
+  background: linear-gradient(135deg, rgba(124,58,237,0.04) 0%, rgba(255,255,255,0.6) 50%, rgba(0,147,208,0.03) 100%) !important;
+  border-color: rgba(124,58,237,0.12) !important;
+}
+[data-color-mode="light"] .nec-alanon-program h2 { color: #1a1030 !important; text-shadow: none !important; }
+/* Alateen paperwork — light mode */
+[data-color-mode="light"] .nec-alateen-paperwork {
+  background: rgba(255,255,255,0.80) !important;
+  border-color: rgba(180,140,210,0.20) !important;
+}
+[data-color-mode="light"] .nec-alateen-paperwork h2 { color: #1a1030 !important; text-shadow: none !important; }
+/* High contrast — Al-Anon elements */
+.a11y-high-contrast .alanon-logo-backdrop {
+  box-shadow: 0 0 0 2px #000 !important;
+}
+.a11y-high-contrast .nec-alanon-item,
+.a11y-high-contrast .nec-alanon-card,
+.a11y-high-contrast .nec-alanon-state-card,
+.a11y-high-contrast .nec-alateen-state-card {
+  border-width: 2px !important;
+  border-color: #999 !important;
+}
+.a11y-high-contrast .nec-alanon-quiz,
+.a11y-high-contrast .nec-alanon-finder,
+.a11y-high-contrast .nec-alanon-program,
+.a11y-high-contrast .nec-alateen-paperwork {
+  border-width: 2px !important;
+  border-color: #999 !important;
+}
+.a11y-high-contrast .btn-alanon {
+  border: 2px solid #fff !important;
 }
 /* Mobile CTA bar */
 [data-color-mode="light"] .sticky-cta-bar {

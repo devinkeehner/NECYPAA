@@ -76,7 +76,7 @@ export default function AlAnonInfoAccordion() {
           className="nec-alanon-item rounded-xl overflow-hidden transition-all duration-200"
           style={{
             background: "rgba(15,10,30,0.45)",
-            border: "1px solid rgba(100,140,200,0.12)",
+            border: "1px solid rgba(0,147,208,0.12)",
           }}
         >
           <Accordion.Header>
@@ -84,7 +84,7 @@ export default function AlAnonInfoAccordion() {
               <span className="pr-4">{section.title}</span>
               <ChevronDown
                 className="w-5 h-5 flex-shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180"
-                style={{ color: "#93b5e0" }}
+                style={{ color: "var(--alanon-blue)" }}
                 aria-hidden="true"
               />
             </Accordion.Trigger>
