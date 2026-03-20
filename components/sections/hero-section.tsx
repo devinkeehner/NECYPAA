@@ -97,13 +97,15 @@ export default function HeroSection() {
             }}
           />
           <Image
-            src="/images/mad-realm-logo-no-bg.png"
+            src="/images/mad-realm-logo-no-bg.webp"
             alt="Escaping the Mad Realm — NECYPAA XXXVI theme logo featuring ornate calligraphic lettering in a gradient from teal to magenta to gold"
             width={340}
             height={340}
             className="relative z-10 w-full h-auto drop-shadow-[0_4px_40px_rgba(124,58,237,0.45)] drop-shadow-[0_2px_16px_rgba(192,38,211,0.25)]"
             priority
             sizes="(max-width: 640px) 55vw, (max-width: 1024px) 280px, 340px"
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoIAAgAAUAmJQBOgB4/gAAAAA=="
           />
         </div>
 

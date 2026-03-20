@@ -10,6 +10,7 @@ import SiteHeader from "@/components/site-header"
 import { A11yProvider } from "@/lib/accessibility-context"
 import AccessibilityPanel from "@/components/accessibility-panel"
 import MadRealmArtLayer from "@/components/art/mad-realm-art-layer"
+import { WebVitalsReporter } from "@/app/web-vitals-reporter"
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/necypaa-xxxvi-flyer.png",
+        url: "/images/necypaa-xxxvi-flyer.webp",
         width: 1200,
         height: 630,
         alt: "NECYPAA XXXVI — Hartford, CT — Dec 31, 2026 – Jan 3, 2027",
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NECYPAA XXXVI — Escaping the Mad Realm · Hartford, CT",
     description: "Escaping the Mad Realm — Northeast Convention of Young People in AA · New Year's Eve 2026 · Pre-reg $40",
-    images: ["/images/necypaa-xxxvi-flyer.png"],
+    images: ["/images/necypaa-xxxvi-flyer.webp"],
   },
   robots: {
     index: true,
@@ -86,8 +87,23 @@ export default async function RootLayout({
     <html lang={locale}>
       <head>
         <meta name="color-scheme" content="dark light" />
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU7NShXUEKi4Rw.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC0C4G-EiAou6Y.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={`${jakarta.variable} ${outfit.variable} ${bangers.variable} ${jakarta.className}`}>
+        <WebVitalsReporter />
         <NextIntlClientProvider messages={messages}>
           <A11yProvider>
             <MadRealmArtLayer />

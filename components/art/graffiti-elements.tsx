@@ -2,6 +2,8 @@
  * SVG art elements derived from the NECYPAA XXXVI flyer art DNA.
  * Visual language: 3D hexagons, paint splatters, drips, sparkles.
  * Palette: cyan (#00d4e8), hot pink (#e8006e), orange (#f97316), gold (#fbbf24).
+ *
+ * Server components - no client-side JavaScript needed for static SVGs
  */
 
 /** 3D-ish hexagon cluster – decorative accent */

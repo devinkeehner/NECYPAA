@@ -2,6 +2,8 @@
  * Steampunk gear SVG elements derived from the Mad Realm portal art.
  * Visual language: interlocking cog wheels, brass/purple/pink tones.
  * Used as subtle decorative accents across pages.
+ *
+ * Server components - no client-side JavaScript needed for static SVGs
  */
 
 interface GearProps {

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /Users/nicholastoledo/Development/web/NECYPASITE/app/[locale]/(frontend)/globals.css)",
+      "Bash(chmod +x /Users/nicholastoledo/Development/web/NECYPASITE/scripts/optimize-images.mjs)",
+      "Bash(node scripts/optimize-images.mjs)",
+      "Bash(npm install web-vitals)",
+      "Bash(npm install web-vitals --legacy-peer-deps)",
+      "Bash(npm run build)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

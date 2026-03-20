@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, lazy, Suspense } from "react"
 import { ExternalLink, Map, List, Globe, Sparkles } from "lucide-react"
 import { NECYPAA_STATES } from "@/lib/data/states"
 import StateCard from "@/components/state-card"
-import NecypaaRegionMap from "@/components/necypaa-region-map"
 import SiteFooter from "@/components/site-footer"
 import MobileCtaBar from "@/components/mobile-cta-bar"
+
+const NecypaaRegionMap = lazy(() => import("@/components/necypaa-region-map"))
 
 type RegionFilter = "all" | "new-england" | "expansion"
 
@@ -264,10 +265,19 @@ export default function StatesPage() {
               {/* Map content */}
               {viewMode === "map" ? (
                 <div className="p-4 md:p-6 lg:p-8">
-                  <NecypaaRegionMap
-                    activeState={selectedState}
-                    onStateSelect={handleStateSelect}
-                  />
+                  <Suspense fallback={
+                    <div className="flex items-center justify-center min-h-[400px]">
+                      <div className="text-center space-y-3">
+                        <div className="w-8 h-8 mx-auto border-2 border-[var(--nec-purple)] border-t-transparent rounded-full animate-spin" aria-hidden="true" />
+                        <p className="text-gray-300">Loading map...</p>
+                      </div>
+                    </div>
+                  }>
+                    <NecypaaRegionMap
+                      activeState={selectedState}
+                      onStateSelect={handleStateSelect}
+                    />
+                  </Suspense>
                 </div>
               ) : (
                 <div className="p-4 md:p-6">
