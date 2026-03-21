@@ -133,62 +133,89 @@ export default function EventsPreviewSection() {
         </div>
       </div>
 
-      {/* ── Recent Past Events (compact) ─────────────────────── */}
-      <div>
-        <div className="mb-4 flex items-end justify-between">
-          <div>
-            <span className="section-badge">Archive</span>
-            <h2 className="section-heading mt-3" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>Past Events</h2>
-          </div>
-          <Link
-            href="/events"
-            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-wide transition-colors"
-            style={{ color: "var(--nec-cyan)" }}
-          >
-            View All <ArrowRight className="w-4 h-4" aria-hidden="true" />
-          </Link>
-        </div>
-
-        {/* Show only the 3 most recent past events */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {pastEvents.slice(0, 3).map((event) => (
-            <div
-              key={event.id}
-              className="nec-card p-4 group transition-all duration-200 hover:-translate-y-0.5"
-              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.03)" }}
+      {/* ── Recent Past Events (compact scroll strip) ─────────── */}
+      {pastEvents.length > 0 && (
+        <div>
+          <div className="mb-4 flex items-center justify-between">
+            <h2
+              className="text-xs font-bold uppercase tracking-widest"
+              style={{ color: "var(--nec-cyan)", textShadow: "0 0 12px rgba(20,184,166,0.15)" }}
             >
-              <div
-                className="w-full aspect-[3/4] rounded-lg overflow-hidden mb-3"
-                style={{ border: "1px solid var(--nec-border)", boxShadow: "0 2px 8px rgba(0,0,0,0.3)" }}
-              >
-                <FlyerWithModal
-                  src={event.flyerSrc}
-                  alt={event.flyerAlt}
-                  className="rounded-lg"
-                />
-              </div>
-              <h3
-                className="text-sm font-bold mb-1"
-                style={{ color: "var(--nec-purple)", textShadow: "0 0 12px rgba(124,58,237,0.2)" }}
-              >
-                {event.title}
-              </h3>
-              <p className="text-xs text-[var(--nec-muted)]">{event.date}</p>
-            </div>
-          ))}
-        </div>
+              Past Events
+            </h2>
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide transition-colors hover:opacity-80"
+              style={{ color: "var(--nec-cyan)" }}
+            >
+              View All <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </Link>
+          </div>
 
-        {/* Mobile "View All" link */}
-        <div className="sm:hidden mt-4 text-center">
-          <Link
-            href="/events"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-wide transition-colors"
-            style={{ color: "var(--nec-cyan)" }}
+          <div
+            className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory scrollbar-thin"
+            role="list"
+            aria-label="Recent past events"
+            style={{ scrollbarColor: "rgba(124,58,237,0.25) transparent" }}
           >
-            View All Events <ArrowRight className="w-4 h-4" aria-hidden="true" />
-          </Link>
+            {pastEvents.slice(0, 4).map((event) => (
+              <div
+                key={event.id}
+                role="listitem"
+                className="flex-shrink-0 w-36 sm:w-40 snap-start group"
+              >
+                <div
+                  className="w-full aspect-[3/4] rounded-xl overflow-hidden mb-2 transition-transform duration-200 group-hover:-translate-y-0.5"
+                  style={{
+                    border: "1px solid var(--nec-border)",
+                    boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
+                  }}
+                >
+                  <FlyerWithModal
+                    src={event.flyerSrc}
+                    alt={event.flyerAlt}
+                    className="rounded-xl"
+                  />
+                </div>
+                <h3
+                  className="text-xs font-bold leading-tight mb-0.5 line-clamp-2"
+                  style={{ color: "var(--nec-text)" }}
+                >
+                  {event.title}
+                </h3>
+                <p className="text-[10px]" style={{ color: "var(--nec-muted)" }}>
+                  {event.date.replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s*/, "")}
+                </p>
+              </div>
+            ))}
+
+            {pastEvents.length > 4 && (
+              <Link
+                href="/events"
+                className="flex-shrink-0 w-36 sm:w-40 snap-start flex flex-col items-center justify-center rounded-xl transition-all duration-200 hover:-translate-y-0.5"
+                style={{
+                  background: "rgba(26,16,48,0.5)",
+                  border: "1px dashed rgba(124,58,237,0.25)",
+                  aspectRatio: "3/4",
+                }}
+              >
+                <span
+                  className="text-lg font-black mb-1"
+                  style={{ color: "var(--nec-purple)" }}
+                >
+                  +{pastEvents.length - 4}
+                </span>
+                <span
+                  className="text-[10px] font-bold uppercase tracking-widest"
+                  style={{ color: "var(--nec-muted)" }}
+                >
+                  More Events
+                </span>
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   )
 }
