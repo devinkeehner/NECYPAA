@@ -90,7 +90,9 @@ export default function MeetingDirectoryCard({ meeting, theme = "pink" }: Meetin
           aria-hidden="true"
         />
         <span className="text-xs font-semibold" style={{ color: "var(--nec-text)" }}>
-          {meeting.day}{meeting.time ? ` \u2022 ${meeting.time}` : ""}
+          {meeting.day && meeting.time
+            ? `${meeting.day} \u2022 ${meeting.time}`
+            : meeting.day || meeting.time || "Contact for schedule"}
         </span>
       </div>
 
@@ -138,13 +140,17 @@ export default function MeetingDirectoryCard({ meeting, theme = "pink" }: Meetin
       </div>
 
       {/* City + Location */}
-      <p
-        className="text-xs leading-relaxed mb-1"
-        style={{ color: "var(--nec-muted)" }}
-      >
-        <MapPin className="w-3 h-3 inline-block mr-1 -mt-0.5" style={{ color: t.accent }} aria-hidden="true" />
-        {meeting.city}{hasLocation ? ` — ${meeting.location}` : ""}
-      </p>
+      {(meeting.city || hasLocation) && (
+        <p
+          className="text-xs leading-relaxed mb-1"
+          style={{ color: "var(--nec-muted)" }}
+        >
+          <MapPin className="w-3 h-3 inline-block mr-1 -mt-0.5" style={{ color: t.accent }} aria-hidden="true" />
+          {meeting.city && hasLocation
+            ? `${meeting.city} — ${meeting.location}`
+            : meeting.city || meeting.location}
+        </p>
+      )}
 
       {/* Online link */}
       {hasOnlineUrl && (

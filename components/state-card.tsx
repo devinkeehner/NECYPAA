@@ -339,7 +339,9 @@ export default function StateCard({ state, isHighlighted }: StateCardProps) {
                           <span className="flex items-center gap-1 mt-0.5">
                             <Clock className="w-2.5 h-2.5" style={{ color: "var(--nec-pink)" }} aria-hidden="true" />
                             <span className="text-[11px]" style={{ color: "var(--nec-muted)" }}>
-                              {m.day}{m.time ? ` \u2022 ${m.time}` : ""}
+                              {m.day && m.time
+                                ? `${m.day} \u2022 ${m.time}`
+                                : m.day || m.time || "Contact for schedule"}
                             </span>
                             <span
                               className="ml-1 text-[9px] font-bold uppercase px-1 py-px rounded"
