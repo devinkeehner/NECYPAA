@@ -51,3 +51,18 @@ Every piece of code written, edited, or suggested for this project MUST comply w
 
 ### When in doubt:
 Choose the most accessible path. WCAG AAA over AA. More ARIA over less. More keyboard support over less. If unsure, check the Accessibilities Chair's guidelines in `ACCESSIBILITY_GUIDELINES.md`.
+
+---
+
+## CRITICAL EMERGENCY PROTOCOL — Bus Factor 1
+
+This project is maintained by a solo engineer. The `/.handoff` directory contains living documentation that enables any developer to take over immediately.
+
+**RULE:** Every time you make a structural change, add a dependency, or complete a feature, you MUST autonomously update the relevant files in the `/.handoff` directory. Before formatting a `git push` command, you must update `/.handoff/03_ACTIVE_CONTEXT.md` to reflect the exact state of the pushed code.
+
+**Handoff files:**
+- `/.handoff/01_SYSTEM_ARCHITECTURE.md` — Update when: adding integrations, changing database schema, modifying environment variables, altering the tech stack.
+- `/.handoff/02_OPERATIONS_AND_DEPLOYMENT.md` — Update when: changing build/deploy steps, adding scripts, modifying CI/CD, changing hosting config.
+- `/.handoff/03_ACTIVE_CONTEXT.md` — Update EVERY push: current state, latest changes, known bugs, feature status.
+
+A pre-push git hook enforces this. If you forget, the push will be blocked.

@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Globe } from "lucide-react"
+import { useRouter, usePathname } from "@/i18n/navigation"
+import { useLocale } from "next-intl"
 
 const locales = [
   { code: "en", label: "English", flag: "🇺🇸" },
@@ -9,18 +11,17 @@ const locales = [
 ] as const
 
 /**
- * Language switcher component (unstyled, ready to theme).
+ * Language switcher dropdown for toggling between English and Spanish.
  *
- * Currently a visual placeholder — locale routing (/en/..., /es/...)
- * is not yet active. When the app migrates to [locale] route segments,
- * this component will navigate to the equivalent page in the selected locale.
- *
- * For now, it demonstrates the UI pattern and can be dropped into the
- * header or footer.
+ * Uses next-intl's locale-aware router to navigate to the equivalent
+ * page in the selected locale (e.g. /en/register → /es/register).
  */
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false)
-  const [current, setCurrent] = useState<"en" | "es">("en")
+  const router = useRouter()
+  const pathname = usePathname()
+  const currentLocale = useLocale()
+  const [current, setCurrent] = useState<"en" | "es">(currentLocale as "en" | "es")
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -81,7 +82,7 @@ export default function LanguageSwitcher() {
               onClick={() => {
                 setCurrent(locale.code)
                 setOpen(false)
-                // TODO: When locale routing is active, navigate to /{locale}/current-path
+                router.replace(pathname, { locale: locale.code })
               }}
               className="flex items-center gap-2.5 w-full px-3.5 py-2.5 text-xs font-medium transition-colors text-left"
               style={{

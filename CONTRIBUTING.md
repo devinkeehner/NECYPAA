@@ -50,7 +50,7 @@ pnpm dev
 ### Code Standards
 
 - **Language:** TypeScript (strict mode)
-- **Framework:** Next.js 14 (App Router)
+- **Framework:** Next.js 15 (App Router)
 - **Styling:** Tailwind CSS with custom design tokens in `app/globals.css`
 - **Linting:** `pnpm lint` (ESLint + Next.js core web vitals)
 - **Formatting:** `pnpm format` (Prettier with Tailwind plugin)

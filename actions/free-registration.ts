@@ -5,6 +5,14 @@ import { rateLimitFreeRegistration } from "@/lib/rate-limit"
 import { registrationDataSchema, policyAgreementsSchema } from "@/lib/validation"
 import type { RegistrationData, PolicyAgreements } from "@/lib/types"
 
+/**
+ * Submits a free (cash-at-door) registration.
+ *
+ * Creates or updates a Stripe customer record with registration metadata
+ * so the attendee appears in reporting alongside paid registrations.
+ *
+ * @throws {Error} If validation fails, rate limit is exceeded, or Stripe API call fails.
+ */
 export async function submitFreeRegistration(
   registrationData: RegistrationData,
   policyAgreements: PolicyAgreements,

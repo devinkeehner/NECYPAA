@@ -1,0 +1,51 @@
+# NECYPAA XXXVI — Project Rules for Cursor
+
+## Project Overview
+
+Convention website for NECYPAA XXXVI ("Escaping the Mad Realm"). Next.js 15, TypeScript strict, Tailwind CSS, Payload CMS (SQLite), Stripe payments, next-intl (EN/ES), WCAG 2.1 AAA accessibility target.
+
+## Required Reading Before Any Code Change
+
+1. `AA_TRADITIONS_GUARDRAILS.md` — Anonymity rules. No full names, no faces, no promotion. Non-negotiable.
+2. `ACCESSIBILITY_GUIDELINES.md` — WCAG 2.1 AAA target. Every component must be keyboard-accessible and screen-reader-friendly.
+3. `CONTRIBUTING.md` — Branch naming, commit format, escalation rules.
+
+## Code Conventions
+
+- **TypeScript strict mode** — zero `any` types.
+- **Zod validation** on all inputs (`lib/validation.ts`).
+- **Rate limiting** on all server actions (`lib/rate-limit.ts`).
+- **Tailwind only** — use CSS custom properties from `globals.css` (`var(--nec-purple)`, etc.), never hardcode colors.
+- **Radix UI** for complex interactive widgets.
+- **Semantic HTML** — `<main>`, `<nav>`, `<section>`, `<article>`, proper ARIA attributes.
+- **Accessibility** — every `<img>` needs alt text, every form input needs a label, every interactive element needs keyboard support. Test in all 6 a11y modes.
+
+## Architecture Quick Reference
+
+- **Pages:** `app/[locale]/(frontend)/` — 19 routes with i18n
+- **Server actions:** `actions/` — registration, breakfast, free-reg (Stripe + Zod + rate limit)
+- **CMS:** Payload at `/admin` — Collections: Users, Events, BlogPosts, FAQ, Media
+- **Shared lib:** `lib/` — validation, rate-limit, stripe, types, constants, products
+- **Static data:** `lib/data/` — meetings (48KB), states, events
+- **Components:** `components/` — sections/, ui/ (shadcn), checkout/, games/, art/
+
+## Testing
+
+- `pnpm test` — 45 Vitest unit tests
+- `pnpm test:a11y` — Playwright WCAG accessibility tests
+- `pnpm build` — must pass clean before any push
+
+---
+
+## CRITICAL EMERGENCY PROTOCOL — Bus Factor 1
+
+This project is maintained by a solo engineer. The `/.handoff` directory contains living documentation that enables any developer to take over immediately.
+
+**RULE:** Every time you make a structural change, add a dependency, or complete a feature, you MUST autonomously update the relevant files in the `/.handoff` directory. Before formatting a `git push` command, you must update `/.handoff/03_ACTIVE_CONTEXT.md` to reflect the exact state of the pushed code.
+
+**Handoff files:**
+- `/.handoff/01_SYSTEM_ARCHITECTURE.md` — Update when: adding integrations, changing database schema, modifying environment variables, altering the tech stack.
+- `/.handoff/02_OPERATIONS_AND_DEPLOYMENT.md` — Update when: changing build/deploy steps, adding scripts, modifying CI/CD, changing hosting config.
+- `/.handoff/03_ACTIVE_CONTEXT.md` — Update EVERY push: current state, latest changes, known bugs, feature status.
+
+A pre-push git hook enforces this. If you forget, the push will be blocked.

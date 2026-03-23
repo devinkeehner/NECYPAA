@@ -1,3 +1,4 @@
+/** Attendee-submitted registration form data (before Zod validation). */
 export interface RegistrationData {
   name: string
   state: string
@@ -13,6 +14,7 @@ export interface RegistrationData {
   accessCode?: string
 }
 
+/** Seven required behavior-policy acknowledgements collected during registration. */
 export interface PolicyAgreements {
   readPolicy: boolean
   understandQuestions: boolean
@@ -23,11 +25,13 @@ export interface PolicyAgreements {
   signatureAgreement: boolean
 }
 
+/** Optional attribution fields for tracking which AA entity or person a purchase is tied to. */
 export interface PurchaseAttribution {
   aaEntity?: string
   reservedForPerson?: string
 }
 
+/** Attendee info collected for standalone breakfast ticket purchases. */
 export interface BreakfastAttendee {
   firstName: string
   lastName: string

@@ -4,13 +4,17 @@ import { stripe } from "@/lib/stripe"
 import { BREAKFAST_PRODUCTS, calculateProcessingFee } from "@/lib/registration-products"
 import { rateLimitCheckout } from "@/lib/rate-limit"
 import { breakfastAttendeeSchema, breakfastIdsSchema } from "@/lib/validation"
+import type { BreakfastAttendee } from "@/lib/types"
 
-interface BreakfastAttendee {
-  firstName: string
-  lastName: string
-  email: string
-}
-
+/**
+ * Creates a Stripe Checkout session for standalone breakfast ticket purchases.
+ *
+ * Validates attendee info and selected breakfast IDs, applies rate limiting,
+ * calculates the processing fee gross-up, and returns the Stripe client secret
+ * for embedded checkout.
+ *
+ * @throws {Error} If validation fails, rate limit is exceeded, or Stripe session creation fails.
+ */
 export async function startBreakfastCheckout(attendee: BreakfastAttendee, breakfastIds: string[]) {
   // ── Validate inputs ────────────────────────────────────────────
   const attendeeResult = breakfastAttendeeSchema.safeParse(attendee)

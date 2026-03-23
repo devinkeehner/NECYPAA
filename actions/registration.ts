@@ -16,6 +16,16 @@ import { redeemRegistrationCode, maskAccessCode } from "@/lib/issuer-client"
 import { EVENT_SLUG } from "@/lib/constants"
 import type { RegistrationData, PolicyAgreements, PurchaseAttribution } from "@/lib/types"
 
+/**
+ * Creates a Stripe Checkout session for convention registration.
+ *
+ * Supports self-registration, scholarship purchases, and combined orders
+ * with optional breakfast tickets. Validates all inputs via Zod, enforces
+ * per-email rate limiting, and calculates the processing fee gross-up.
+ *
+ * @returns The Stripe client secret for embedded checkout.
+ * @throws {Error} If validation fails, rate limit is exceeded, or Stripe session creation fails.
+ */
 export async function startRegistrationCheckout(
   productId: string,
   registrationData: RegistrationData,
@@ -179,6 +189,12 @@ export async function startRegistrationCheckout(
 
 // ─── Access Code Registration ────────────────────────────────
 
+/**
+ * Registers an attendee using a pre-issued access code (cash/scholarship flow).
+ *
+ * Redeems the code via the issuer service, then persists the registration
+ * as a Stripe customer record with full metadata for reporting.
+ */
 export async function submitAccessCodeRegistration(
   registrationData: RegistrationData,
   policyAgreements: PolicyAgreements,
