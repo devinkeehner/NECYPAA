@@ -46,6 +46,8 @@ export async function startBreakfastCheckout(attendee: BreakfastAttendee, breakf
     attendee_first_name: validatedAttendee.firstName,
     attendee_last_name: validatedAttendee.lastName,
     attendee_email: validatedAttendee.email,
+    breakfast_price_version: "2026-03-26-$25",
+    breakfast_ticket_price_cents: BREAKFAST_PRODUCTS[0]?.priceInCents.toString() || "2500",
     breakfast_tickets: selectedBreakfasts.map((bp) => bp.name).join(", "),
     breakfast_count: selectedBreakfasts.length.toString(),
   }

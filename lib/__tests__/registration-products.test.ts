@@ -10,10 +10,10 @@ describe("calculateProcessingFee", () => {
     expect(fee).toBe(150)
   })
 
-  it("calculates correctly for a $20 breakfast ticket", () => {
-    const fee = calculateProcessingFee(2000)
-    // (2000 + 30) / 0.971 - 2000 = 2030 / 0.971 - 2000 ≈ 90
-    expect(fee).toBe(91)
+  it("calculates correctly for a $25 breakfast ticket", () => {
+    const fee = calculateProcessingFee(2500)
+    // (2500 + 30) / 0.971 - 2500 = 2530 / 0.971 - 2500 ≈ 106
+    expect(fee).toBe(106)
   })
 
   it("calculates correctly for $0 (free registration)", () => {
@@ -23,10 +23,10 @@ describe("calculateProcessingFee", () => {
   })
 
   it("calculates correctly for a combined order ($40 reg + 3 breakfasts)", () => {
-    const subtotal = 4000 + 2000 * 3 // $100 = 10000 cents
+    const subtotal = 4000 + 2500 * 3 // $115 = 11500 cents
     const fee = calculateProcessingFee(subtotal)
-    // (10000 + 30) / 0.971 - 10000 = 10030 / 0.971 - 10000 ≈ 329
-    expect(fee).toBe(330)
+    // (11500 + 30) / 0.971 - 11500 = 11530 / 0.971 - 11500 ≈ 374
+    expect(fee).toBe(374)
   })
 
   it("returns a positive integer for any positive amount", () => {
@@ -69,9 +69,9 @@ describe("BREAKFAST_PRODUCTS", () => {
     expect(BREAKFAST_PRODUCTS.length).toBe(3)
   })
 
-  it("all products are $20", () => {
+  it("all products are $25", () => {
     for (const bp of BREAKFAST_PRODUCTS) {
-      expect(bp.priceInCents).toBe(2000)
+      expect(bp.priceInCents).toBe(2500)
     }
   })
 })

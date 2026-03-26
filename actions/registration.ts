@@ -86,6 +86,8 @@ export async function startRegistrationCheckout(
     attendee_name: validatedData.name || "Not provided",
     attendee_state: validatedData.state || "Not provided",
     attendee_email: validatedData.email || "Not provided",
+    breakfast_price_version: "2026-03-26-$25",
+    breakfast_ticket_price_cents: BREAKFAST_PRODUCTS[0]?.priceInCents.toString() || "2500",
     scholarship_recipient_name: validatedData.scholarshipRecipientName || "None",
     scholarship_recipient_email: validatedData.scholarshipRecipientEmail || "None",
     breakfast_tickets: selectedBreakfasts.map((bp) => bp.name).join(", ") || "None",
